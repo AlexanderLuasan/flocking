@@ -19,5 +19,17 @@ public class Bird implements Boid {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Vector getPositionVector() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean behaviour() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }
