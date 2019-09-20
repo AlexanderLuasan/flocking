@@ -7,6 +7,7 @@ package vector;
  * 		public void invert();
  * 		public Vector subtract(Vector other);
  * 		public void scale(double length);
+ * 		public normalize();
  * 		public Vector(double x,double y);
  * 		public Vector(double radians, double length);
  * 		public Vector(double x1, double y1,double x2, double y2); //use the other constructor

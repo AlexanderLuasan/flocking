@@ -6,7 +6,7 @@ package graphics;
  * 
  * 		this one is not function discibable give a series of functions that allow you to draw differnt objects by requesting information
  * 		examples:
- *			
+ *			note object may be made of multible shapes
  * 			String getColor(); //returns the color hash
  * 			bool isCircle(); // check to make sure they are a circle
  * 			int getCenterX();//returns a point
