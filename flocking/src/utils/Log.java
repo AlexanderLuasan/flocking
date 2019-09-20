@@ -1,6 +1,11 @@
 package utils;
 /*
  * 
+ * 
+ * this class replaces the system out
+ * you can add flags and then filter msgs by flag
+ * examples in utilsTesting
+ * 
  * class log{
  * 
  * 		type can by char int double object string
