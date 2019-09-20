@@ -27,7 +27,7 @@ public class UtilTest {
 		testing.print("FAIL",0);
 		testing.println("FAIL",Log.UTIL);
 		testing.print("FAIL",Log.DEBUG);
-		testing.println("Open waaater",Log.DEBUG+Log.UTIL);
+		testing.println("Open waaater.",Log.DEBUG+Log.UTIL);
 
 		
 		
@@ -39,22 +39,22 @@ public class UtilTest {
 		testing.print("Biger than a --- ",Log.ERROR+Log.VECTOR);
 		testing.print("Man ",Log.ERROR);
 		testing.print("Hole ",Log.ERROR+Log.DEBUG);
-		testing.println("Cooover",Log.ERROR+Log.UTIL);
+		testing.println("Cover.",Log.ERROR+Log.UTIL);
 		
 		//two item or filter
 		
 		testing.setFilter(Log.ERROR+Log.DEBUG);
 		testing.print("Gentle giant ");
 		testing.println("Fail",Log.NONE);
-		testing.print("of the ",Log.ERROR);
-		testing.println("Sea --",Log.ERROR+Log.DEBUG);
+		testing.print("Of the ",Log.ERROR);
+		testing.println("Seeeeaaaa --",Log.ERROR+Log.DEBUG);
 		testing.print("How did you ",Log.ERROR+Log.UTIL);
 		testing.print("Come to ",Log.DEBUG);
 		testing.print("Fail",Log.UTIL);
 		
 		testing.setPerfectFilter(true);
 		testing.setFilter(Log.NONE);
-		testing.println("Be",Log.NONE);
+		testing.println("Be?",Log.NONE);
 	}
 
 }
