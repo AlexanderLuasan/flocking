@@ -58,7 +58,7 @@ public class Log {
 	
 	private static final Log instance = new Log();
 	
-	private int filter = 0;
+	private int filter = DEBUG+ERROR;
 	public int getFilter() {
 		return filter;
 	}
