@@ -7,7 +7,7 @@ import java.lang.Math;
  * add some public static final vector for north south west east up down left right ...
  * unimplmented
  * class vector{
- * 	public Vector add(Vector other);//return a new one
+ * 	public void add(Vector other);//return a new one
  * 	public void invert();
  * 	public Vector subtract(Vector other);
  * 	public void scale(double length);
@@ -49,16 +49,29 @@ public class Vector {
 		this.setyComponent(y);
 	}
 	
+	public Vector(double x1, double y1,double x2, double y2) {
+		this.setxComponent(x2-x1);
+		this.setyComponent(y2-y1);
+	}
+	
 	public Vector(double radians, double length, boolean type) {
-		double xComponent = Math.cos(length);
-		double yComponent = Math.sin(length);
+		double xComponent = length*Math.cos(radians);
+		double yComponent = length*Math.sin(radians);
 		this.setxComponent(xComponent);
 		this.setyComponent(yComponent);
 	}
 	
-	public Vector(double x1, double y1,double x2, double y2) {
-		this.setxComponent(x2-x1);
-		this.setyComponent(y2-y1);
+	public void add(Vector other) {
+		this.setxComponent(this.xComponent+other.xComponent);
+		this.setyComponent(this.yComponent+other.yComponent);
+	}
+	
+	public Vector subtract(Vector other) {
+		other.invert();
+		this.setxComponent(this.xComponent+other.xComponent);
+		this.setyComponent(this.yComponent+other.yComponent);
+		other.invert();
+		return this;
 	}
 	
 	public void normalize() {
@@ -75,41 +88,37 @@ public class Vector {
 		this.setyComponent(this.yComponent*scale);
 	}
 	
+	public void divide(int a) {
+		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
+		double scale = oldLength/a;
+		this.setxComponent(this.xComponent*scale);
+		this.setyComponent(this.yComponent*scale);
+	}
+	
 	public void invert() {
 		this.setxComponent(-this.xComponent);
 		this.setyComponent(-this.yComponent);
 	}
 	
-	public Vector add(Vector other) {
-		this.setxComponent(this.xComponent+other.xComponent);
-		this.setyComponent(this.yComponent+other.yComponent);
-		return this;
-	}
-	
-	public Vector subtract(Vector other) {
-		other.invert();
-		this.setxComponent(this.xComponent+other.xComponent);
-		this.setyComponent(this.yComponent+other.yComponent);
-		other.invert();
-		return this;
-	}
-	
 	public void limit(double min, double max) {
 		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
+		double scale;
 		if (oldLength<min) {
-			double scale = min/oldLength;
-			this.setxComponent(this.xComponent*scale);
-			this.setyComponent(this.yComponent*scale);
+			scale = min/oldLength;
 		}else if (oldLength>max) {
-			double scale = max/oldLength;
-			this.setxComponent(this.xComponent*scale);
-			this.setyComponent(this.yComponent*scale);
+			scale = max/oldLength;
+		}else {
+			scale = 1;
 		}
+		this.setxComponent(this.xComponent*scale);
+		this.setyComponent(this.yComponent*scale);
 	}
 	
 	public void rotate(double radians) {
-		this.setxComponent(this.xComponent*Math.cos(radians)-this.yComponent*Math.sin(radians));
-		this.setxComponent(this.xComponent*Math.sin(radians)+this.yComponent*Math.cos(radians));
+		double newXComponent = this.xComponent*Math.cos(radians)-this.yComponent*Math.sin(radians);
+		double newYComponent = this.xComponent*Math.sin(radians)+this.yComponent*Math.cos(radians);
+		this.setxComponent(newXComponent);
+		this.setyComponent(newYComponent);
 	}
 	
 	@Override
