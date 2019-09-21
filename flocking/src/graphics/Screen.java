@@ -39,5 +39,8 @@ public class Screen extends JFrame {
 		validate();
 	}
 	
-	
+	public void paint(Graphics g) {
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, 300, 300);
+	}
 }
