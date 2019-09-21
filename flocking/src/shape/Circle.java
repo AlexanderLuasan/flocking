@@ -7,7 +7,7 @@ package shape;
  * class circle{
  * 		double radius
  * 		get and set
- * 		// you will need to implement he inerface functions
+ * 		// you will need to implement he interface functions
  * }
  * 
  * 

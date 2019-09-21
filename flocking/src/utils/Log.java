@@ -10,32 +10,32 @@ package utils;
  * 
  * 		type can by char int double object string
  * 		flag list:
- * 			DEBUG
- * 			ERROR
- * 			EVENT
- * 			GRAPHICS
- * 			BOIDS
- * 			RAY
- * 			SHAPE
- * 			UTIL
- * 			VECTOR
- * 			ALL
- * 			NONE
+ * 	ok		DEBUG
+ * 	ok		ERROR
+ * 	ok		EVENT
+ * 	ok		GRAPHICS
+ * 	ok		BOIDS
+ * 	ok		RAY
+ * 	ok		SHAPE
+ * 	ok		UTIL
+ * 	ok		VECTOR
+ * 	ok		ALL
+ * 	ok		NONE
  * 		add flags in any order to set them
  * 
- * 		perfectFilter
+ * 	ok	perfectFilter
  * 			set and get
  * 		when true items must perfectly match the filter normally they need to match one
  * 
- * 		filter
+ * 	ok	filter
  * 			set and get
  * 		the filter flags are compared to
  * 
- * 		print(type); 				// will assume debugflag
- * 		print(type, int flag) 		// will assume flags
+ * 	ok	print(type); 				// will assume debugflag
+ * 	ok	print(type, int flag) 		// will assume flags
  * 			//adds a new line
- * 		println(type); 				// will assume debugflag
- * 		println(type, int flag) 	//will assume flags
+ * 	ok	println(type); 				// will assume debugflag
+ * 	ok	println(type, int flag) 	//will assume flags
  * }
  * 
  * 
