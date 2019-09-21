@@ -1,4 +1,6 @@
 package vector;
+import java.lang.Math;
+
 /* vector.h
  * 
  * 
@@ -47,6 +49,9 @@ public class Vector {
 	}
 	
 	public Vector(double radians, double length, boolean type) {
-		length;
+		double xPos = Math.cos(length);
+		double yPos = Math.sin(length);
+		this.setxPos(xPos);
+		this.setyPos(yPos);
 	}
 }
