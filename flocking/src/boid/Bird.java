@@ -4,34 +4,35 @@ import vector.Vector;
 
 /*
  * class Bird{
+ * 	  variables
  * 		Vector position the boids position
  * 		Vector velocity the boids velocity
  * 		Vector acceleration the acceleration of the boid
  * 
- * 		Bird(int x,int y,vector vel);	//position x and y and inital velocity
- * 		bool movement();				//update the birds position to the next frame
- * 		seeboid(boid other);			//how to tell a boid about other boids
+ * 	ok	Bird(int x,int y,vector vel);	//position x and y and inital velocity
+ * 	ok	bool movement();				//update the birds position to the next frame
+ * 	ok	seeboid(boid other);			//how to tell a boid about other boids
  * 										//this triggers all differnt rules
- * 		behavior();						//finish all the calulations
+ * 	ok	behavior();						//finish all the calulations
  * 										//this finishes the calulaition for all the rules
  * 			other general functions are discriped in boid interface		
  * 
  * 		//rule functions
  * 			//alignment
- * 				Vector alignment;
- * 				int alignmentCount
- * 				void align(boid other);		//add a boids velocity vector the alignment vector
- * 				void align();				//finish the calulation and add it to the acceleration
+ * 	ok			Vector alignment;
+ * 	ok			int alignmentCount
+ * 	ok			void align(boid other);		//add a boids velocity vector the alignment vector
+ * 	un			void align();				//finish the calulation and add it to the acceleration
  * 			//Cohesion
- * 				Vector cohesion;
- * 				int cohesionCount
- * 				void cohesion(boid other);		//add a boids velocity vector the cohesion vector
- * 				void cohesion();				//finish the calulation and add it to the acceleration
+ * 	ok			Vector cohesion;
+ * 	ok			int cohesionCount
+ * 	ok			void cohesion(boid other);		//add a boids velocity vector the cohesion vector
+ * 	un			void cohesion();				//finish the calulation and add it to the acceleration
  *			//seperation
- *				Vector seperation;
- * 				int seperationCount
- * 				void cohesion(boid other);		//add a boids velocity vector the seperation vector
- * 				void cohesion();				//finish the calulation and add it to the acceleration
+ *	ok			Vector seperation;
+ * 	ok			int seperationCount
+ * 	un			void cohesion(boid other);		//add a boids velocity vector the seperation vector
+ * 	un			void cohesion();				//finish the calulation and add it to the acceleration
  *			
  * 		
  * }
