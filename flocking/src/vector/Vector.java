@@ -5,11 +5,11 @@ import java.lang.Math;
  * 
  * 
  * add some public static final vector for north south west east up down left right ...
- * unimplmented
+ * 
  * class vector{
- * 	ok	public Vector add(Vector other);//return a new one
+ * 	un	public boolean add(Vector other); change to no new
  * 	ok	public void invert();
- * 	ok	public Vector subtract(Vector other);
+ * 	un	public boolean subtract(Vector other); change to no new
  * 	ok	public void scale(double length);
  * 	ok	public normalize();
  * 	ok	public Vector(double x,double y);
@@ -18,6 +18,9 @@ import java.lang.Math;
  * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
  * 										angle + 1 is much faster than tan cos sin stuff i think
  * 	ok	public Vector limit(double min, double max); // adjust length so it is within the range
+ * 	un	public void div(double a);  new divide function
+ * 	un	public static add(vector a, vector b);  this will create a new vector 
+ *  un	public static subtract(vector a, vector b);  this will create a new vector 
  * }
  */
 

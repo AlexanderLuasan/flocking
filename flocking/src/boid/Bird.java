@@ -14,7 +14,7 @@ import vector.Vector;
  * 										//this triggers all differnt rules
  * 		behavior();						//finish all the calulations
  * 										//this finishes the calulaition for all the rules
- * 		other general functions are discriped in boid interface		
+ * 			other general functions are discriped in boid interface		
  * 
  * 		//rule functions
  * 			//alignment
