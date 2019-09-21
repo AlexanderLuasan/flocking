@@ -1,6 +1,8 @@
 package vector;
 /* vector.h
  * 
+ * 
+ * add some public static final vector for north south west east up down left right ...
  * unimplmented
  * class vector{
  * 		public Vector add(Vector other);//return a new one
