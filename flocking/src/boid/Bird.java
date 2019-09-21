@@ -9,30 +9,30 @@ import vector.Vector;
  * 		Vector velocity the boids velocity
  * 		Vector acceleration the acceleration of the boid
  * 
- * 	ok	Bird(int x,int y,vector vel);	//position x and y and inital velocity
+ * 	ok	Bird(int x,int y,vector vel);	//position x and y and initial velocity
  * 	ok	bool movement();				//update the birds position to the next frame
- * 	ok	seeboid(boid other);			//how to tell a boid about other boids
- * 										//this triggers all differnt rules
- * 	ok	behavior();						//finish all the calulations
- * 										//this finishes the calulaition for all the rules
- * 			other general functions are discriped in boid interface		
+ * 	ok	seeBoid(boid other);			//how to tell a boid about other boids
+ * 										//this triggers all different rules
+ * 	ok	behavior();						//finish all the calculations
+ * 										//this finishes the calculation for all the rules
+ * 			other general functions are described in boid interface		
  * 
  * 		//rule functions
  * 			//alignment
  * 	ok			Vector alignment;
  * 	ok			int alignmentCount
  * 	ok			void align(boid other);		//add a boids velocity vector the alignment vector
- * 	un			void align();				//finish the calulation and add it to the acceleration
+ * 	un			void align();				//finish the calculation and add it to the acceleration
  * 			//Cohesion
  * 	ok			Vector cohesion;
  * 	ok			int cohesionCount
  * 	ok			void cohesion(boid other);		//add a boids velocity vector the cohesion vector
- * 	un			void cohesion();				//finish the calulation and add it to the acceleration
- *			//seperation
- *	ok			Vector seperation;
+ * 	un			void cohesion();				//finish the calculation and add it to the acceleration
+ *			//Separation
+ *	ok			Vector separation;
  * 	ok			int seperationCount
- * 	un			void cohesion(boid other);		//add a boids velocity vector the seperation vector
- * 	un			void cohesion();				//finish the calulation and add it to the acceleration
+ * 	un			void cohesion(boid other);		//add a boids velocity vector the separation vector
+ * 	un			void cohesion();				//finish the calculation and add it to the acceleration
  *			
  * 		
  * }
@@ -142,6 +142,11 @@ public class Bird implements Boid {
 
 	protected void setVelocity(Vector velocity) {
 		this.velocity = velocity;
+	}
+
+	@Override
+	public String toString() {
+		return "Bird [position=" + position + ", velocity=" + velocity + "]";
 	}
 	
 	//alignment
