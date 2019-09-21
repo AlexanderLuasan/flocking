@@ -7,9 +7,9 @@ import java.lang.Math;
  * add some public static final vector for north south west east up down left right ...
  * 
  * class vector{
- * 	un	public boolean add(Vector other); change to no new
+ * 	ok	public boolean add(Vector other); change to no new
  * 	ok	public void invert();
- * 	un	public boolean subtract(Vector other); change to no new
+ * 	ok	public boolean subtract(Vector other); change to no new
  * 	ok	public void scale(double length);
  * 	ok	public normalize();
  * 	ok	public Vector(double x,double y);
@@ -18,9 +18,9 @@ import java.lang.Math;
  * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
  * 										angle + 1 is much faster than tan cos sin stuff i think
  * 	ok	public Vector limit(double min, double max); // adjust length so it is within the range
- * 	un	public void div(double a);  new divide function
- * 	un	public static add(vector a, vector b);  this will create a new vector 
- *  un	public static subtract(vector a, vector b);  this will create a new vector 
+ * 	ok	public void div(double a);  new divide function
+ * 	ok	public static add(vector a, vector b);  this will create a new vector 
+ *  ok	public static subtract(vector a, vector b);  this will create a new vector 
  * }
  */
 
@@ -63,17 +63,32 @@ public class Vector {
 		this.setyComponent(yComponent);
 	}
 	
-	public void add(Vector other) {
+	public boolean add(Vector other) {
 		this.setxComponent(this.xComponent+other.xComponent);
 		this.setyComponent(this.yComponent+other.yComponent);
+		return true;
 	}
 	
-	public Vector subtract(Vector other) {
+	public boolean subtract(Vector other) {
 		other.invert();
 		this.setxComponent(this.xComponent+other.xComponent);
 		this.setyComponent(this.yComponent+other.yComponent);
 		other.invert();
-		return this;
+		return true;
+	}
+	
+	public static Vector add(Vector a, Vector b) {
+		Vector newVector = new Vector(0,0);
+		boolean addA = newVector.add(a);
+		boolean addB = newVector.add(b);
+		return newVector;
+	}
+	
+	public static Vector subtract(Vector a, Vector b) {
+		Vector newVector = new Vector(0,0);
+		boolean addA = newVector.add(a);
+		boolean addB = newVector.subtract(b);
+		return newVector;
 	}
 	
 	public void normalize() {
