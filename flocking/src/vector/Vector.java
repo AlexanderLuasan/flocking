@@ -7,28 +7,25 @@ import java.lang.Math;
  * add some public static final vector for north south west east up down left right ...
  * unimplmented
  * class vector{
- * 	ok	public Vector add(Vector other);//return a new one
- * 	ok	public void invert();
- * 	ok	public Vector subtract(Vector other);
- * 	ok	public void scale(double length);
- * 	ok	public normalize();
- * 	ok	public Vector(double x,double y);
- * 	ok	public Vector(double radians, double length);
- * 	ok	public Vector(double x1, double y1,double x2, double y2); //use the other constructor
- * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
+ * 	public Vector add(Vector other);//return a new one
+ * 	public void invert();
+ * 	public Vector subtract(Vector other);
+ * 	public void scale(double length);
+ * 	public normalize();
+ * 	public Vector(double x,double y);
+ * 	public Vector(double radians, double length);
+ * 	public Vector(double x1, double y1,double x2, double y2); //use the other constructor
+ *  public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
  * 										angle + 1 is much faster than tan cos sin stuff i think
- * 	ok	public Vector limit(double min, double max); // adjust length so it is within the range
+ * 	public Vector limit(double min, double max); // adjust length so it is within the range
+ *  public void divide(int a);
  * }
  */
 
 public class Vector {
 	
 	private double xComponent;
-	@Override
-	public String toString() {
-		return "Vector [xComponent=" + xComponent + ", yComponent=" + yComponent + "]";
-	}
-
+	
 	private double yComponent;
 
 	public double getxComponent() {
@@ -113,5 +110,10 @@ public class Vector {
 	public void rotate(double radians) {
 		this.setxComponent(this.xComponent*Math.cos(radians)-this.yComponent*Math.sin(radians));
 		this.setxComponent(this.xComponent*Math.sin(radians)+this.yComponent*Math.cos(radians));
+	}
+	
+	@Override
+	public String toString() {
+		return "Vector [xComponent=" + xComponent + ", yComponent=" + yComponent + "]";
 	}
 }
