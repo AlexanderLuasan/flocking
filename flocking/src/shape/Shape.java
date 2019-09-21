@@ -14,7 +14,7 @@ import graphics.Drawable;
  * 		int center x;
  * 		int center y;
  * 		build your shape around the origin and then have it move
- * 		add geters and setters
+ * 		add getters and setters
  * 		
  * 
  * 		
@@ -26,7 +26,7 @@ import graphics.Drawable;
  * }
  * 
  */
-
-public abstract class Shape implements RayDetectable, Drawable {
+//implements RayDetectable, Drawable not ready to implement
+public abstract class Shape  {
 
 }
