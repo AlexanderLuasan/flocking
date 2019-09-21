@@ -26,6 +26,18 @@ package graphics;
  * 
  * 
  * */
-public class Screen {
+import javax.swing.*;
+import java.awt.*;
 
+public class Screen extends JFrame {
+
+	public Screen(int width, int height){
+		setVisible(true);
+		setResizable(false);
+		setSize(width,height);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		validate();
+	}
+	
+	
 }
