@@ -15,10 +15,19 @@ package graphics;
  * 			with these functions you can detect and draw a circle of any color
  * 
  * 
- * 
  * }
  * 
  * */
 public interface Drawable {
+	//Functions for Drawing Circle
+	public boolean isCircle();
+	public int getCenterX();
+	public int getCenterY();
+	public double getRadius();
 	
+	//Functions for Drawing line
+	public int get1pointX();
+	public int get1pointY();
+	public int get2pointX();
+	public int get2pointY();
 }
