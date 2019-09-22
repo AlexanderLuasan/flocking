@@ -82,21 +82,30 @@ public class Bird implements Boid {
 	
 
 	public boolean behaviour() {
+		//zero the acceleration
+		this.acceleration.setxComponent(0);
+		this.acceleration.setyComponent(0);
 		
-		acceleration.setxComponent(0);
-		acceleration.setyComponent(0);
-		
+		//Calculate the final vectors
 		this.align();
 		this.cohesion();
 		this.separation();
 		
-		acceleration.add(alignment);
-		acceleration.add(cohesion);
-		//acceleration.add(separation);
-		alignment.setxComponent(0);
-		alignment.setyComponent(0);
-		cohesion.setxComponent(0);
-		cohesion.setyComponent(0);
+		//add them to the acceleration
+		this.acceleration.add(alignment);
+		this.acceleration.add(cohesion);
+		this.acceleration.add(separation);
+		
+		//reset all vectors and counts for next frame
+		this.alignment.setxComponent(0);
+		this.alignment.setyComponent(0);
+		this.cohesion.setxComponent(0);
+		this.cohesion.setyComponent(0);
+		this.separation.setxComponent(0);
+		this.separation.setyComponent(0);
+		this.separationCount=0;
+		this.alignmentCount=0;
+		this.cohesionCount=0;
 		return false;
 	}
 	
@@ -127,7 +136,7 @@ public class Bird implements Boid {
 	
 	void separation(Bird other) {
 		Vector force = Vector.subtract(this.position,other.position);
-		
+		//need to reduce strenght by distance
 		this.separation.add(force);
 		this.separationCount+=1;
 	}
@@ -135,7 +144,6 @@ public class Bird implements Boid {
 		if(separationCount>0) {
 			separation.divide(separationCount);
 		}
-		//cohesion = Vector.subtract(cohesion, position);
 	}
 	
 	

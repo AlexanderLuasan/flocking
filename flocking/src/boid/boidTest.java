@@ -27,7 +27,7 @@ public class boidTest {
 			myLog.println(a.getAcceleration(),DEBUG_CODE);
 			myLog.println(b.getAcceleration(),DEBUG_CODE);
 			
-			
+			myLog.println("calulate the align force", DEBUG_CODE);
 			Bird c = new Bird(100,100,new Vector(1,0));
 			Bird d = new Bird(110,110,new Vector(0,1));
 			myLog.println(c, DEBUG_CODE);
@@ -38,6 +38,20 @@ public class boidTest {
 			d.behaviour();
 			myLog.println(c.getAcceleration(),DEBUG_CODE);
 			myLog.println(d.getAcceleration(),DEBUG_CODE);
+			
+			
+			myLog.println("calulate the align force", DEBUG_CODE);
+			Bird e = new Bird(200,200,new Vector(1,0));
+			Bird f = new Bird(200,210,new Vector(1,0));
+			myLog.println(e, DEBUG_CODE);
+			myLog.println(f, DEBUG_CODE);
+			e.separation(f);
+			f.separation(e);
+			e.behaviour();
+			f.behaviour();
+			myLog.println(e.getAcceleration(), DEBUG_CODE);
+			myLog.println(f.getAcceleration(), DEBUG_CODE);
+			
 			
 		}
 }
