@@ -105,11 +105,10 @@ public class Vector {
 		this.setyComponent(this.yComponent*scale);
 	}
 	
-	public void divide(int a) {
-		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
-		double scale = oldLength/a;
-		this.setxComponent(this.xComponent*scale);
-		this.setyComponent(this.yComponent*scale);
+	public void divide(double a) {
+		double scale = a;
+		this.setxComponent(this.xComponent/scale);
+		this.setyComponent(this.yComponent/scale);
 	}
 	
 	public void invert() {
