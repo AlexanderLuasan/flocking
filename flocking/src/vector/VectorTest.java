@@ -14,6 +14,7 @@ public class VectorTest {
 		
 		Vector temp1 = new Vector(3, 4);
 		Vector temp2 = new Vector(2, 2);
+		Vector temp3 = new Vector(6, 8);
 		
 		Vector test1 = new Vector(1,2);
 		test1.invert();
@@ -46,6 +47,15 @@ public class VectorTest {
 		
 		test3.rotate(1);
 		mylog.println(test3.toString(), DEBUG_CODE);
+		
+		temp3.multiply(2);
+		mylog.println(temp3.toString(), DEBUG_CODE);
+		
+		temp3.divide(2);
+		mylog.println(temp3.toString(), DEBUG_CODE);
+
+		temp3.setLength(20);
+		mylog.println(temp3.toString(), DEBUG_CODE);
 		
 	}
 	
