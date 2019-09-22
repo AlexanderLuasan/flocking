@@ -82,10 +82,18 @@ public class Bird implements Boid {
 	
 
 	public boolean behaviour() {
-			
+		
+		acceleration.setxComponent(0);
+		acceleration.setyComponent(0);
+		
 		this.align();
 		this.cohesion();
 		this.separation();
+		
+		acceleration.add(alignment);
+		acceleration.add(cohesion);
+		acceleration.add(separation);
+		
 		return false;
 	}
 	
@@ -157,6 +165,14 @@ public class Bird implements Boid {
 	@Override
 	public String toString() {
 		return "Bird [position=" + position + ", velocity=" + velocity + "]";
+	}
+
+	protected Vector getAcceleration() {
+		return acceleration;
+	}
+
+	protected void setAcceleration(Vector acceleration) {
+		this.acceleration = acceleration;
 	}
 	
 	//alignment
