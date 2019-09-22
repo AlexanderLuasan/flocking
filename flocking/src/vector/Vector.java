@@ -21,6 +21,9 @@ import java.lang.Math;
  * 	ok	public void div(double a);  new divide function
  * 	ok	public static add(vector a, vector b);  this will create a new vector 
  *  ok	public static subtract(vector a, vector b);  this will create a new vector 
+ *  un	public double length();
+ *  un 	public void setLength(double l);
+ *  un 	public void multi(double);
  * }
  */
 
