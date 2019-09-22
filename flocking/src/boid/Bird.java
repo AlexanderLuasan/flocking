@@ -60,10 +60,10 @@ public class Bird implements Boid {
 	public boolean movement() {
 		//needed limit max acceleration
 		//update the velocity with the acceleration
-		velocity = velocity.add(acceleration);
+		velocity.add(acceleration);
 		
 		//update the position with the velocity
-		position = position.add(velocity);
+		position.add(velocity);
 		
 		
 		//needed limit max speed
@@ -95,24 +95,34 @@ public class Bird implements Boid {
 		alignmentCount+=1;
 	}
 	void align() {
-		//unimplemented
+		if(alignmentCount>0) {
+			alignment.divide(alignmentCount);
+		}
+		alignment = Vector.subtract(velocity, alignment);
 	}
-	
 	//cohesion
 	void cohesion(Bird other) {
 		this.cohesion.add(other.position);
 		this.cohesionCount+=1;
 	}
 	void cohesion() {
-		
+		if(cohesionCount>0) {
+			cohesion.divide(cohesionCount);
+		}
+		cohesion = Vector.subtract(cohesion, alignment);
 	}
 	
 	void separation(Bird other) {
-		//this.seperation.add(other.position);
-		//this.seperationCount+=1;
+		Vector force = Vector.subtract(this.position,other.position);
+		
+		this.separation.add(force);
+		this.separationCount+=1;
 	}
 	void separation() {
-		
+		if(separationCount>0) {
+			separation.divide(separationCount);
+		}
+		//cohesion = Vector.subtract(cohesion, alignment);
 	}
 	
 	
