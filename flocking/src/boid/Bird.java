@@ -90,9 +90,9 @@ public class Bird implements Boid {
 		this.cohesion();
 		this.separation();
 		
-		acceleration.add(alignment);
+		//acceleration.add(alignment);
 		acceleration.add(cohesion);
-		acceleration.add(separation);
+		//acceleration.add(separation);
 		
 		return false;
 	}
@@ -117,7 +117,7 @@ public class Bird implements Boid {
 		if(cohesionCount>0) {
 			cohesion.divide(cohesionCount);
 		}
-		cohesion = Vector.subtract(cohesion, alignment);
+		cohesion = Vector.subtract(cohesion, position);
 	}
 	
 	void separation(Bird other) {
@@ -130,7 +130,7 @@ public class Bird implements Boid {
 		if(separationCount>0) {
 			separation.divide(separationCount);
 		}
-		//cohesion = Vector.subtract(cohesion, alignment);
+		//cohesion = Vector.subtract(cohesion, position);
 	}
 	
 	
