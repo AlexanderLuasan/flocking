@@ -43,4 +43,6 @@ public class Screen extends JFrame {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, 300, 300);
 	}
+	
+	
 }

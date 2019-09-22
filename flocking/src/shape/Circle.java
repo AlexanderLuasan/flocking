@@ -16,5 +16,7 @@ package shape;
 
 
 public class Circle extends Shape {
-	
+	private boolean isCircle = true;
+	private int centerX;
+	private int CenterY;
 }
