@@ -48,7 +48,7 @@ public class Screen extends JFrame {
 	
 	public void drawCircle(Graphics g) {
 		Circle a = new Circle(100,100, 10);
-		g.drawOval(a.getCenterX(), a.getCenterY(), a.getRadius(), a.getRadius());
+		//g.drawOval(a.getCenterX(), a.getCenterY(), a.getRadius(), a.getRadius());
 	}
 	
 	public void drawLine() {

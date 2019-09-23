@@ -10,20 +10,21 @@ import java.lang.Math;
  * 	ok	public boolean add(Vector other); change to no new
  * 	ok	public void invert();
  * 	ok	public boolean subtract(Vector other); change to no new
- * 	ok	public void scale(double length);
+ * 	ok	public void scale(double newlength);
  * 	ok	public normalize();
  * 	ok	public Vector(double x,double y);
- * 	ok	public Vector(double radians, double length);
+ * 	ok	public Vector(double radians, double length, boolean type);
  * 	ok	public Vector(double x1, double y1,double x2, double y2); //use the other constructor
  * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
  * 										angle + 1 is much faster than tan cos sin stuff i think
- * 	ok	public Vector limit(double min, double max); // adjust length so it is within the range
- * 	ok	public void div(double a);  new divide function
- * 	ok	public static add(vector a, vector b);  this will create a new vector 
- *  ok	public static subtract(vector a, vector b);  this will create a new vector 
- *  un	public double length();
- *  un 	public void setLength(double l);
- *  un 	public void multi(double);
+ * 	ok	public void limit(double min, double max); // adjust length so it is within the range
+ * 	ok	public void divide(double d);  new divide function
+ * 	ok 	public void multiply(double m);
+ * 	ok	public static Vector add(Vector a, Vector b);  this will create a new vector 
+ *  ok	public static Vector subtract(Vector a, Vector b);  this will create a new vector 
+ *  ok	public double getLength();
+ *  ok 	public void setLength(double l);
+ *  
  * }
  */
 
@@ -48,7 +49,19 @@ public class Vector {
 	public void setyComponent(double yComponent) {
 		this.yComponent = yComponent;
 	}
+	
+	public double getLength() {
+		double length = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
+		return length;
+	}
 
+	public void setLength(double l) {
+		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
+		double scale = l/oldLength;
+		this.setxComponent(this.xComponent*scale);
+		this.setyComponent(this.yComponent*scale);
+	}
+	
 	public Vector(double x,double y) {
 		this.setxComponent(x);
 		this.setyComponent(y);
@@ -94,6 +107,16 @@ public class Vector {
 		return newVector;
 	}
 	
+	public void multiply(double m) {
+		this.setxComponent(this.xComponent*m);
+		this.setyComponent(this.yComponent*m);
+	}
+	
+	public void divide(double d) {
+		this.setxComponent(this.xComponent/d);
+		this.setyComponent(this.yComponent/d);
+	}
+	
 	public void normalize() {
 		double length = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
 		double scale = 1.0/length;
@@ -106,12 +129,6 @@ public class Vector {
 		double scale = newlength/oldLength;
 		this.setxComponent(this.xComponent*scale);
 		this.setyComponent(this.yComponent*scale);
-	}
-	
-	public void divide(double a) {
-		double scale = a;
-		this.setxComponent(this.xComponent/scale);
-		this.setyComponent(this.yComponent/scale);
 	}
 	
 	public void invert() {

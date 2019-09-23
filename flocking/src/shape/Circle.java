@@ -1,6 +1,9 @@
 package shape;
 
+import java.util.ArrayList;
+
 import graphics.Drawable;
+import vector.Vector;
 
 /*
  * you know a circle 
@@ -25,23 +28,40 @@ public class Circle extends Shape implements Drawable {
 		super(x,y);
 		this.radius = r;
 	}
-	
+
+
 	@Override
-	public boolean isCircle() {
-		return this.isCircle;
+	public ArrayList<Drawable> getComponents() {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+
 	@Override
 	public int getCenterX() {
-		return this.centerX;
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
+
+
 	@Override
 	public int getCenterY() {
-		return this.centerY;
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
 	@Override
-	public int getRadius() {
-		return this.radius;
+	public int Radius() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
+
+	@Override
+	public Vector Line() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

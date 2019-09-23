@@ -18,6 +18,17 @@ package graphics;
  * }
  * 
  * */
+
+
+import java.util.ArrayList;
+import vector.Vector;
+ interface DrawableCircle {
+	//Functions for Drawing Circle
+	public boolean isCircle();
+	public int getCenterX();
+	public int getCenterY();
+	public double getRadius();
+}
  
  interface DrawableLine {
 	//Functions for Drawing line
@@ -27,10 +38,14 @@ package graphics;
 	public int get2pointY();
 }
 
+
+
+
 public interface Drawable {
-	//Functions for Drawing Circle
-	public boolean isCircle();
+	public ArrayList<Drawable> getComponents();
 	public int getCenterX();
 	public int getCenterY();
-	public int getRadius();
+	
+	public int Radius();
+	public Vector Line();
 }
