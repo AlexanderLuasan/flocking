@@ -40,7 +40,7 @@ public class boidTest {
 			myLog.println(d.getAcceleration(),DEBUG_CODE);
 			
 			
-			myLog.println("calulate the align force", DEBUG_CODE);
+			myLog.println("calulate the seperation force", DEBUG_CODE);
 			Bird e = new Bird(200,200,new Vector(1,0));
 			Bird f = new Bird(200,210,new Vector(1,0));
 			myLog.println(e, DEBUG_CODE);

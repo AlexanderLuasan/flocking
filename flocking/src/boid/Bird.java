@@ -136,7 +136,7 @@ public class Bird implements Boid {
 	
 	void separation(Bird other) {
 		Vector force = Vector.subtract(this.position,other.position);
-		//need to reduce strenght by distance
+		force.divide(10*force.getLength());
 		this.separation.add(force);
 		this.separationCount+=1;
 	}
