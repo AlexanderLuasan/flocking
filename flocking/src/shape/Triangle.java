@@ -21,16 +21,12 @@ import java.util.ArrayList;
 import graphics.Drawable;
 import vector.Vector;
 public class Triangle implements Drawable {
-	private ArrayList<Vector> points;
-	private int x;
-	private int y;
+	private ArrayList<Vector> points = new ArrayList<Vector>();
 	
-	public Triangle(int x,int y,Vector a, Vector b, Vector c) {
+	public Triangle(Vector a, Vector b, Vector c) {
 		points.add(a);
 		points.add(b);
 		points.add(c);
-		this.x=x;
-		this.y=y;
 	}
 	
 	public void setPoint(int index,int x,int y) {
@@ -46,10 +42,10 @@ public class Triangle implements Drawable {
 		return null;
 	}
 	public int getCenterX() {
-		return x;
+		return 0;
 	}
 	public int getCenterY() {
-		return y;
+		return 0;
 	}
 
 	@Override

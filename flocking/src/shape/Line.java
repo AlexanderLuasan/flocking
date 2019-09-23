@@ -12,7 +12,7 @@ public class Line implements Drawable {
 	
 	public Line(Vector a,Vector b) {
 		p1=a;
-		p2=Vector.subtract(a, b);
+		p2=b;
 	}
 	public void setLine(Vector a,Vector b) {
 		p1=a;
@@ -41,8 +41,7 @@ public class Line implements Drawable {
 
 	@Override
 	public Vector Line() {
-		// TODO Auto-generated method stub
-		return null;
+		return p2;
 	}
 
 }
