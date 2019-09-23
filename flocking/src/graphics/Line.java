@@ -1,6 +1,6 @@
 package graphics;
 
-public class line implements DrawableLine {
+public class Line implements DrawableLine {
 	private int x1;
 	private int x2;
 	private int y1;

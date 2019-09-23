@@ -18,13 +18,6 @@ package graphics;
  * }
  * 
  * */
- interface DrawableCircle {
-	//Functions for Drawing Circle
-	public boolean isCircle();
-	public int getCenterX();
-	public int getCenterY();
-	public double getRadius();
-}
  
  interface DrawableLine {
 	//Functions for Drawing line
@@ -35,5 +28,9 @@ package graphics;
 }
 
 public interface Drawable {
-	
+	//Functions for Drawing Circle
+	public boolean isCircle();
+	public int getCenterX();
+	public int getCenterY();
+	public int getRadius();
 }

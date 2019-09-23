@@ -27,6 +27,8 @@ package graphics;
  * 
  * */
 import javax.swing.*;
+
+import shape.Circle;
 import java.awt.*;
 
 public class Screen extends JFrame {
@@ -44,5 +46,13 @@ public class Screen extends JFrame {
 		g.fillRect(0, 0, 300, 300);
 	}
 	
+	public void drawCircle(Graphics g) {
+		Circle a = new Circle(100,100, 10);
+		g.drawOval(a.getCenterX(), a.getCenterY(), a.getRadius(), a.getRadius());
+	}
+	
+	public void drawLine() {
+		Line l = new Line();
+	}
 	
 }

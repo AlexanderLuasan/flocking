@@ -28,5 +28,11 @@ import graphics.Drawable;
  */
 //implements RayDetectable, Drawable not ready to implement
 public abstract class Shape  {
-
+	int centerX;
+	int centerY;
+	
+	public Shape(int x, int y) {
+		centerX = x;
+		centerY = y;
+	}
 }
