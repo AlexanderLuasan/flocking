@@ -18,8 +18,9 @@ package shape;
  */
 
 import java.util.ArrayList;
+import graphics.Drawable;
 import vector.Vector;
-public class Triangle {
+public class Triangle implements Drawable {
 	private ArrayList<Vector> points;
 	private int x;
 	private int y;
@@ -49,6 +50,27 @@ public class Triangle {
 	}
 	public int getCenterY() {
 		return y;
+	}
+
+	@Override
+	public ArrayList<Drawable> getComponents() {
+		ArrayList<Drawable> Lines = new ArrayList<Drawable>();
+		for(int i=0;i<3;i++) {
+			for(int ii=i+1;ii<3;ii++) {
+				Lines.add((Drawable)new Line(points.get(i),points.get(ii)));
+			}
+		}
+		return Lines;
+	}
+
+	@Override
+	public int Radius() {
+		return 0;
+	}
+
+	@Override
+	public Vector Line() {
+		return null;
 	}
 	
 }
