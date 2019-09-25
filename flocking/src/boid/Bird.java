@@ -14,25 +14,27 @@ import vector.Vector;
  * 	ok	seeBoid(boid other);			//how to tell a boid about other boids
  * 										//this triggers all different rules
  * 	ok	behavior();						//finish all the calculations
- * 										//this finishes the calculation for all the rules
- * 			other general functions are described in boid interface		
+ * 										//this finishes the calculation for all the rules active on the bird scales them
+ * 										//and add them to the acceleration vector
+ * 			
  * 
  * 		//rule functions
- * 			//alignment
- * 	ok			Vector alignment;
- * 	ok			int alignmentCount
- * 	ok			void align(boid other);		//add a boids velocity vector the alignment vector
- * 	un			void align();				//finish the calculation and add it to the acceleration
- * 			//Cohesion
- * 	ok			Vector cohesion;
- * 	ok			int cohesionCount
- * 	ok			void cohesion(boid other);		//add a boids velocity vector the cohesion vector
- * 	un			void cohesion();				//finish the calculation and add it to the acceleration
- *			//Separation
- *	ok			Vector separation;
- * 	ok			int seperationCount
- * 	un			void cohesion(boid other);		//add a boids velocity vector the separation vector
- * 	un			void cohesion();				//finish the calculation and add it to the acceleration
+ * 
+ * 		//alignment
+ * 	ok	Vector alignment;
+ * 	ok	int alignmentCount
+ * 	ok	void align(boid other);			//add a boids velocity vector the alignment vector my velocity to avg other velocity
+ * 	un	void align();					//finish the calculation 
+ * 		//Cohesion
+ * 	ok	Vector cohesion;
+ * 	ok	int cohesionCount
+ * 	ok	void cohesion(boid other);		//my position to avg position of other points
+ * 	un	void cohesion();				//finish the calculation 
+ *		//Separation
+ *	ok	Vector separation;
+ * 	ok	int seperationCount
+ * 	un	void cohesion(boid other);		//avg of each boid position to mine scaled by distastance 1/d
+ * 	un	void cohesion();				//finish the calculation
  *			
  * 		
  * }
