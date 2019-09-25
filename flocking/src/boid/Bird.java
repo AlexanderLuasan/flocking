@@ -10,10 +10,10 @@ import vector.Vector;
  * 		Vector acceleration the acceleration of the boid
  * 
  * 	ok	Bird(int x,int y,vector vel);	//position x and y and initial velocity
- * 	ok	bool movement();				//update the birds position to the next frame
+ * 	un	bool movement();				//update the birds position to the next frame
  * 	ok	seeBoid(boid other);			//how to tell a boid about other boids
  * 										//this triggers all different rules
- * 	ok	behavior();						//finish all the calculations
+ * 	un	behavior();						//finish all the calculations
  * 										//this finishes the calculation for all the rules active on the bird scales them
  * 										//and add them to the acceleration vector
  * 			
