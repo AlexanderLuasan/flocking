@@ -113,37 +113,47 @@ public class Bird implements Boid {
 	
 	//alignment
 	void align(Bird other) {
+		//sum velocities
 		alignment.add(other.velocity);
 		alignmentCount+=1;
 	}
 	void align() {
-		if(alignmentCount>0) {
+		if(alignmentCount>0) {//divide to get the avg
 			alignment.divide(alignmentCount);
-			alignment = Vector.subtract(velocity, alignment);
+			//create vector from my velocity to the target
+			alignment = Vector.subtract(this.velocity, alignment);
+			
 		}
 		
 	}
 	//cohesion
 	void cohesion(Bird other) {
+		//sum positions
 		this.cohesion.add(other.position);
 		this.cohesionCount+=1;
 	}
 	void cohesion() {
 		if(cohesionCount>0) {
+			//average positions
 			cohesion.divide(cohesionCount);
+			//get the vector from my position to the other
 			cohesion = Vector.subtract(cohesion, position);
 		}
 		
 	}
 	
 	void separation(Bird other) {
+		//vector pointed from them to me
 		Vector force = Vector.subtract(this.position,other.position);
-		force.divide(10*force.getLength());
+		//weaken vector based on distance
+		force.divide(force.getLength()*force.getLength());
+		//sum the vectors
 		this.separation.add(force);
 		this.separationCount+=1;
 	}
 	void separation() {
 		if(separationCount>0) {
+			//avg the vector
 			separation.divide(separationCount);
 		}
 	}
@@ -189,7 +199,4 @@ public class Bird implements Boid {
 	protected void setAcceleration(Vector acceleration) {
 		this.acceleration = acceleration;
 	}
-	
-	//alignment
-	
 }
