@@ -1,42 +1,46 @@
 package vector;
 import java.lang.Math;
 /* vector.h
- * 
- * add some public static final vector for north south west east up down left right ...
- * 
- * class vector{
- * 
- * ok	public double getLength();
- * ok 	public void setLength(double l);
- * ok	public Vector(double x,double y);
- * ok	public Vector(double x1, double y1,double x2, double y2);
- * ok	public Vector(double radians, double length, boolean type);
- * 
- * 
- * 	ok	public boolean add(Vector other); change to no new
- * 	ok	public void invert();
- * 	ok	public boolean subtract(Vector other); change to no new
- * 	ok	public void scale(double newlength);
- * 	ok	public normalize();
- * 	
- * 	
- * 	 //use the other constructor
- * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
- * 										angle + 1 is much faster than tan cos sin stuff i think
- * 	un	public bool limit(double min, double max); // adjust length so it is within the range //if it hit a boundy return true
- * 	ok	public void divide(double d);  new divide function
- * 	ok 	public void multiply(double m);
- * 	ok	public static Vector add(Vector a, Vector b);  this will create a new vector 
- *  ok	public static Vector subtract(Vector a, Vector b);  this will create a new vector 
- *  
- *  
- *  ok  public boolean isEqual(Vector other);
- *  
- *  un public void zero() //sets both compoents to zero
- *  un public void setAngle(double) // roates the vector to a certain angle in radians
- *  un public void setComponents(double x, double y) // sets compoenents at the same time
- *  un public double getAngle();// returns the angle of the vector in radians
- * }
+
+add some public static final vector for north south west east up down left right ...
+
+class vector{
+
+	ok	public double getLength();
+	ok   public void setLength(double l);
+	ok	public Vector(double x,double y);
+	ok	public Vector(double x1, double y1,double x2, double y2);
+	ok	public Vector(double radians, double length, boolean type);
+	ok	public boolean add(Vector other); 								change to no new
+	ok	public boolean subtract(Vector other); 							change to no new
+	ok	public static Vector add(Vector a, Vector b);  this will create a new vector
+	ok 	public void multiply(double m);
+	ok	public void divide(double d);  new divide function
+	ok	public normalize();
+	ok	public void scale(double newlength);
+	ok	public void invert();
+	 
+	
+	
+	
+	
+	 //use the other constructor
+	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
+										angle + 1 is much faster than tan cos sin stuff i think
+	un	public bool limit(double min, double max); // adjust length so it is within the range //if it hit a boundy return true
+	
+	
+	 
+ 	ok	public static Vector subtract(Vector a, Vector b);  this will create a new vector 
+ 
+ 
+ 	ok  public boolean isEqual(Vector other);
+ 
+ 	un public void zero() //sets both compoents to zero
+ un public void setAngle(double) // roates the vector to a certain angle in radians
+ un public void setComponents(double x, double y) // sets compoenents at the same time
+ un public double getAngle();// returns the angle of the vector in radians
+}
  */
 
 public class Vector {
@@ -146,18 +150,23 @@ public class Vector {
 		this.setyComponent(-this.yComponent);
 	}
 	
-	public void limit(double min, double max) {
+	public boolean limit(double min, double max) {
 		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
 		double scale;
 		if (oldLength<min) {
 			scale = min/oldLength;
+			this.setxComponent(this.xComponent*scale);
+			this.setyComponent(this.yComponent*scale);
+			return true;
 		}else if (oldLength>max) {
 			scale = max/oldLength;
+			this.setxComponent(this.xComponent*scale);
+			this.setyComponent(this.yComponent*scale);
+			return true;
 		}else {
-			scale = 1;
+			return false;
 		}
-		this.setxComponent(this.xComponent*scale);
-		this.setyComponent(this.yComponent*scale);
+		
 	}
 	
 	public void rotate(double radians) {
