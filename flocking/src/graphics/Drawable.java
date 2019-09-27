@@ -25,7 +25,7 @@ package graphics;
 interface {
 	public Vector getCenter
 	public arrayList<Drawable> getDrawables
-	public arralist<Line> getLines()
+	public arralist<vector> getLines()
 	public double getRadius
 	public double getWidth()
 	public double getHeight()
