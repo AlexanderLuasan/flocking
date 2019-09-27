@@ -20,6 +20,25 @@ package graphics;
  * */
 
 
+
+/*
+interface {
+	public Vector getCenter
+	public arrayList<Drawable> getDrawables
+	public arralist<Line> getLines()
+	public double getRadius
+	public double getWidth()
+	public double getHeight()
+}
+class{
+	line
+	public vector P1;
+	public vector P2;
+}
+ 
+ 
+ */
+
 import java.util.ArrayList;
 import vector.Vector;
  interface DrawableCircle {
