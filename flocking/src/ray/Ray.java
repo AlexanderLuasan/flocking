@@ -1,24 +1,18 @@
 package ray;
 import vector.Vector;
-/*
- * 
- * unimplmented
- * class ray{
- *			//should implement Drawable first or during
- * 			//have getters and setters
- * 	un	Vector starting point;
- * 	un	Vector current point;
- * 	un	Vector direction;
- * 	un	double distanceLast;
- * 
- * 
- * 	un	double trace(distance x);				//run the trace for a minimum unit return distance if you hit anything, -1 for hitting nothing 
- * 	un	double fetchDistance();					//what was the actual distance
- * 	un	arrayList<shape.Circles> fetchCirlces(); 	//calculate all the circles for drawing and debuging reuse the shape class for esay drawing
- * 	un	bool search(double distance);		//rotate the direction vector left and right until you find a direction that dose not colide within the distance save the vector to direction
- * 
- * }
- * 
+/* 
+class ray{
+
+	ok	Vector starting point;
+	ok	Vector current point;
+	ok	Vector direction;
+	ok	double distanceLast;
+
+	un	double trace(distance x);				//run the trace for a minimum unit return distance if you hit anything, -1 for hitting nothing 
+	un	double fetchDistance();					//what was the actual distance
+	un	arrayList<shape.Circles> fetchCirlces(); 	//calculate all the circles for drawing and debuging reuse the shape class for esay drawing
+	un	bool search(double distance);		//rotate the direction vector left and right until you find a direction that dose not colide within the distance save the vector to direction
+}
  */
 public class Ray {
 	
