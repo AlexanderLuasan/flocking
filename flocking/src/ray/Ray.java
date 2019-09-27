@@ -1,31 +1,72 @@
 package ray;
+import vector.Vector;
 /*
  * 
  * unimplmented
  * class ray{
- *			//should implement Drawable first or durring
+ *			//should implement Drawable first or during
  * 			//have getters and setters
- * 	un	double xpos;
- * 	un	double ypos;
- * 	un	vector direction;
+ * 	un	Vector starting point;
+ * 	un	Vector current point;
+ * 	un	Vector direction;
  * 	un	double distanceLast;
  * 
  * 
- * 	un	bool trace(distance x);					//run the trace for a minimum unit return true or false if you hit anything 
+ * 	un	double trace(distance x);				//run the trace for a minimum unit return distance if you hit anything, -1 for hitting nothing 
  * 	un	double fetchDistance();					//what was the actual distance
- * 	un	arrayList<shape.Circles> fetchCirlces();//calulate all the circles for drawing and debuging reuse the shape class for esay drawing
+ * 	un	arrayList<shape.Circles> fetchCirlces(); 	//calculate all the circles for drawing and debuging reuse the shape class for esay drawing
  * 	un	bool search(double distance);		//rotate the direction vector left and right until you find a direction that dose not colide within the distance save the vector to direction
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  * }
  * 
  */
 public class Ray {
+	
+	private Vector startPoint;
 
+	private Vector currentPoint;
+	
+	private Vector direction;
+	
+	private double lastDistance;
+	
+	public Vector getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(Vector startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public Vector getCurrentPoint() {
+		return currentPoint;
+	}
+
+	public void setCurrentPoint(Vector currentPoint) {
+		this.currentPoint = currentPoint;
+	}
+
+	public Vector getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Vector direction) {
+		this.direction = direction;
+	}
+
+	public double getLastDistance() {
+		return lastDistance;
+	}
+
+	public void setLastDistance(double lastDistance) {
+		this.lastDistance = lastDistance;
+	}
+
+	@Override
+	public String toString() {
+		return "Ray [startPoint=" + startPoint + ", currentPoint=" + currentPoint + ", direction=" + direction
+				+ ", lastDistance=" + lastDistance + "]";
+	}
+	
+	
 }
