@@ -1,6 +1,11 @@
 package shape;
 
 import ray.RayDetectable;
+import vector.Vector;
+
+import java.util.ArrayList;
+
+import graphics.Colors;
 import graphics.Drawable;
 
 /*
@@ -27,12 +32,45 @@ import graphics.Drawable;
  * 
  */
 //implements RayDetectable, Drawable not ready to implement
-public abstract class Shape  {
-	int centerX;
-	int centerY;
+public class Shape implements Drawable {
+	protected Vector center;
 	
-	public Shape(int x, int y) {
-		centerX = x;
-		centerY = y;
+	public Shape(Vector center) {
+		this.center = center;
+	}
+
+	@Override
+	public ArrayList<Vector> getlines() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector getCenter() {
+		return this.center;
+	}
+
+	@Override
+	public double getRadius() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Colors getColor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

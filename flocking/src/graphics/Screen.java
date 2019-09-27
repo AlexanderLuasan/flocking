@@ -27,9 +27,11 @@ package graphics;
  * 
  * */
 import javax.swing.*;
-import shape.Circle;
+import shape.*;
 import java.awt.*;
 import java.util.ArrayList;
+import vector.Vector;
+
 public class Screen extends JFrame {
 
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
@@ -42,36 +44,22 @@ public class Screen extends JFrame {
 		validate();
 	}
 	
+	//it will go through arraylist and draw each
 	public void paint(Graphics g) {
 		g.setColor(Color.BLUE);
 		for(int i=0;i<toDraw.size();i++) {
-			draw(toDraw.get(i),g);
+			vector.Vector c = new Vector(0,0);
+			draw(toDraw.get(i),g,c);
 		}
 	}
 	
-	
-	public void drawCircle(Graphics g) {
-		Circle a = new Circle(100,100, 10);
-		//g.drawOval(a.getCenterX(), a.getCenterY(), a.getRadius(), a.getRadius());
-	}
-	
-	public void draw(Drawable d, Graphics g) {
-		if(d.Radius()>0) {
-			g.drawOval(d.getCenterX()-d.Radius(), d.getCenterY()-d.Radius(),d.Radius()*2, d.Radius()*2);
+	//draw a shape in arraylist
+	public void draw(Drawable shape, Graphics g, Vector center) {
+		if(shape.getRadius() > 0) {
+			draw_circle(shape.getCenter(), shape.getRadius(), g);
 		}
-		if(d.Line()!=null) {
-			g.drawLine(d.getCenterX(), d.getCenterY(), (int)d.Line().getxComponent(), (int)d.Line().getyComponent());
-		}
-		if(d.getComponents()!=null) {
-			for(int i=0;i<d.getComponents().size();i++) {
-				draw(d.getComponents().get(i),g);
-			}
-		}
+		draw_center(shape.getCenter(), g);
 		
-	}
-	
-	public void drawLine() {
-		Line l = new Line();
 	}
 
 	protected ArrayList<Drawable> getToDraw() {
@@ -82,4 +70,19 @@ public class Screen extends JFrame {
 		this.toDraw = toDraw;
 	}
 	
+	public void draw_circle(Vector center, double radius, Graphics g) {
+		int x = (int) center.getxComponent();
+		int y = (int) center.getyComponent();
+		x -= radius;
+		y -= radius;
+		g.drawOval(x, y, (int) radius*2, (int) radius*2);
+	}
+	
+	public void draw_center(Vector center, Graphics g) {
+		int x = (int) center.getxComponent();
+		int y = (int) center.getyComponent();
+		x -= 5;
+		y -= 5;
+		g.drawOval(x, y, 10, 10);
+	}
 }

@@ -40,10 +40,11 @@ import vector.Vector;
  
 
 public interface Drawable {
-	public ArrayList<Drawable> getComponents();
-	public int getCenterX();
-	public int getCenterY();
-	
-	public int Radius();
-	public Vector Line();
+	//public ArrayList<Drawable> getDrawables();
+	public ArrayList<Vector> getlines();
+	public Vector getCenter();
+	public double getRadius();
+	public double getWidth();
+	public double getHeight();
+	public Colors getColor();
 }

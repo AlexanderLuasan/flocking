@@ -19,49 +19,16 @@ import vector.Vector;
  * */
 
 
-public class Circle extends Shape implements Drawable {
-	private boolean isCircle = true;
+public class Circle extends Shape {
 	private int radius;
 	
-	
-	public Circle(int x, int y, int r) {
-		super(x,y);
+	public Circle(Vector center, int r) {
+		super(center);
 		this.radius = r;
 	}
-
-
-	@Override
-	public ArrayList<Drawable> getComponents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public int getCenterX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int getCenterY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int Radius() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public Vector Line() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public double getRadius() {
+		return this.radius;
 	}
 	
 }
