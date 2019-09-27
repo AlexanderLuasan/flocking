@@ -26,14 +26,10 @@ interface {
 	public Vector getCenter
 	public arrayList<Drawable> getDrawables
 	public arralist<Line> getLines()
-	public double getRadius
+	public double getRadius()
 	public double getWidth()
 	public double getHeight()
-}
-class{
-	line
-	public vector P1;
-	public vector P2;
+	public colors getcolor()
 }
  
  
@@ -41,24 +37,7 @@ class{
 
 import java.util.ArrayList;
 import vector.Vector;
- interface DrawableCircle {
-	//Functions for Drawing Circle
-	public boolean isCircle();
-	public int getCenterX();
-	public int getCenterY();
-	public double getRadius();
-}
  
- interface DrawableLine {
-	//Functions for Drawing line
-	public int get1pointX();
-	public int get1pointY();
-	public int get2pointX();
-	public int get2pointY();
-}
-
-
-
 
 public interface Drawable {
 	public ArrayList<Drawable> getComponents();
