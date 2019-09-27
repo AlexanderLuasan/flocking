@@ -1,14 +1,75 @@
 package boid;
 
 import vector.Vector;
+import graphics.*;
 import utils.*;
-public class boidTest {
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+public class boidTest {
+		static int NUMBER_OF_BIRDS = 100;
+		static int SPEED_RANGE = 5;
+		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		public static void main(String [] args) {
+			mathtest();
+			Log myLog = Log.getLog();
+			
+			ArrayList<Bird> birds = new ArrayList<Bird>();
+			//Bird a = new Bird(100, 100, new Vector(0,1));
+			//birds.add(a);
+			Random rand = new Random();
+			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
+				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
+				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
+				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
+				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
+				birds.add(new Bird(xpos,ypos,new Vector(xcomp,ycomp)));
+				
+			}
+			
+			graphics.Screen window = new graphics.Screen(utils.Utils.SCREEN_WIDTH,utils.Utils.SCREEN_HIEGHT);
+			for(int i=0;i<birds.size();i++) {
+				window.getToDraw().add((Drawable)birds.get(i));
+			}
+			boolean done = false;
+			while(!done) {
+				
+				
+				for(int i=0;i<birds.size();i++) {
+					birds.get(i).preBehaviour();
+				}
+				for(int i=0;i<birds.size()-1;i++) {
+					for(int ii=i+1;ii<birds.size();ii++) {
+						if(Boid.distance(birds.get(i), birds.get(ii))<50) {//no check for distance
+							birds.get(i).seeBoid(birds.get(ii));
+							birds.get(ii).seeBoid(birds.get(i));
+						}
+					}
+				}
+				for(int i=0;i<birds.size();i++) {
+					birds.get(i).behaviour();
+				}
+				for(int i=0;i<birds.size();i++) {
+					birds.get(i).movement();
+				}
+				
+				//myLog.println(a, DEBUG_CODE);
+				window.repaint();
+				try {
+					TimeUnit.MILLISECONDS.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					done = true;
+				}
+			}
+			
+		}
+		public static void mathtest() {
 			System.out.println("boid test");
 			
 			Log myLog = Log.getLog();
-			int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
+			
 			
 			Bird a = new Bird(100,100,new Vector(1,0));//bird heading east at 100,100
 			Bird b = new Bird(100,110,new Vector(1,0));//bird flying parallel 10 units bellow
@@ -51,7 +112,5 @@ public class boidTest {
 			f.behaviour();
 			myLog.println(e.getAcceleration(), DEBUG_CODE);
 			myLog.println(f.getAcceleration(), DEBUG_CODE);
-			
-			
 		}
 }

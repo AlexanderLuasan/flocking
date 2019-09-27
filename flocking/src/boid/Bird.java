@@ -5,9 +5,10 @@ import vector.Vector;
 /*
  * class Bird{
  * 	  variables
- * 		Vector position the boids position
- * 		Vector velocity the boids velocity
- * 		Vector acceleration the acceleration of the boid
+ * 		Vector position 	// the boids position
+ * 		Vector velocity 	//the boids velocity
+ * 		Vector acceleration //the acceleration of the boid
+ * 				//all have get
  * 
  * 	ok	Bird(int x,int y,vector vel);	//position x and y and initial velocity
  * 	ok	bool movement();				//update the birds position to the next frame //---- missing
@@ -43,8 +44,8 @@ import vector.Vector;
 
 public class Bird implements Boid {
 	//
-	private static final int MAX_ACCELERATION = 10;
-	private static final int MAX_SPEED = 20;
+	private static final int MAX_ACCELERATION = 1;
+	private static final int MAX_SPEED = 5;
 	
 	private Vector position;
 	private Vector velocity;
@@ -74,6 +75,16 @@ public class Bird implements Boid {
 		//update the position with the velocity
 		this.position.add(this.velocity);
 		//needed rollover world edge
+		if(this.position.getxComponent()<0) {
+			this.position.setxComponent(this.position.getxComponent()+utils.Utils.SCREEN_WIDTH);
+		}else if(this.position.getxComponent()>utils.Utils.SCREEN_WIDTH) {
+			this.position.setxComponent(this.position.getxComponent()-utils.Utils.SCREEN_WIDTH);
+		}
+		if(this.position.getyComponent()<0) {
+			this.position.setyComponent(this.position.getyComponent()+utils.Utils.SCREEN_HIEGHT);
+		}else if(this.position.getyComponent()>utils.Utils.SCREEN_HIEGHT) {
+			this.position.setyComponent(this.position.getyComponent()-utils.Utils.SCREEN_HIEGHT);
+		}
 		return true;
 	}
 
@@ -85,14 +96,11 @@ public class Bird implements Boid {
 		
 	}
 	
-	public boolean preBehavior() {
+	public boolean preBehaviour() {
 		//reset all vectors and counts for next frame
-		this.alignment.setxComponent(0);
-		this.alignment.setyComponent(0);
-		this.cohesion.setxComponent(0);
-		this.cohesion.setyComponent(0);
-		this.separation.setxComponent(0);
-		this.separation.setyComponent(0);
+		this.alignment.setZero();
+		this.cohesion.setZero();
+		this.separation.setZero();
 		this.separationCount=0;
 		this.alignmentCount=0;
 		this.cohesionCount=0;
@@ -100,13 +108,23 @@ public class Bird implements Boid {
 	}
 	public boolean behaviour() {
 		//zero the acceleration
-		this.acceleration.setxComponent(0);
-		this.acceleration.setyComponent(0);
+		this.acceleration.setComponents(0, 0);
 		
 		//Calculate the final vectors
 		this.align();
 		this.cohesion();
 		this.separation();
+		//scale forces
+		
+		if(alignmentCount>0) {
+			alignment.scale(1);
+		}
+		if(cohesionCount>0) {
+			cohesion.scale(1);
+		}
+		if(separationCount>0) {
+			separation.scale(1);
+		}
 		
 		//add them to the acceleration
 		this.acceleration.add(alignment);
@@ -128,7 +146,7 @@ public class Bird implements Boid {
 		if(alignmentCount>0) {//divide to get the avg
 			alignment.divide(alignmentCount);
 			//create vector from my velocity to the target
-			alignment = Vector.subtract(this.velocity, alignment);
+			alignment = Vector.subtract(alignment,this.velocity);
 			
 		}
 		
@@ -164,34 +182,19 @@ public class Bird implements Boid {
 			separation.divide(separationCount);
 		}
 	}
-	
-	
+
 	@Override
 	public Vector getVelocityVector() {
-		return velocity;
+		return this.velocity;
 	}
 
 	@Override
 	public Vector getPositionVector() {
-		return position;
+		return this.position;
 	}
 
-
-
-	protected Vector getPosition() {
-		return position;
-	}
-
-	protected void setPosition(Vector position) {
-		this.position = position;
-	}
-
-	protected Vector getVelocity() {
-		return velocity;
-	}
-
-	protected void setVelocity(Vector velocity) {
-		this.velocity = velocity;
+	public Vector getAcceleration() {
+		return this.acceleration;
 	}
 
 	@Override
@@ -199,11 +202,11 @@ public class Bird implements Boid {
 		return "Bird [position=" + position + ", velocity=" + velocity + "]";
 	}
 
-	protected Vector getAcceleration() {
-		return acceleration;
-	}
 
-	protected void setAcceleration(Vector acceleration) {
-		this.acceleration = acceleration;
-	}
+
+	
+	
+	
+
+
 }
