@@ -13,7 +13,7 @@ public class GraphicsTest {
 		Screen test = new Screen(1000, 500);
 		
 		test.getToDraw().add(new Circle(new Vector(100,300) , 50));
-		
+		test.getToDraw().add(new Rectangle(new Vector(300,100), 50, 70));
 		
 	}
 
