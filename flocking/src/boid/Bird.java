@@ -10,10 +10,11 @@ import vector.Vector;
  * 		Vector acceleration the acceleration of the boid
  * 
  * 	ok	Bird(int x,int y,vector vel);	//position x and y and initial velocity
- * 	un	bool movement();				//update the birds position to the next frame
+ * 	ok	bool movement();				//update the birds position to the next frame //---- missing
  * 	ok	seeBoid(boid other);			//how to tell a boid about other boids
  * 										//this triggers all different rules
- * 	un	behavior();						//finish all the calculations
+ * 	ok 	preBehavior();					//set rule calulations to zero and reset counts
+ * 	ok	behavior();						//finish all the calculations
  * 										//this finishes the calculation for all the rules active on the bird scales them
  * 										//and add them to the acceleration vector
  * 			
@@ -29,18 +30,22 @@ import vector.Vector;
  * 	ok	Vector cohesion;
  * 	ok	int cohesionCount
  * 	ok	void cohesion(boid other);		//my position to avg position of other points
- * 	un	void cohesion();				//finish the calculation 
+ * 	ok	void cohesion();				//finish the calculation 
  *		//Separation
  *	ok	Vector separation;
  * 	ok	int seperationCount
- * 	un	void cohesion(boid other);		//avg of each boid position to mine scaled by distastance 1/d
- * 	un	void cohesion();				//finish the calculation
+ * 	ok	void cohesion(boid other);		//avg of each boid position to mine scaled by distastance 1/d
+ * 	ok	void cohesion();				//finish the calculation
  *			
  * 		
  * }
  */
 
 public class Bird implements Boid {
+	//
+	private static final int MAX_ACCELERATION = 10;
+	private static final int MAX_SPEED = 20;
+	
 	private Vector position;
 	private Vector velocity;
 	private Vector acceleration;
@@ -61,16 +66,14 @@ public class Bird implements Boid {
 	
 	public boolean movement() {
 		//needed limit max acceleration
+		this.acceleration.limit(0,this.MAX_ACCELERATION);
 		//update the velocity with the acceleration
-		velocity.add(acceleration);
-		
-		//update the position with the velocity
-		position.add(velocity);
-		
-		
+		this.velocity.add(this.acceleration);
 		//needed limit max speed
+		this.velocity.limit(0, this.MAX_SPEED);
+		//update the position with the velocity
+		this.position.add(this.velocity);
 		//needed rollover world edge
-		
 		return true;
 	}
 
@@ -82,7 +85,19 @@ public class Bird implements Boid {
 		
 	}
 	
-
+	public boolean preBehavior() {
+		//reset all vectors and counts for next frame
+		this.alignment.setxComponent(0);
+		this.alignment.setyComponent(0);
+		this.cohesion.setxComponent(0);
+		this.cohesion.setyComponent(0);
+		this.separation.setxComponent(0);
+		this.separation.setyComponent(0);
+		this.separationCount=0;
+		this.alignmentCount=0;
+		this.cohesionCount=0;
+		return false;
+	}
 	public boolean behaviour() {
 		//zero the acceleration
 		this.acceleration.setxComponent(0);
@@ -98,16 +113,8 @@ public class Bird implements Boid {
 		this.acceleration.add(cohesion);
 		this.acceleration.add(separation);
 		
-		//reset all vectors and counts for next frame
-		this.alignment.setxComponent(0);
-		this.alignment.setyComponent(0);
-		this.cohesion.setxComponent(0);
-		this.cohesion.setyComponent(0);
-		this.separation.setxComponent(0);
-		this.separation.setyComponent(0);
-		this.separationCount=0;
-		this.alignmentCount=0;
-		this.cohesionCount=0;
+		
+		
 		return false;
 	}
 	
