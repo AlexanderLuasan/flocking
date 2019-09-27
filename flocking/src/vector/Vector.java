@@ -24,6 +24,7 @@ import java.lang.Math;
  *  ok	public static Vector subtract(Vector a, Vector b);  this will create a new vector 
  *  ok	public double getLength();
  *  ok 	public void setLength(double l);
+ *  ok  public boolean isEqual(Vector other);
  *  
  * }
  */
@@ -155,6 +156,12 @@ public class Vector {
 		double newYComponent = this.xComponent*Math.sin(radians)+this.yComponent*Math.cos(radians);
 		this.setxComponent(newXComponent);
 		this.setyComponent(newYComponent);
+	}
+	
+	public boolean isEqual(Vector other) {
+		if (this.getxComponent()==other.getxComponent() && this.getyComponent()==other.getyComponent())
+			return true;
+		return false;
 	}
 	
 	@Override
