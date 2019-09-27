@@ -25,6 +25,10 @@ import java.lang.Math;
  *  ok	public double getLength();
  *  ok 	public void setLength(double l);
  *  
+ *  un public void zero() //sets both compoents to zero
+ *  un public void setAngle(double) // roates the vector to a certain angle in radians
+ *  un public void setComponents(double x, double y) // sets compoenents at the same time
+ *  un public double getAngle();// returns the angle of the vector in radians
  * }
  */
 
