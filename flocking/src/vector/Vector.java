@@ -1,45 +1,32 @@
 package vector;
 import java.lang.Math;
+import utils.Utils;
 /* vector.h
 
 add some public static final vector for north south west east up down left right ...
 
 class vector{
-
+	ok 	public void setComponents(double x, double y);
 	ok	public double getLength();
-	ok   public void setLength(double l);
+	ok  public void setLength(double l);
+	ok 	public void zero();
 	ok	public Vector(double x,double y);
 	ok	public Vector(double x1, double y1,double x2, double y2);
 	ok	public Vector(double radians, double length, boolean type);
 	ok	public boolean add(Vector other); 								change to no new
 	ok	public boolean subtract(Vector other); 							change to no new
-	ok	public static Vector add(Vector a, Vector b);  this will create a new vector
+	ok	public static Vector add(Vector a, Vector b);  		this will create a new vector
+	ok	public static Vector subtract(Vector a, Vector b);	this will create a new vector
 	ok 	public void multiply(double m);
 	ok	public void divide(double d);  new divide function
 	ok	public normalize();
 	ok	public void scale(double newlength);
 	ok	public void invert();
-	 
-	
-	
-	
-	
-	 //use the other constructor
-	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
-										angle + 1 is much faster than tan cos sin stuff i think
-	un	public bool limit(double min, double max); // adjust length so it is within the range //if it hit a boundy return true
-	
-	
-	 
- 	ok	public static Vector subtract(Vector a, Vector b);  this will create a new vector 
- 
- 
- 	ok  public boolean isEqual(Vector other);
- 
- 	un public void zero() //sets both compoents to zero
- un public void setAngle(double) // roates the vector to a certain angle in radians
- un public void setComponents(double x, double y) // sets compoenents at the same time
- un public double getAngle();// returns the angle of the vector in radians
+	ok	public bool limit(double min, double max); // adjust length so it is within the range //if it hit a boundy return true
+	ok	public rotate(double radians);
+	ok 	public void setAngle(double) // rotates the vector to a certain angle in radians
+	ok 	public double getAngle();
+	ok  public boolean isEqual(Vector other);
 }
  */
 
@@ -65,6 +52,11 @@ public class Vector {
 		this.yComponent = yComponent;
 	}
 	
+	public void setComponents(double x, double y) {
+		this.xComponent = x;
+		this.yComponent = y;
+	}
+	
 	public double getLength() {
 		double length = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
 		return length;
@@ -75,6 +67,11 @@ public class Vector {
 		double scale = l/oldLength;
 		this.setxComponent(this.xComponent*scale);
 		this.setyComponent(this.yComponent*scale);
+	}
+	
+	public void setZero() {
+		this.setxComponent(0);
+		this.setyComponent(0);
 	}
 	
 	public Vector(double x,double y) {
@@ -166,7 +163,6 @@ public class Vector {
 		}else {
 			return false;
 		}
-		
 	}
 	
 	public void rotate(double radians) {
@@ -176,18 +172,35 @@ public class Vector {
 		this.setyComponent(newYComponent);
 	}
 	
+	public void setAngle(double newAngle) {
+		double length = this.getLength();
+		Vector newVector = new Vector(length, newAngle);
+		this.xComponent = (newVector.getxComponent());
+		this.yComponent = (newVector.getyComponent());
+	}
+	
+	public double getAngle() {
+		double angle;
+		if(this.getxComponent()<0) {
+			angle = Math.atan(this.getyComponent()/this.getxComponent());
+		}else if(this.getxComponent()>0) {
+			angle = Math.atan(this.getyComponent()/this.getxComponent())+Math.PI;
+		}else if (this.getyComponent()>0) {
+			angle = Math.PI/2;
+		}else if (this.getyComponent()<0) {
+			angle = -Math.PI/2;
+		}else {
+			angle = 0;
+		}
+		return angle;
+	}
+	
 	public boolean isEqual(Vector other) {
-		
-		if (this.round(this.getxComponent())==this.round(other.getxComponent()) && this.round(this.getyComponent())==this.round(other.getyComponent()))
+		if (utils.Utils.round(this.getxComponent())==utils.Utils.round(other.getxComponent()) && utils.Utils.round(this.getyComponent())==utils.Utils.round(other.getyComponent()))
 			return true;
 		return false;
 	}
 	
-	private static double round(double input) {
-		input*=1000;
-		input=Math.round(input);
-		return input/1000;
-	}
 	@Override
 	public String toString() {
 		return "Vector [xComponent=" + xComponent + ", yComponent=" + yComponent + "]";
