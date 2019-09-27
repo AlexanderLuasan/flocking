@@ -1,20 +1,26 @@
 package vector;
 import java.lang.Math;
-
 /* vector.h
- * 
  * 
  * add some public static final vector for north south west east up down left right ...
  * 
  * class vector{
+ * 
+ * ok	public double getLength();
+ * ok 	public void setLength(double l);
+ * ok	public Vector(double x,double y);
+ * ok	public Vector(double x1, double y1,double x2, double y2);
+ * ok	public Vector(double radians, double length, boolean type);
+ * 
+ * 
  * 	ok	public boolean add(Vector other); change to no new
  * 	ok	public void invert();
  * 	ok	public boolean subtract(Vector other); change to no new
  * 	ok	public void scale(double newlength);
  * 	ok	public normalize();
- * 	ok	public Vector(double x,double y);
- * 	ok	public Vector(double radians, double length, boolean type);
- * 	ok	public Vector(double x1, double y1,double x2, double y2); //use the other constructor
+ * 	
+ * 	
+ * 	 //use the other constructor
  * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
  * 										angle + 1 is much faster than tan cos sin stuff i think
  * 	ok	public void limit(double min, double max); // adjust length so it is within the range
@@ -22,8 +28,8 @@ import java.lang.Math;
  * 	ok 	public void multiply(double m);
  * 	ok	public static Vector add(Vector a, Vector b);  this will create a new vector 
  *  ok	public static Vector subtract(Vector a, Vector b);  this will create a new vector 
- *  ok	public double getLength();
- *  ok 	public void setLength(double l);
+ *  
+ *  
  *  ok  public boolean isEqual(Vector other);
  *  
  * }
@@ -69,8 +75,7 @@ public class Vector {
 	}
 	
 	public Vector(double x1, double y1,double x2, double y2) {
-		this.setxComponent(x2-x1);
-		this.setyComponent(y2-y1);
+		this(x2-x1,y2-y1);
 	}
 	
 	public Vector(double radians, double length, boolean type) {
@@ -159,11 +164,17 @@ public class Vector {
 	}
 	
 	public boolean isEqual(Vector other) {
-		if (this.getxComponent()==other.getxComponent() && this.getyComponent()==other.getyComponent())
+		
+		if (this.round(this.getxComponent())==this.round(other.getxComponent()) && this.round(this.getyComponent())==this.round(other.getyComponent()))
 			return true;
 		return false;
 	}
 	
+	private static double round(double input) {
+		input*=1000;
+		input=Math.round(input);
+		return input/1000;
+	}
 	@Override
 	public String toString() {
 		return "Vector [xComponent=" + xComponent + ", yComponent=" + yComponent + "]";
