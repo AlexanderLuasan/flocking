@@ -58,6 +58,9 @@ public class Screen extends JFrame {
 		if(shape.getRadius() > 0) {
 			draw_circle(shape.getCenter(), shape.getRadius(), g);
 		}
+		if(shape.getWidth() > 0 && shape.getHeight() > 0) {
+			draw_rectangle(shape.getCenter(), shape.getWidth(), shape.getHeight(), g);
+		}
 		draw_center(shape.getCenter(), g);
 		
 	}
@@ -84,5 +87,13 @@ public class Screen extends JFrame {
 		x -= 5;
 		y -= 5;
 		g.drawOval(x, y, 10, 10);
+	}
+	
+	public void draw_rectangle(Vector center, double width, double height, Graphics g) {
+		int x = (int) center.getxComponent();
+		int y = (int) center.getyComponent();
+		x -= width/2;
+		y -= height/2;
+		g.drawRect(x, y, (int) width, (int) height);
 	}
 }
