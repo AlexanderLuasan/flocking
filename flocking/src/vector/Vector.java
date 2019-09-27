@@ -23,7 +23,7 @@ import java.lang.Math;
  * 	 //use the other constructor
  * 	ok	public rotate(double radians); //increase the angle could be negative -- if this function seem to slow you might need to also hold the polar coordinates to save time
  * 										angle + 1 is much faster than tan cos sin stuff i think
- * 	ok	public void limit(double min, double max); // adjust length so it is within the range
+ * 	un	public bool limit(double min, double max); // adjust length so it is within the range //if it hit a boundy return true
  * 	ok	public void divide(double d);  new divide function
  * 	ok 	public void multiply(double m);
  * 	ok	public static Vector add(Vector a, Vector b);  this will create a new vector 
@@ -32,6 +32,10 @@ import java.lang.Math;
  *  
  *  ok  public boolean isEqual(Vector other);
  *  
+ *  un public void zero() //sets both compoents to zero
+ *  un public void setAngle(double) // roates the vector to a certain angle in radians
+ *  un public void setComponents(double x, double y) // sets compoenents at the same time
+ *  un public double getAngle();// returns the angle of the vector in radians
  * }
  */
 
