@@ -1,10 +1,10 @@
 package shape;
 
 import java.util.ArrayList;
-
+import ray.RayDetectable;
 import graphics.Drawable;
 import vector.Vector;
-
+import utils.Utils;
 /*
  * you know a circle 
  * 
@@ -19,7 +19,7 @@ import vector.Vector;
  * */
 
 
-public class Circle extends Shape {
+public class Circle extends Shape implements RayDetectable {
 	private int radius;
 	
 	public Circle(Vector center, int r) {
@@ -29,6 +29,18 @@ public class Circle extends Shape {
 	
 	public double getRadius() {
 		return this.radius;
+	}
+
+	@Override
+	public double distanceToPoint(Vector point) {
+		double tempDistance = Utils.distance(point, this.getCenter());
+		double resultDistance = tempDistance-this.getRadius();
+		return resultDistance;
+	}
+
+	@Override
+	public double distanceToPointCircle(Vector point) {
+		return distanceToPoint(point);
 	}
 	
 }

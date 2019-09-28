@@ -1,6 +1,6 @@
 package shape;
 
-import ray.RayDetectable;
+
 import vector.Vector;
 import java.util.ArrayList;
 import graphics.Colors;
@@ -32,6 +32,7 @@ import graphics.Drawable;
 //implements RayDetectable, Drawable not ready to implement
 public class Shape implements Drawable {
 	protected Vector center;
+	private Colors color;
 	
 	public Shape(Vector center) {
 		this.center = center;
@@ -40,5 +41,9 @@ public class Shape implements Drawable {
 	@Override
 	public Vector getCenter() {
 		return this.center;
+	}
+	
+	public void setColors(Colors color) {
+		this.color = color;
 	}
 }
