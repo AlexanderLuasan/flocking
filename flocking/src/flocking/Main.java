@@ -12,7 +12,7 @@ import vector.Vector;
 public class Main {
 	public static Screen Window;
 	
-	static int NUMBER_OF_BIRDS = 100;
+	static int NUMBER_OF_BIRDS = 200;
 	static int SPEED_RANGE = 5;
 	public static void main(String[] args) {
 		System.out.println("Welcome to Boids!");
@@ -46,7 +46,7 @@ public class Main {
 			Window.updateFrameBuffer();
 			Window.repaint();
 			try {
-				TimeUnit.MILLISECONDS.sleep(50);
+				TimeUnit.MILLISECONDS.sleep(40);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				done = true;

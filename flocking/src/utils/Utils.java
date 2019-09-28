@@ -3,8 +3,8 @@ package utils;
 import vector.Vector;
 import java.math.*;
 public class Utils {
-	public static int SCREEN_HIEGHT = 600;
-	public static int SCREEN_WIDTH = 600;
+	public static int SCREEN_HIEGHT = 800;
+	public static int SCREEN_WIDTH = 1200;
 	
 	public static double round(double input) {
 		input*=1000;

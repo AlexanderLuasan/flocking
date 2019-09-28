@@ -53,7 +53,7 @@ public class Screen extends JFrame {
 	//it will go through arraylist and draw each
 	public void updateFrameBuffer() {
 		Graphics g = FrameBuffer.createGraphics();
-		g.clearRect(0,0,800,800);
+		g.clearRect(0,0,this.getWidth(),this.getHeight());
 		g.setColor(Color.BLUE);
 		for(int i=0;i<toDraw.size();i++) {
 			vector.Vector c = new Vector(0,0);
