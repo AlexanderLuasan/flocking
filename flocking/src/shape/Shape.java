@@ -1,6 +1,6 @@
 package shape;
 
-import ray.RayDetectable;
+
 import vector.Vector;
 
 import java.util.ArrayList;
