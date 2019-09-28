@@ -37,7 +37,7 @@ import vector.Vector;
 public class Screen extends JFrame {
 
 	//add width and height
-	private BufferedImage FrameBuffer = new BufferedImage(0, 0, BufferedImage.TYPE_INT_ARGB);
+	private BufferedImage FrameBuffer;
 	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	
@@ -45,6 +45,7 @@ public class Screen extends JFrame {
 		setVisible(true);
 		setResizable(false);
 		setSize(width,height);
+		FrameBuffer =  new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		validate();
 	}
@@ -62,20 +63,23 @@ public class Screen extends JFrame {
 	
 	//draw a shape in arraylist
 	public void draw(Drawable shape, Graphics g, Vector center) {
+		center.add(shape.getCenter());
 		if(shape.getRadius() > 0) {
-			draw_circle(shape.getCenter(), shape.getRadius(), g);
+			draw_circle(center, shape.getRadius(), g);
 		}
 		if(shape.getWidth() > 0 && shape.getHeight() > 0) {
-			draw_rectangle(shape.getCenter(), shape.getWidth(), shape.getHeight(), g);
+			draw_rectangle(center, shape.getWidth(), shape.getHeight(), g);
 		}
 		if(shape.getlines() != null) {
-			draw_polygon(shape.getCenter(), shape.getlines(), g);
+			draw_polygon(center, shape.getlines(), g);
 		}
-		draw_center(shape.getCenter(), g);
+		draw_center(center, g);
 		
 		if(shape.getDrawables()!=null) {
-			for(int i=0;i>shape.getDrawables().size();i++) {
-				draw(shape.getDrawables().get(i),g,center);
+			for(int i=0;i<shape.getDrawables().size();i++) {
+				Vector subCenter = new Vector(0,0);
+				subCenter.copy(center);
+				draw(shape.getDrawables().get(i),g,subCenter);
 			}
 		}
 	}

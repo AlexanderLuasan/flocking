@@ -36,7 +36,7 @@ class RayTest {
 
 	public static void main(String args[]) {
 		window = new Screen(Utils.SCREEN_WIDTH, Utils.SCREEN_HIEGHT);
-		Ray testRay = new Ray();
+		DrawableRay testRay = new DrawableRay();
 		testRay.setStartPoint(new Vector(100, 100));
 		testRay.setDirection(new Vector(1, 0));
 		Circle circle = new Circle(new Vector(200, 100), 50);
@@ -45,13 +45,11 @@ class RayTest {
 		Ray.getRaydetectable().add(circle2);
 		window.getToDraw().add(circle);
 		window.getToDraw().add(circle2);
+		window.getToDraw().add(testRay);
 		
 		System.out.println(testRay.trace(300));
-		ArrayList<Circle> temp = testRay.fetchCircles();
+
 		
-		for(int i=0;i<temp.size();i++) {
-			window.getToDraw().add(temp.get(i));
-		}
 		
 		window.repaint();
 	}

@@ -27,7 +27,7 @@ public class Ray{
 	}
 	private Vector startPoint;
 
-	private Vector currentPoint;
+	private Vector currentPoint = new Vector(0,0);
 	
 	private Vector direction;
 	
@@ -39,7 +39,6 @@ public class Ray{
 
 	public void setStartPoint(Vector startPoint) {
 		this.startPoint = startPoint;
-		this.setCurrentPoint(startPoint);
 	}
 
 	public Vector getCurrentPoint() {
@@ -70,33 +69,36 @@ public class Ray{
 		double tempDistance = 0;
 		double newDistance = 0;
 		boolean hitObject = false;
+		this.currentPoint.copy(startPoint);
 		while(!hitObject && newDistance<=limitDistance) {
-			tempDistance = rayDetectable.get(0).distanceToPoint(this.getCurrentPoint());
-			//split into 3 steps 
-			//find min
-			//check exit
-			//move current point
+
 		
-			for(int i=0; i<rayDetectable.size()-1; i++) {
-				if(rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint()) < tempDistance){
-					tempDistance = rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint());
-				}
+			tempDistance = minDistance();
+			if(tempDistance<1) {
+				hitObject = true;
+				break;
 			}
-			addArrayCircle(currentPoint, tempDistance);
-			this.direction.scale(tempDistance);
-			this.currentPoint.add(this.direction);
+			moveCurrentPoint(tempDistance);
 			
 			newDistance+=tempDistance;
 		}
 		return newDistance; 
 	}
-	
-	public void addArrayCircle(Vector currentPoint, double tempDistance){
-		Vector c = new Vector(0,0);
-		c.copy(currentPoint);
-		c.subtract(getStartPoint());
-		//arrayCircle.add(new Circle(c, (int)Math.round(tempDistance)));
+	public double minDistance() {
+		double tempDistance = rayDetectable.get(0).distanceToPoint(this.getCurrentPoint());
+		for(int i=0; i<rayDetectable.size()-1; i++) {
+			if(rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint()) < tempDistance){
+				tempDistance = rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint());
+			}
+		}
+		return tempDistance;
 	}
+	public void moveCurrentPoint(double distance) {
+		this.direction.scale(distance);
+		this.currentPoint.add(this.direction);
+	}
+	
+	
 	public boolean search(double limitDistance) {
 		boolean found = false;
 		double degreeCounter = 0;
