@@ -13,10 +13,10 @@ public class GraphicsTest {
 		Screen test = new Screen(1000, 500);
 
 		ArrayList<Vector> list = new ArrayList<Vector>();
-		list.add(new Vector(300,250));
-		list.add(new Vector(350,400));
-		list.add(new Vector(300,350));
-		list.add(new Vector(250,400));
+		list.add(new Vector(0,30));
+		list.add(new Vector(-30,-15));
+		list.add(new Vector(0,0));
+		list.add(new Vector(30,-15));
 
 		test.getToDraw().add(new Circle(new Vector(100,300) , 50));
 		test.getToDraw().add(new Rectangle(new Vector(300,100), 50, 70));
