@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import graphics.Colors;
 import graphics.Drawable;
 public interface Boid extends Drawable {
+	
 	public boolean movement();//calulates the boids movment to the next frame
 	public boolean preBehaviour();
 	public boolean behaviour();			//caluates the acceleration in the 

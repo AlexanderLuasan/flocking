@@ -18,16 +18,13 @@ class ray{
 	ok	boolean search(double distance);			//rotate the direction vector left and right until you find a direction that does not collide within the distance save the vector to direction
 }
  */
-public class Ray {
+public class Ray{
 	
 	public static final ArrayList<RayDetectable> rayDetectable = new ArrayList<RayDetectable>(); 
 	
 	public static ArrayList<RayDetectable> getRaydetectable() {
 		return rayDetectable;
 	}
-	
-	private static ArrayList<Circle> arrayCircle = new  ArrayList<Circle>();
-
 	private Vector startPoint;
 
 	private Vector currentPoint;
@@ -75,7 +72,11 @@ public class Ray {
 		boolean hitObject = false;
 		while(!hitObject && newDistance<=limitDistance) {
 			tempDistance = rayDetectable.get(0).distanceToPoint(this.getCurrentPoint());
-			
+			//split into 3 steps 
+			//find min
+			//check exit
+			//move current point
+		
 			for(int i=0; i<rayDetectable.size()-1; i++) {
 				if(rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint()) < tempDistance){
 					tempDistance = rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint());
@@ -93,11 +94,8 @@ public class Ray {
 	public void addArrayCircle(Vector currentPoint, double tempDistance){
 		Vector c = new Vector(0,0);
 		c.copy(currentPoint);
-		arrayCircle.add(new Circle(c, (int)Math.round(tempDistance)));
-	}
-
-	public ArrayList<Circle> fetchCircles(){
-		return arrayCircle;
+		c.subtract(getStartPoint());
+		//arrayCircle.add(new Circle(c, (int)Math.round(tempDistance)));
 	}
 	public boolean search(double limitDistance) {
 		boolean found = false;
@@ -125,6 +123,7 @@ public class Ray {
 		return "Ray [startPoint=" + startPoint + ", currentPoint=" + currentPoint + ", direction=" + direction
 				+ ", lastDistance=" + lastDistance + "]";
 	}
+
 
 	
 	
