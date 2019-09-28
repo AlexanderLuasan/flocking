@@ -38,39 +38,9 @@ public class Shape implements Drawable {
 	public Shape(Vector center) {
 		this.center = center;
 	}
-
-	@Override
-	public ArrayList<Vector> getlines() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public Vector getCenter() {
 		return this.center;
-	}
-
-	@Override
-	public double getRadius() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Colors getColor() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
