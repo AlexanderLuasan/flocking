@@ -12,7 +12,7 @@ import vector.Vector;
 public class Main {
 	public static Screen Window;
 	
-	static int NUMBER_OF_BIRDS = 200;
+	static int NUMBER_OF_BIRDS = 1000;
 	static int SPEED_RANGE = 5;
 	public static void main(String[] args) {
 		System.out.println("Welcome to Boids!");

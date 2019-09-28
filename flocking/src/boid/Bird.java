@@ -46,10 +46,15 @@ import vector.Vector;
 
 public class Bird implements Boid {
 	//
-	private static final double MAX_ACCELERATION = 0.5;
+	private static final double MAX_ACCELERATION = 1;
 	private static final double MAX_SPEED = 10;
 	private static final double MIN_SPEED = 2;
-	private static final int SIGHT_RANGE = 50;
+	private static final int SIGHT_RANGE = 25;
+	
+	private static final double ALIGNMENT_WEIGHT = 1;
+	private static final double SEPARATION_WEIGHT = 1.1;
+	private static final double COHESION_WEIGHT = 1;
+	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
 	private Vector position;
 	private Vector velocity;
@@ -77,11 +82,11 @@ public class Bird implements Boid {
 	
 	public boolean movement() {
 		//needed limit max acceleration
-		this.acceleration.limit(0,Bird.MAX_ACCELERATION);
+		this.acceleration.limit(0,this.MAX_ACCELERATION);
 		//update the velocity with the acceleration
 		this.velocity.add(this.acceleration);
 		//needed limit max speed
-		this.velocity.limit(Bird.MIN_SPEED, Bird.MAX_SPEED);
+		this.velocity.limit(this.MIN_SPEED, this.MAX_SPEED);
 		//update the position with the velocity
 		this.position.add(this.velocity);
 		//needed rollover world edge
@@ -130,13 +135,13 @@ public class Bird implements Boid {
 		//scale forces
 		
 		if(alignmentCount>0) {
-			alignment.scale(1);
+			alignment.scale(ALIGNMENT_WEIGHT);
 		}
 		if(cohesionCount>0) {
-			cohesion.scale(1);
+			cohesion.scale(COHESION_WEIGHT);
 		}
 		if(separationCount>0) {
-			separation.scale(1);
+			separation.scale(SEPARATION_WEIGHT);
 		}
 		
 		//add them to the acceleration
