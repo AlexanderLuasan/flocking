@@ -221,16 +221,16 @@ public class Bird implements Boid {
 
 	public void updateDrawLines() {
 		drawLines.get(0).copy(velocity);
-		drawLines.get(0).scale(10);
+		drawLines.get(0).scale(30);
 		
 		drawLines.get(1).copy(velocity);
-		drawLines.get(1).scale(-10);
+		drawLines.get(1).scale(-30);
 		drawLines.get(1).rotate(.5);
 		
 		drawLines.get(2).setZero();
 		
 		drawLines.get(3).copy(velocity);
-		drawLines.get(3).scale(-10);
+		drawLines.get(3).scale(-30);
 		drawLines.get(3).rotate(-.5);
 		
 		

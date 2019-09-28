@@ -54,7 +54,7 @@ public class boidTest {
 				//myLog.println(a, DEBUG_CODE);
 				window.repaint();
 				try {
-					TimeUnit.MILLISECONDS.sleep(40);
+					TimeUnit.MILLISECONDS.sleep(50);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					done = true;
