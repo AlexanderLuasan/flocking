@@ -27,6 +27,7 @@ class vector{
 	ok 	public void setAngle(double) // rotates the vector to a certain angle in radians
 	ok 	public double getAngle();
 	ok  public boolean isEqual(Vector other);
+	ok	public void copy(Vector other); //copies the x and y of one vector to the other
 }
  */
 
@@ -72,6 +73,10 @@ public class Vector {
 	public void setZero() {
 		this.setxComponent(0);
 		this.setyComponent(0);
+	}
+	public void copy(Vector other) {
+		this.xComponent=other.xComponent;
+		this.yComponent=other.yComponent;
 	}
 	
 	public Vector(double x,double y) {
