@@ -30,15 +30,6 @@ public interface Boid extends Drawable {
 		return this.getPositionVector();
 	}
 	
-	public default double getRadius() {
-		return 0;
-	}
-	public default double getWidth() {
-		return 0;
-	}
-	public default double getHeight() {
-		return 0;
-	}
 	public default Colors getColor() {
 		return Colors.RED;
 	}
