@@ -18,7 +18,7 @@ class ray{
 	ok	boolean search(double distance);			//rotate the direction vector left and right until you find a direction that does not collide within the distance save the vector to direction
 }
  */
-public class Ray {
+public class Ray implements Drawable{
 	
 	public static final ArrayList<RayDetectable> rayDetectable = new ArrayList<RayDetectable>(); 
 	
@@ -26,7 +26,7 @@ public class Ray {
 		return rayDetectable;
 	}
 	
-	private static ArrayList<Circle> arrayCircle = new  ArrayList<Circle>();
+	private static ArrayList<Drawable> arrayCircle = new  ArrayList<Drawable>();
 
 	private Vector startPoint;
 
@@ -93,10 +93,11 @@ public class Ray {
 	public void addArrayCircle(Vector currentPoint, double tempDistance){
 		Vector c = new Vector(0,0);
 		c.copy(currentPoint);
+		c.subtract(getStartPoint());
 		arrayCircle.add(new Circle(c, (int)Math.round(tempDistance)));
 	}
 
-	public ArrayList<Circle> fetchCircles(){
+	public ArrayList<Drawable> fetchCircles(){
 		return arrayCircle;
 	}
 	public boolean search(double limitDistance) {
@@ -126,6 +127,13 @@ public class Ray {
 				+ ", lastDistance=" + lastDistance + "]";
 	}
 
+	@Override
+	public Vector getCenter() {
+		return this.startPoint;
+	}
+	public ArrayList<Drawable> getDrawables(){
+		return Ray.arrayCircle;
+	}
 	
 	
 }
