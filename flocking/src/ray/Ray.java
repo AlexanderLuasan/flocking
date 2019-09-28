@@ -18,16 +18,13 @@ class ray{
 	ok	boolean search(double distance);			//rotate the direction vector left and right until you find a direction that does not collide within the distance save the vector to direction
 }
  */
-public class Ray implements Drawable{
+public class Ray{
 	
 	public static final ArrayList<RayDetectable> rayDetectable = new ArrayList<RayDetectable>(); 
 	
 	public static ArrayList<RayDetectable> getRaydetectable() {
 		return rayDetectable;
 	}
-	
-	private static ArrayList<Drawable> arrayCircle = new  ArrayList<Drawable>();
-
 	private Vector startPoint;
 
 	private Vector currentPoint;
@@ -75,7 +72,11 @@ public class Ray implements Drawable{
 		boolean hitObject = false;
 		while(!hitObject && newDistance<=limitDistance) {
 			tempDistance = rayDetectable.get(0).distanceToPoint(this.getCurrentPoint());
-			
+			//split into 3 steps 
+			//find min
+			//check exit
+			//move current point
+		
 			for(int i=0; i<rayDetectable.size()-1; i++) {
 				if(rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint()) < tempDistance){
 					tempDistance = rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint());
@@ -94,11 +95,7 @@ public class Ray implements Drawable{
 		Vector c = new Vector(0,0);
 		c.copy(currentPoint);
 		c.subtract(getStartPoint());
-		arrayCircle.add(new Circle(c, (int)Math.round(tempDistance)));
-	}
-
-	public ArrayList<Drawable> fetchCircles(){
-		return arrayCircle;
+		//arrayCircle.add(new Circle(c, (int)Math.round(tempDistance)));
 	}
 	public boolean search(double limitDistance) {
 		boolean found = false;
@@ -127,13 +124,7 @@ public class Ray implements Drawable{
 				+ ", lastDistance=" + lastDistance + "]";
 	}
 
-	@Override
-	public Vector getCenter() {
-		return this.startPoint;
-	}
-	public ArrayList<Drawable> getDrawables(){
-		return Ray.arrayCircle;
-	}
+
 	
 	
 }
