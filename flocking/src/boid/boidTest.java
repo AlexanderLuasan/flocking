@@ -41,10 +41,7 @@ public class boidTest {
 				}
 				for(int i=0;i<birds.size()-1;i++) {
 					for(int ii=i+1;ii<birds.size();ii++) {
-						if(Boid.distance(birds.get(i), birds.get(ii))<50) {//no check for distance
-							birds.get(i).seeBoid(birds.get(ii));
-							birds.get(ii).seeBoid(birds.get(i));
-						}
+						Boid.sight(birds.get(i), birds.get(ii));
 					}
 				}
 				for(int i=0;i<birds.size();i++) {
