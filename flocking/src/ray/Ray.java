@@ -12,10 +12,10 @@ class ray{
 	ok	Vector direction;
 	ok	double distanceLast;
 
-	un	double trace(double limitDistance);			//run the trace for a minimum unit return distance if you hit anything, -1 for hitting nothing 
-	un	double fetchDistance();						//what was the actual distance
+	ok	double trace(double limitDistance);			//run the trace for a minimum unit return distance if you hit anything, -1 for hitting nothing 
+	un?	double fetchDistance();						//Alex will decide whether this should be implemented or not.
 	un	arrayList<shape.Circles> fetchCirlces(); 	//calculate all the circles for drawing and debugging reuse the shape class for easy drawing
-	un	boolean search(double distance);			//rotate the direction vector left and right until you find a direction that does not collide within the distance save the vector to direction
+	ok	boolean search(double distance);			//rotate the direction vector left and right until you find a direction that does not collide within the distance save the vector to direction
 }
  */
 public class Ray {
@@ -73,22 +73,35 @@ public class Ray {
 					tempDistance = rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint());
 				}
 			}
-			newDistance+=tempDistance;
 			this.currentPoint.setLength(tempDistance);
+			newDistance+=tempDistance;
 		}
 		return (hitObject == true) ? newDistance : -1; 
-	}
-	
-	public double fetchDistance() {
-		
 	}
 	
 	public arrayList<shape.Circles> fetchCirlces(){
 		
 	}
 	
-	public boolean search(double distance) {
-		
+	public boolean search(double limitDistance) {
+		boolean found = false;
+		double degreeCounter = 0;
+		boolean counterClockwise = true;
+		while(!found) {
+			if(this.trace(limitDistance)==-1) {
+				found = true;
+			}else {
+				degreeCounter++;
+				if(counterClockwise) {
+					this.getCurrentPoint().rotate(Math.toRadians(degreeCounter));
+					counterClockwise = false;
+				}else {
+					this.getCurrentPoint().rotate(-Math.toRadians(degreeCounter));
+					counterClockwise = true;
+				}
+			}
+		}
+		return found ? true : false;
 	}
 	
 	@Override
