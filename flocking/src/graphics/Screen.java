@@ -37,7 +37,7 @@ import vector.Vector;
 public class Screen extends JFrame {
 
 	//add width and height
-	//private BufferedImage FrameBuffer = new BufferedImage(0, 0, BufferedImage.TYPE_INT_ARGB);
+	private BufferedImage FrameBuffer = new BufferedImage(0, 0, BufferedImage.TYPE_INT_ARGB);
 	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	
@@ -72,6 +72,12 @@ public class Screen extends JFrame {
 			draw_polygon(shape.getCenter(), shape.getlines(), g);
 		}
 		draw_center(shape.getCenter(), g);
+		
+		if(shape.getDrawables()!=null) {
+			for(int i=0;i>shape.getDrawables().size();i++) {
+				draw(shape.getDrawables().get(i),g,center);
+			}
+		}
 	}
 
 	public ArrayList<Drawable> getToDraw() {

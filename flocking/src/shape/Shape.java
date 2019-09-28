@@ -34,6 +34,7 @@ public class Shape implements Drawable {
 	protected Vector center;
 	private Colors color;
 	
+	
 	public Shape(Vector center) {
 		this.center = center;
 	}

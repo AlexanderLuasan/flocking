@@ -40,21 +40,23 @@ import vector.Vector;
  
 
 public interface Drawable {
-	//public ArrayList<Drawable> getDrawables();
-	default ArrayList<Vector> getlines() {
+	public default ArrayList<Drawable> getDrawables(){
+		return null;
+	}
+	public default ArrayList<Vector> getlines() {
 		return null;
 	}
 	public Vector getCenter();
-	default double getRadius() {
+	public default double getRadius() {
 		return 0;
 	}
-	default double getWidth() {
+	public default double getWidth() {
 		return 0;
 	}
-	default double getHeight() {
+	public default double getHeight() {
 		return 0;
 	}
-	default Colors getColor() {
+	public default Colors getColor() {
 		return Colors.BLUE;
 	}
 }
