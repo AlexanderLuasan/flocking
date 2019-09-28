@@ -27,13 +27,18 @@ package graphics;
  * 
  * */
 import javax.swing.*;
+
 import shape.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import vector.Vector;
 
 public class Screen extends JFrame {
 
+	//add width and height
+	//private BufferedImage FrameBuffer = new BufferedImage(0, 0, BufferedImage.TYPE_INT_ARGB);
+	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	
 	public Screen(int width, int height){
@@ -46,6 +51,7 @@ public class Screen extends JFrame {
 	
 	//it will go through arraylist and draw each
 	public void paint(Graphics g) {
+		
 		g.clearRect(0,0,800,800);
 		g.setColor(Color.BLUE);
 		for(int i=0;i<toDraw.size();i++) {
