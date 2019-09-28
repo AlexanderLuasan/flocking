@@ -50,6 +50,7 @@ public class Bird implements Boid {
 	private static final int MAX_SPEED = 5;
 	private static final int MIN_SPEED = 2;
 	private static final int SIGHT_RANGE = 50;
+	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
 	private Vector position;
 	private Vector velocity;
 	private Vector acceleration;
@@ -71,6 +72,7 @@ public class Bird implements Boid {
 		for(int i=0;i<4;i++) {
 			drawLines.add(new Vector(0,0));
 		}
+		ALL_BIRDS.add(this);
 	}
 	
 	public boolean movement() {
@@ -237,6 +239,10 @@ public class Bird implements Boid {
 	}
 	public ArrayList<Vector> getlines(){
 		return drawLines;
+	}
+
+	public static ArrayList<Bird> getAllBirds() {
+		return ALL_BIRDS;
 	}
 
 	
