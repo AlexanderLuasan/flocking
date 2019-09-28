@@ -102,6 +102,7 @@ public class Screen extends JFrame {
 	
 	public void draw_polygon(Vector center, ArrayList<Vector> list, Graphics g) {
 		for(int i = 0; i < list.size(); i++) {
+			
 			if(i == list.size()-1) {
 				g.drawLine((int) list.get(i).getxComponent(),(int) list.get(i).getyComponent(),(int) list.get(0).getxComponent(),(int) list.get(0).getyComponent());
 				break;
