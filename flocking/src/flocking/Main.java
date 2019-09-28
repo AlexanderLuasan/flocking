@@ -43,6 +43,7 @@ public class Main {
 			}
 			
 			//myLog.println(a, DEBUG_CODE);
+			Window.updateFrameBuffer();
 			Window.repaint();
 			try {
 				TimeUnit.MILLISECONDS.sleep(50);

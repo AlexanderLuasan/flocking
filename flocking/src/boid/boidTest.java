@@ -52,6 +52,7 @@ public class boidTest {
 				}
 				
 				//myLog.println(a, DEBUG_CODE);
+				window.updateFrameBuffer();
 				window.repaint();
 				try {
 					TimeUnit.MILLISECONDS.sleep(50);
