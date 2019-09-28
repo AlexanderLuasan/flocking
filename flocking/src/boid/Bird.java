@@ -1,5 +1,7 @@
 package boid;
 
+import java.util.ArrayList;
+
 import vector.Vector;
 
 /*
@@ -46,10 +48,13 @@ public class Bird implements Boid {
 	//
 	private static final int MAX_ACCELERATION = 1;
 	private static final int MAX_SPEED = 5;
-	
+	private static final int MIN_SPEED = 2;
+	private static final int SIGHT_RANGE = 50;
 	private Vector position;
 	private Vector velocity;
 	private Vector acceleration;
+	
+	private ArrayList<Vector> drawLines = new ArrayList<Vector>();
 	
 	//rule vectors
 	private Vector alignment=new Vector(0,0);
@@ -63,6 +68,9 @@ public class Bird implements Boid {
 		position = new Vector((double)x,(double)y);
 		velocity = vel;
 		acceleration = new Vector(0,0);
+		for(int i=0;i<4;i++) {
+			drawLines.add(new Vector(0,0));
+		}
 	}
 	
 	public boolean movement() {
@@ -71,7 +79,7 @@ public class Bird implements Boid {
 		//update the velocity with the acceleration
 		this.velocity.add(this.acceleration);
 		//needed limit max speed
-		this.velocity.limit(0, this.MAX_SPEED);
+		this.velocity.limit(this.MIN_SPEED, this.MAX_SPEED);
 		//update the position with the velocity
 		this.position.add(this.velocity);
 		//needed rollover world edge
@@ -85,6 +93,9 @@ public class Bird implements Boid {
 		}else if(this.position.getyComponent()>utils.Utils.SCREEN_HIEGHT) {
 			this.position.setyComponent(this.position.getyComponent()-utils.Utils.SCREEN_HIEGHT);
 		}
+		
+		//update the image
+		updateDrawLines();
 		return true;
 	}
 
@@ -202,7 +213,31 @@ public class Bird implements Boid {
 		return "Bird [position=" + position + ", velocity=" + velocity + "]";
 	}
 
+	@SuppressWarnings("static-access")
+	@Override
+	public int sightRange() {
+		return this.SIGHT_RANGE;
+	}
 
+	public void updateDrawLines() {
+		drawLines.get(0).copy(velocity);
+		drawLines.get(0).scale(30);
+		
+		drawLines.get(1).copy(velocity);
+		drawLines.get(1).scale(-30);
+		drawLines.get(1).rotate(.5);
+		
+		drawLines.get(2).setZero();
+		
+		drawLines.get(3).copy(velocity);
+		drawLines.get(3).scale(-30);
+		drawLines.get(3).rotate(-.5);
+		
+		
+	}
+	public ArrayList<Vector> getlines(){
+		return drawLines;
+	}
 
 	
 	
