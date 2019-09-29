@@ -9,7 +9,7 @@ class vector{
 	ok 	public void setComponents(double x, double y);
 	ok	public double getLength();
 	ok  public void setLength(double l);
-	ok 	public void zero();
+	ok 	public void setZero();
 	ok	public Vector(double x,double y);
 	ok	public Vector(double x1, double y1,double x2, double y2);
 	ok	public Vector(double radians, double length, boolean type);
@@ -186,9 +186,9 @@ public class Vector {
 	
 	public double getAngle() {
 		double angle;
-		if(this.getxComponent()<0) {
+		if(this.getxComponent()>0) {
 			angle = Math.atan(this.getyComponent()/this.getxComponent());
-		}else if(this.getxComponent()>0) {
+		}else if(this.getxComponent()<0) {
 			angle = Math.atan(this.getyComponent()/this.getxComponent())+Math.PI;
 		}else if (this.getyComponent()>0) {
 			angle = Math.PI/2;
