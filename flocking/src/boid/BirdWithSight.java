@@ -17,28 +17,33 @@ public class BirdWithSight extends Bird {
 	
 	public boolean behaviour() {
 		
+		super.behaviour();
+		
+		
+		Vector testVelocity = Vector.add(this.velocity, this.acceleration);
 		
 		Vector pos = new Vector(0,0);
 		pos.copy(position);
 		Sight.setStartPoint(pos);
 		Vector dir = new Vector(0,0);
-		dir.copy(velocity);
+		dir.copy(testVelocity);
 		Sight.setDirection(dir);
 		
 		double distance = Sight.trace(100.0);
 		
 		if(distance < 0 ) {//if there is nothing in the way 
-			super.behaviour();
+			//don't change
 		}else {
 			//zero the acceleration
 			this.acceleration.setComponents(0, 0);
-			Sight.search(100.0);
-			Vector avoidDirection = Sight.getDirection();
-			avoidDirection.scale(1);
-			this.velocity.copy(Sight.getDirection());
-			//this.velocity.setAngle(avoidDirection.getAngle());
-			//avoidDirection = Vector.subtract(avoidDirection, velocity);
-			//this.acceleration.add(avoidDirection);
+			boolean s = Sight.search(100.0);
+			if(s) {
+				Vector avoidDirection = Sight.getDirection();
+				avoidDirection.scale(1);
+				avoidDirection = Vector.subtract(avoidDirection, velocity);
+				this.acceleration.add(avoidDirection);
+			}
+			
 			
 		}
 		return false;

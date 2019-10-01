@@ -68,14 +68,18 @@ public class Ray{
 	public double trace(double limitDistance) {
 		double tempDistance = 0;
 		double newDistance = 0;
-		boolean hitObject = false;
+		//boolean hitObject = false;
 		this.currentPoint.copy(startPoint);
 		while(newDistance<=limitDistance) {
 
 		
 			tempDistance = minDistance(limitDistance);
 			if(tempDistance<1) {
-				return newDistance;
+				if(newDistance>0) {
+					return newDistance;
+				}else {
+					return newDistance;
+				}
 			}
 			if(tempDistance>=limitDistance-1){//no objects within range
 				return -1;
@@ -112,6 +116,11 @@ public class Ray{
 			}else {
 				
 				degreeCounter++;
+				if(degreeCounter>360) {
+					this.direction.rotate(Math.toRadians(180));
+					return false;
+				}
+				
 				if(counterClockwise) {
 					this.direction.rotate(Math.toRadians(degreeCounter));
 					counterClockwise = false;
@@ -119,6 +128,7 @@ public class Ray{
 					this.direction.rotate(-Math.toRadians(degreeCounter));
 					counterClockwise = true;
 				}
+				
 			}
 		}
 		return found ? true : false;

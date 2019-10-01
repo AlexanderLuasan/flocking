@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 10;
+		static int NUMBER_OF_BIRDS = 200;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		public static void main(String [] args) {
@@ -23,7 +23,7 @@ public class boidTest {
 			Random rand = new Random();
 			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
-				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
+				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT-200)+200;
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				birds.add(new BirdWithSight(xpos,ypos,new Vector(xcomp,ycomp)));

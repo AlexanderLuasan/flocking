@@ -46,13 +46,13 @@ import vector.Vector;
 
 public class Bird implements Boid {
 	//
-	private static final double MAX_ACCELERATION = 1;
-	private static final double MAX_SPEED = 10;
-	private static final double MIN_SPEED = 2;
-	private static final int SIGHT_RANGE = 25;
+	protected static final double MAX_ACCELERATION = 1;
+	protected static final double MAX_SPEED = 10;
+	protected static final double MIN_SPEED = 3;
+	private static final int SIGHT_RANGE = 50;
 	
 	protected static final double ALIGNMENT_WEIGHT = 1;
-	protected static final double SEPARATION_WEIGHT = 1.1;
+	protected static final double SEPARATION_WEIGHT = 1;
 	protected static final double COHESION_WEIGHT = 1;
 	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
