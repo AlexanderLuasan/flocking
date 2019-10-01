@@ -14,6 +14,11 @@ public class DrawableRay extends Ray implements Drawable {
 	public Vector getCenter() {
 		return this.getStartPoint();
 	}
+	public double trace(double limitDistance) {
+		arrayCircle.clear();
+		return super.trace(limitDistance);
+	
+	}
 	public ArrayList<Drawable> getDrawables(){
 		return this.arrayCircle;
 	}

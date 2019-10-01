@@ -70,25 +70,27 @@ public class Ray{
 		double newDistance = 0;
 		boolean hitObject = false;
 		this.currentPoint.copy(startPoint);
-		while(!hitObject && newDistance<=limitDistance) {
+		while(newDistance<=limitDistance) {
 
 		
-			tempDistance = minDistance();
+			tempDistance = minDistance(limitDistance);
 			if(tempDistance<1) {
-				hitObject = true;
-				break;
+				return newDistance;
+			}
+			if(tempDistance>=limitDistance-1){//no objects within range
+				return -1;
 			}
 			moveCurrentPoint(tempDistance);
 			
 			newDistance+=tempDistance;
 		}
-		return newDistance; 
+		return -1; 
 	}
-	public double minDistance() {
-		double tempDistance = rayDetectable.get(0).distanceToPoint(this.getCurrentPoint());
-		for(int i=0; i<rayDetectable.size()-1; i++) {
-			if(rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint()) < tempDistance){
-				tempDistance = rayDetectable.get(i+1).distanceToPoint(this.getCurrentPoint());
+	public double minDistance(double limit) {
+		double tempDistance = limit;
+		for(int i=0; i<rayDetectable.size(); i++) {
+			if(rayDetectable.get(i).distanceToPoint(this.getCurrentPoint()) < tempDistance){
+				tempDistance = rayDetectable.get(i).distanceToPoint(this.getCurrentPoint());
 			}
 		}
 		return tempDistance;
@@ -104,15 +106,17 @@ public class Ray{
 		double degreeCounter = 0;
 		boolean counterClockwise = true;
 		while(!found) {
-			if(this.trace(limitDistance)==-1) {
+			if(this.trace(limitDistance)<0) {
 				found = true;
+				return true;
 			}else {
+				
 				degreeCounter++;
 				if(counterClockwise) {
-					this.getCurrentPoint().rotate(Math.toRadians(degreeCounter));
+					this.direction.rotate(Math.toRadians(degreeCounter));
 					counterClockwise = false;
 				}else {
-					this.getCurrentPoint().rotate(-Math.toRadians(degreeCounter));
+					this.direction.rotate(-Math.toRadians(degreeCounter));
 					counterClockwise = true;
 				}
 			}
