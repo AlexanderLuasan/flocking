@@ -32,6 +32,6 @@ public interface Boid extends Drawable {
 	}
 	
 	public default Colors getColor() {
-		return Colors.RED;
+		return Colors.GREEN;
 	}
 }

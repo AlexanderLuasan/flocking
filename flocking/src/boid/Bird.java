@@ -51,24 +51,24 @@ public class Bird implements Boid {
 	private static final double MIN_SPEED = 2;
 	private static final int SIGHT_RANGE = 25;
 	
-	private static final double ALIGNMENT_WEIGHT = 1;
-	private static final double SEPARATION_WEIGHT = 1.1;
-	private static final double COHESION_WEIGHT = 1;
+	protected static final double ALIGNMENT_WEIGHT = 1;
+	protected static final double SEPARATION_WEIGHT = 1.1;
+	protected static final double COHESION_WEIGHT = 1;
 	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
-	private Vector position;
-	private Vector velocity;
-	private Vector acceleration;
+	protected Vector position;
+	protected Vector velocity;
+	protected Vector acceleration;
 	
 	private ArrayList<Vector> drawLines = new ArrayList<Vector>();
 	
 	//rule vectors
-	private Vector alignment=new Vector(0,0);
-	private int alignmentCount=0;
-	private Vector separation=new Vector(0,0);
-	private int separationCount=0;
-	private Vector cohesion=new Vector(0,0);
-	private int cohesionCount=0;
+	protected Vector alignment=new Vector(0,0);
+	protected int alignmentCount=0;
+	protected Vector separation=new Vector(0,0);
+	protected int separationCount=0;
+	protected Vector cohesion=new Vector(0,0);
+	protected int cohesionCount=0;
 
 	public Bird(int x, int y, Vector vel) {
 		position = new Vector((double)x,(double)y);
