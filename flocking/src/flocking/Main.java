@@ -46,7 +46,7 @@ public class Main {
 			Window.updateFrameBuffer();
 			Window.repaint();
 			try {
-				TimeUnit.MILLISECONDS.sleep(40);
+				TimeUnit.MILLISECONDS.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				done = true;

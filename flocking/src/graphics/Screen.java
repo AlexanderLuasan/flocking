@@ -47,6 +47,7 @@ public class Screen extends JFrame {
 		setSize(width,height);
 		FrameBuffer =  new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		validate();
 	}
 	
@@ -67,6 +68,7 @@ public class Screen extends JFrame {
 	
 	//draw a shape in arraylist
 	public void draw(Drawable shape, Graphics g, Vector center) {
+		setColor(g,shape.getColor());
 		center.add(shape.getCenter());
 		if(shape.getRadius() > 0) {
 			draw_circle(center, shape.getRadius(), g);
@@ -88,6 +90,40 @@ public class Screen extends JFrame {
 		}
 	}
 
+	public void setColor(Graphics g, Colors color) {
+		
+		switch(color) {
+			case RED:
+				g.setColor(Color.RED);
+				break;
+			case BLUE:
+				g.setColor(Color.BLUE);
+				break;
+			case YELLOW:
+				g.setColor(Color.YELLOW);
+				break;
+			case GREEN:
+				g.setColor(Color.GREEN);
+				break;
+			case ORANGE:
+				g.setColor(Color.ORANGE);
+				break;
+			case PURPLE:
+				g.setColor(Color.MAGENTA);
+				break;
+			case GRAY:
+				g.setColor(Color.GRAY);
+				break;
+			case WHITE:
+				g.setColor(Color.WHITE);
+				break;
+			case BLACK:
+				g.setColor(Color.BLACK);
+				break;
+			default:
+				g.setColor(Color.BLACK);
+		}
+	}
 	public ArrayList<Drawable> getToDraw() {
 		return toDraw;
 	}
