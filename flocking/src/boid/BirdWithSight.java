@@ -11,7 +11,7 @@ public class BirdWithSight extends Bird {
 	private Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
-		Sight = new ray.DrawableRay();
+		Sight = new ray.Ray();
 	}
 	
 	
@@ -43,12 +43,12 @@ public class BirdWithSight extends Bird {
 		}
 		return false;
 	}
-	public ArrayList<Drawable> getDrawables() {
+	/*public ArrayList<Drawable> getDrawables() {
 		ArrayList<Drawable> l = new ArrayList<Drawable>();
 		Sight.getStartPoint().setZero();
 		l.add((Drawable) Sight);
 		
 		return l;
-	}
+	}*/
 
 }
