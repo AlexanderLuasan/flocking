@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 200;
+		static int NUMBER_OF_BIRDS = 300;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		public static void main(String [] args) {
@@ -73,7 +73,7 @@ public class boidTest {
 				window.updateFrameBuffer();
 				window.repaint();
 				try {
-					TimeUnit.MILLISECONDS.sleep(50);
+					TimeUnit.MILLISECONDS.sleep(20);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					done = true;

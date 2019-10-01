@@ -117,7 +117,7 @@ public class Ray{
 				
 				degreeCounter++;
 				if(degreeCounter>360) {
-					this.direction.rotate(Math.toRadians(180));
+					//this.direction.rotate(Math.toRadians(180));
 					return false;
 				}
 				
