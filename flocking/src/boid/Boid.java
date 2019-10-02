@@ -25,14 +25,14 @@ public interface Boid extends Drawable {
 		if(d<b.sightRange()) {
 			b.seeBoid(a);
 		}
-		if(!a.prey()||!b.prey()) {//if exist
-			if(d<a.sightRange()*2) {
-				a.seeBoid(b);
-			}
-			if(d<b.sightRange()*2) {
-				b.seeBoid(a);
-			}
-		}
+//		if(!a.prey()||!b.prey()) {//if exist
+//			if(d<a.sightRange()*2) {
+//				a.seeBoid(b);
+//			}
+//			if(d<b.sightRange()*2) {
+//				b.seeBoid(a);
+//			}
+//		}
 	}
 	public default Vector getCenter(){
 		return this.getPositionVector();

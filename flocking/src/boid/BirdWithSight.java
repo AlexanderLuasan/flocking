@@ -41,7 +41,7 @@ public class BirdWithSight extends FleeAndChaseBird {
 				Vector avoidDirection = Sight.getDirection();
 				avoidDirection.scale(1);
 				//avoidDirection = Vector.subtract(avoidDirection, velocity);
-				this.velocity.copy(avoidDirection);
+				this.velocity.copy(avoidDirection);//this is a bad use
 				//this.acceleration.add(avoidDirection);
 			}
 			

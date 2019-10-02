@@ -47,8 +47,8 @@ import vector.Vector;
 public class Bird implements Boid {
 	//
 	protected static final double MAX_ACCELERATION = .1;
-	protected static final double MAX_SPEED = 10;
-	protected static final double MIN_SPEED = 4;
+	protected static final double MAX_SPEED = 5;
+	protected static final double MIN_SPEED = 2;
 	protected static final double SIGHT_RANGE = 50;
 	protected static final double ALIGNMENT_WEIGHT = 1;
 	protected static final double SEPARATION_WEIGHT = 1.2;

@@ -30,8 +30,7 @@ public class FleeAndChaseBird extends Bird {
 		
 		
 		if(foundChase) {
-			this.acceleration.setZero();
-			this.chase.scale(1);
+			this.chase.divide(this.velocity.getLength());
 			this.acceleration.add(this.chase);
 		}
 		if(fleeCount>0) {
