@@ -3,7 +3,14 @@ package boid;
 
 import ray.Ray;
 import vector.Vector;
-
+/*
+class BirdWithSight super FleeAndChaseBird{
+	
+	behaviour() run the normal function then check if this puts you on a collision path
+				using the ray if so replace the acceleration with a new one that avoids the object
+	
+}
+ */
 public class BirdWithSight extends FleeAndChaseBird {
 
 	protected static final double SIGHT_DISTANCE = 100.0;

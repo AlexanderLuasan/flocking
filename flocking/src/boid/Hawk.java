@@ -4,7 +4,7 @@ import graphics.Colors;
 import vector.Vector;
 /*
 
-Hawk
+class Hawk{
 	
 	sight range big
 	
@@ -12,7 +12,7 @@ Hawk
 		any prey
 	flock only with hawks
 	
-	
+}	
 
 
  */

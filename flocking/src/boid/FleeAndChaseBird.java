@@ -2,6 +2,24 @@ package boid;
 
 import vector.Vector;
 
+/*
+class FleeAndChaseBird super Bird{
+	Vector flee;
+	int fleeCount;
+	Vector chase;
+	boolean foundChase;
+
+ok	FleeAndChaseBird()
+ok	boolean preBehaviour() //reset the new vectors then run the super
+ok	chase() //finish the chase function
+ok	chase(Bird other); // offer selection to the chase function
+ok	flee()	//finish the flee function
+ok	flee(Bird other);	//offer selection to the flee function
+	
+
+}
+ */
+
 public class FleeAndChaseBird extends Bird {
 	protected Vector flee;
 	protected int fleeCount=0;

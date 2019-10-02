@@ -3,13 +3,14 @@ package boid;
 import graphics.Colors;
 import vector.Vector;
 /*
-Pigeon
+
+class Pigeon{
 	sight is small
 	flee
 		any predator
 	join/flock
-		with any but hawk
-		
+		with any but preditor
+}		
  
  
  */
