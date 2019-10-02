@@ -46,13 +46,12 @@ import vector.Vector;
 
 public class Bird implements Boid {
 	//
-	protected static final double MAX_ACCELERATION = 1;
+	protected static final double MAX_ACCELERATION = .1;
 	protected static final double MAX_SPEED = 10;
-	protected static final double MIN_SPEED = 3;
-	private static final int SIGHT_RANGE = 50;
-	
+	protected static final double MIN_SPEED = 4;
+	protected static final double SIGHT_RANGE = 50;
 	protected static final double ALIGNMENT_WEIGHT = 1;
-	protected static final double SEPARATION_WEIGHT = 1;
+	protected static final double SEPARATION_WEIGHT = 1.2;
 	protected static final double COHESION_WEIGHT = 1;
 	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
@@ -79,14 +78,18 @@ public class Bird implements Boid {
 		}
 		ALL_BIRDS.add(this);
 	}
+	public boolean remove() {
+		ALL_BIRDS.remove(this);
+		return false;	
+	}
 	
 	public boolean movement() {
 		//needed limit max acceleration
-		this.acceleration.limit(0,this.MAX_ACCELERATION);
+		this.acceleration.limit(0,getMAX_ACCELERATION());
 		//update the velocity with the acceleration
 		this.velocity.add(this.acceleration);
 		//needed limit max speed
-		this.velocity.limit(this.MIN_SPEED, this.MAX_SPEED);
+		this.velocity.limit(getMIN_SPEED(), getMAX_SPEED());
 		//update the position with the velocity
 		this.position.add(this.velocity);
 		//needed rollover world edge
@@ -135,13 +138,13 @@ public class Bird implements Boid {
 		//scale forces
 		
 		if(alignmentCount>0) {
-			alignment.scale(ALIGNMENT_WEIGHT);
+			alignment.scale(getALIGNMENT_WEIGHT());
 		}
 		if(cohesionCount>0) {
-			cohesion.scale(COHESION_WEIGHT);
+			cohesion.scale(getCOHESION_WEIGHT());
 		}
 		if(separationCount>0) {
-			separation.scale(SEPARATION_WEIGHT);
+			separation.scale(getSEPARATION_WEIGHT());
 		}
 		
 		//add them to the acceleration
@@ -220,10 +223,9 @@ public class Bird implements Boid {
 		return "Bird [position=" + position + ", velocity=" + velocity + "]";
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
-	public int sightRange() {
-		return this.SIGHT_RANGE;
+	public double sightRange() {
+		return getSIGHT_RANGE();
 	}
 
 	public void updateDrawLines() {
@@ -248,6 +250,34 @@ public class Bird implements Boid {
 
 	public static ArrayList<Bird> getAllBirds() {
 		return ALL_BIRDS;
+	}
+
+	protected double getMAX_ACCELERATION() {
+		return MAX_ACCELERATION;
+	}
+
+	protected double getMAX_SPEED() {
+		return MAX_SPEED;
+	}
+
+	protected double getMIN_SPEED() {
+		return MIN_SPEED;
+	}
+
+	protected double getSIGHT_RANGE() {
+		return SIGHT_RANGE;
+	}
+
+	protected double getALIGNMENT_WEIGHT() {
+		return ALIGNMENT_WEIGHT;
+	}
+
+	protected double getSEPARATION_WEIGHT() {
+		return SEPARATION_WEIGHT;
+	}
+
+	protected double getCOHESION_WEIGHT() {
+		return COHESION_WEIGHT;
 	}
 
 	

@@ -1,17 +1,16 @@
 package boid;
 
-import java.util.ArrayList;
 
-import graphics.Drawable;
 import ray.Ray;
 import vector.Vector;
 
-public class BirdWithSight extends Bird {
+public class BirdWithSight extends FleeAndChaseBird {
 
-	private Ray Sight;
+	protected static final double SIGHT_DISTANCE = 100.0;
+	protected Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
-		Sight = new ray.DrawableRay();
+		Sight = new ray.Ray();
 	}
 	
 	
@@ -30,14 +29,14 @@ public class BirdWithSight extends Bird {
 		dir.copy(testVelocity);
 		Sight.setDirection(dir);
 		
-		double distance = Sight.trace(100.0);
+		double distance = Sight.trace(SIGHT_DISTANCE);
 		
 		if(distance < 0 ) {//if there is nothing in the way 
 			//don't change
 		}else {
 			//zero the acceleration
 			this.acceleration.setComponents(0, 0);
-			boolean s = Sight.search(100.0);
+			boolean s = Sight.search(SIGHT_DISTANCE);
 			if(s) {
 				Vector avoidDirection = Sight.getDirection();
 				avoidDirection.scale(1);
@@ -50,12 +49,10 @@ public class BirdWithSight extends Bird {
 		}
 		return false;
 	}
-	public ArrayList<Drawable> getDrawables() {
-		ArrayList<Drawable> l = new ArrayList<Drawable>();
-		Sight.getStartPoint().setZero();
-		l.add((Drawable)Sight);
-		
-		return l;
+
+
+	protected double getSightDistance() {
+		return SIGHT_DISTANCE;
 	}
 
 }

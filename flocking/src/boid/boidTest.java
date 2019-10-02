@@ -14,20 +14,27 @@ public class boidTest {
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		public static void main(String [] args) {
-			mathtest();
+			//mathtest();
 			Log myLog = Log.getLog();
 			
-			ArrayList<Bird> birds = new ArrayList<Bird>();
+			
 			//Bird a = new Bird(100, 100, new Vector(0,1));
 			//birds.add(a);
 			Random rand = new Random();
 			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
-				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT-200)+200;
+				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				birds.add(new BirdWithSight(xpos,ypos,new Vector(xcomp,ycomp)));
-				
+				new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
+			}
+			
+			for(int i=0;i<5;i++) {
+				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
+				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
+				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
+				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
+				new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			//add shapes
@@ -39,8 +46,8 @@ public class boidTest {
 			
 			
 			graphics.Screen window = new graphics.Screen(utils.Utils.SCREEN_WIDTH,utils.Utils.SCREEN_HIEGHT);
-			for(int i=0;i<birds.size();i++) {
-				window.getToDraw().add((Drawable)birds.get(i));
+			for(int i=0;i<Bird.getAllBirds().size();i++) {
+				window.getToDraw().add((Drawable)Bird.getAllBirds().get(i));
 			}
 			for(int i=0;i<env.size();i++) {
 				window.getToDraw().add(env.get(i));
@@ -53,19 +60,19 @@ public class boidTest {
 			while(!done) {
 				
 				
-				for(int i=0;i<birds.size();i++) {
-					birds.get(i).preBehaviour();
+				for(int i=0;i<Bird.getAllBirds().size();i++) {
+					Bird.getAllBirds().get(i).preBehaviour();
 				}
-				for(int i=0;i<birds.size()-1;i++) {
-					for(int ii=i+1;ii<birds.size();ii++) {
-						Boid.sight(birds.get(i), birds.get(ii));
+				for(int i=0;i<Bird.getAllBirds().size()-1;i++) {
+					for(int ii=i+1;ii<Bird.getAllBirds().size();ii++) {
+						Boid.sight(Bird.getAllBirds().get(i), Bird.getAllBirds().get(ii));
 					}
 				}
-				for(int i=0;i<birds.size();i++) {
-					birds.get(i).behaviour();
+				for(int i=0;i<Bird.getAllBirds().size();i++) {
+					Bird.getAllBirds().get(i).behaviour();
 				}
-				for(int i=0;i<birds.size();i++) {
-					birds.get(i).movement();
+				for(int i=0;i<Bird.getAllBirds().size();i++) {
+					Bird.getAllBirds().get(i).movement();
 				}
 				
 				//myLog.println(a, DEBUG_CODE);
