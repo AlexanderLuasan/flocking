@@ -1,8 +1,8 @@
 package shape;
 
-import java.util.ArrayList;
+
 import ray.RayDetectable;
-import graphics.Drawable;
+
 import vector.Vector;
 import utils.Utils;
 /*

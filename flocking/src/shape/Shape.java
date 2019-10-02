@@ -2,7 +2,6 @@ package shape;
 
 
 import vector.Vector;
-import java.util.ArrayList;
 import graphics.Colors;
 import graphics.Drawable;
 
@@ -46,5 +45,8 @@ public class Shape implements Drawable {
 	
 	public void setColors(Colors color) {
 		this.color = color;
+	}
+	public Colors getColors() {
+		return this.color;
 	}
 }

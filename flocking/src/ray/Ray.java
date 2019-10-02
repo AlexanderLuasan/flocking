@@ -1,10 +1,8 @@
 package ray;
 import java.util.ArrayList;
-import java.util.Collections;
 
-import graphics.Drawable;
 import vector.Vector;
-import shape.Circle;
+
 /* 
 class ray{
 
