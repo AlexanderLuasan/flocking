@@ -14,6 +14,7 @@ public interface Boid extends Drawable {
 	public Vector getVelocityVector();		//get the boids velocity vector
 	public Vector getPositionVector();		//get the boids position vector
 	public double sightRange();				//get sight range
+	//public double sightRange();				//hunt range
 	public static double distance(Boid a,Boid b) {	//unimplmented
 		return utils.Utils.distance(a.getPositionVector(),b.getPositionVector());
 	}

@@ -39,8 +39,6 @@ public class Pigeon extends BirdWithSight {
 		}
 	}
 	public Colors getColor() {
-		return Colors.BLUE;
+		return Colors.GREEN;
 	}
-	
-
 }

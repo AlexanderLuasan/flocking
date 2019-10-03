@@ -27,25 +27,30 @@ package graphics;
  * 
  * */
 import javax.swing.*;
-
 import shape.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import vector.Vector;
+import utils.Utils;
 
 public class Screen extends JFrame {
 
 	//add width and height
 	private BufferedImage FrameBuffer;
+	private BufferedImage RotationBuffer;
 	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	
+	private Vector viewPoint;
+	
 	public Screen(int width, int height){
+		viewPoint=new Vector(0,0);
 		setVisible(true);
 		setResizable(false);
 		setSize(width,height);
 		FrameBuffer =  new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		RotationBuffer =  new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		validate();
@@ -53,13 +58,31 @@ public class Screen extends JFrame {
 	
 	//it will go through arraylist and draw each
 	public void updateFrameBuffer() {
+		//Graphics g = RotationBuffer.createGraphics();
 		Graphics g = FrameBuffer.createGraphics();
-		g.clearRect(0,0,this.getWidth(),this.getHeight());
+		g.clearRect(0,0,Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
+		//rotationG.clearRect(0,0,Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
 		g.setColor(Color.BLUE);
 		for(int i=0;i<toDraw.size();i++) {
-			vector.Vector c = new Vector(0,0);
+			vector.Vector c = new Vector(Utils.SCREEN_WIDTH/2,Utils.SCREEN_HIEGHT/2);
+			c.subtract(viewPoint);
 			draw(toDraw.get(i),g,c);
 		}
+		//shift image by view point
+		
+		//rotationG.drawImage(RotationBuffer, Utils.SCREEN_WIDTH/2 -(int)Math.round(viewPoint.getxComponent()), Utils.SCREEN_HIEGHT/2 -(int)Math.round(viewPoint.getyComponent()), this);
+		
+		//draw a part to the left or the right
+
+		
+
+		
+		
+		
+		
+		//rotationG.drawImage(RotationBuffer, this.getWidth()/2 -(int)Math.round(viewPoint.getxComponent()), -this.getHeight()/2 -(int)Math.round(viewPoint.getyComponent()), this);
+		
+		
 	}
 	public void paint(Graphics g) {
 		
@@ -68,17 +91,33 @@ public class Screen extends JFrame {
 	
 	//draw a shape in arraylist
 	public void draw(Drawable shape, Graphics g, Vector center) {
-		setColor(g,shape.getColor());
+		if(shape.getColor()!= Colors.NOCOLOR){
+			setColor(g,shape.getColor());
+		}
 		center.add(shape.getCenter());
-		if(shape.getRadius() > 0) {
-			draw_circle(center, shape.getRadius(), g);
+		
+		//adjust center for the edge of screen
+		if(center.getxComponent()<0) {
+			center.setxComponent(center.getxComponent()+utils.Utils.SCREEN_WIDTH);
+		}else if(center.getxComponent()>utils.Utils.SCREEN_WIDTH) {
+			center.setxComponent(center.getxComponent()-utils.Utils.SCREEN_WIDTH);
 		}
-		if(shape.getWidth() > 0 && shape.getHeight() > 0) {
-			draw_rectangle(center, shape.getWidth(), shape.getHeight(), g);
+		if(center.getyComponent()<0) {
+			center.setyComponent(center.getyComponent()+utils.Utils.SCREEN_HIEGHT);
+		}else if(center.getyComponent()>utils.Utils.SCREEN_HIEGHT) {
+			center.setyComponent(center.getyComponent()-utils.Utils.SCREEN_HIEGHT);
 		}
-		if(shape.getlines() != null) {
-			draw_polygon(center, shape.getlines(), g);
+		
+		if(shape.getRadius()>0) {
+			this.draw_circle(center, shape.getRadius(), g);
 		}
+		if(shape.getWidth()>0 && shape.getHeight()>0) {
+			this.draw_rectangle(center, shape.getWidth(), shape.getHeight(), g);
+		}
+		if(shape.getlines()!=null) {
+			this.draw_polygon(center, shape.getlines(), g);
+		}
+		
 		draw_center(center, g);
 		
 		if(shape.getDrawables()!=null) {
@@ -170,5 +209,9 @@ public class Screen extends JFrame {
 			}
 			g.drawLine((int) point1.getxComponent(),(int) point1.getyComponent(),(int) point2.getxComponent(),(int) point2.getyComponent());
 		}
+	}
+
+	public Vector getViewPoint() {
+		return viewPoint;
 	}
 }

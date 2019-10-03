@@ -49,7 +49,7 @@ public class Bird implements Boid {
 	protected static final double MAX_ACCELERATION = .1;
 	protected static final double MAX_SPEED = 5;
 	protected static final double MIN_SPEED = 2;
-	protected static final double SIGHT_RANGE = 50;
+	protected static final double SIGHT_RANGE = 75;
 	protected static final double ALIGNMENT_WEIGHT = 1;
 	protected static final double SEPARATION_WEIGHT = 1.2;
 	protected static final double COHESION_WEIGHT = 1;

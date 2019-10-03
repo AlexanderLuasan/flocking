@@ -13,11 +13,15 @@ class BirdWithSight super FleeAndChaseBird{
  */
 public class BirdWithSight extends FleeAndChaseBird {
 
-	protected static final double SIGHT_DISTANCE = 100.0;
+	protected static final double SIGHT_DISTANCE = 200.0;
 	protected Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
 		Sight = new ray.Ray();
+	}
+	public BirdWithSight(int x, int y, Vector vel, Ray si) {
+		super(x, y, vel);
+		Sight = si;
 	}
 	
 	
@@ -60,6 +64,12 @@ public class BirdWithSight extends FleeAndChaseBird {
 
 	protected double getSightDistance() {
 		return SIGHT_DISTANCE;
+	}
+	protected Ray getSight() {
+		return Sight;
+	}
+	protected void setSight(Ray sight) {
+		Sight = sight;
 	}
 
 }

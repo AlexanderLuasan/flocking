@@ -21,6 +21,7 @@ public class boidTest {
 			//Bird a = new Bird(100, 100, new Vector(0,1));
 			//birds.add(a);
 			Random rand = new Random();
+			Boid a = new DrawingPigeon(0,0,new Vector(1,1));
 			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
@@ -76,11 +77,11 @@ public class boidTest {
 				}
 				
 				//myLog.println(a, DEBUG_CODE);
-				
+				window.getViewPoint().copy(a.getPositionVector());
 				window.updateFrameBuffer();
 				window.repaint();
 				try {
-					TimeUnit.MILLISECONDS.sleep(20);
+					TimeUnit.MILLISECONDS.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					done = true;
