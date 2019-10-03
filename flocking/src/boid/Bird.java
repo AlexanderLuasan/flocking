@@ -51,7 +51,7 @@ public class Bird implements Boid {
 	protected static final double MIN_SPEED = 2;
 	protected static final double SIGHT_RANGE = 75;
 	protected static final double ALIGNMENT_WEIGHT = 1;
-	protected static final double SEPARATION_WEIGHT = 1.2;
+	protected static final double SEPARATION_WEIGHT = 1.3;
 	protected static final double COHESION_WEIGHT = 1;
 	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();

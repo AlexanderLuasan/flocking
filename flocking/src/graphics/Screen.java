@@ -118,7 +118,7 @@ public class Screen extends JFrame {
 			this.draw_polygon(center, shape.getlines(), g);
 		}
 		
-		draw_center(center, g);
+		//draw_center(center, g);
 		
 		if(shape.getDrawables()!=null) {
 			for(int i=0;i<shape.getDrawables().size();i++) {
