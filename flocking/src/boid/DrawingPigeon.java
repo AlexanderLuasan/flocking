@@ -19,23 +19,23 @@ public class DrawingPigeon extends Pigeon {
 	public void align() {
 		super.align();
 		Dalignment.copy(this.alignment);
-		Dalignment.scale(vLength * this.getALIGNMENT_WEIGHT());
+		//Dalignment.multiply(vLength * this.getALIGNMENT_WEIGHT());
 	}
 	public void cohesion() {
 		super.cohesion();
 		Dcohesion.copy(this.cohesion);
-		Dcohesion.scale(vLength * this.getCOHESION_WEIGHT());
+		//Dcohesion.scale(vLength * this.getCOHESION_WEIGHT());
 	}
 	public void separation() {
 		super.separation();
 		Dseparation.copy(this.separation);
-		Dseparation.scale(vLength * this.getSEPARATION_WEIGHT());
+		//Dseparation.scale(vLength * this.getSEPARATION_WEIGHT());
 	}
 	public void flee() {
 		super.flee();
 		if(fleeCount>0) {
 			Dflee.copy(this.flee);
-			Dflee.scale(vLength * this.getFLEE_WEIGHT());
+			//Dflee.scale(vLength * this.getFLEE_WEIGHT());
 		}else {
 			Dflee.setZero();
 		}
