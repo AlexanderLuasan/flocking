@@ -206,6 +206,17 @@ public class Vector {
 		return false;
 	}
 	
+	public Vector perpendicular() {
+		double perX = -this.getyComponent();
+		double perY = this.getxComponent();
+		Vector pVector = new Vector(perX, perY);
+		return pVector;
+	}
+	
+	public double dotProduct(Vector other) {
+		return this.getxComponent()*other.getxComponent()+this.getyComponent()*other.getyComponent();
+	}
+	
 	@Override
 	public String toString() {
 		return "Vector [xComponent=" + xComponent + ", yComponent=" + yComponent + "]";
