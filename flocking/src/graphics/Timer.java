@@ -1,0 +1,49 @@
+package graphics;
+
+import java.util.concurrent.TimeUnit;
+
+import utils.Log;
+
+import java.lang.System;
+
+
+public class Timer {
+	private static final Log log = utils.Log.getLog();
+	private static final int DEBUG = utils.Log.TIMER + utils.Log.DEBUG; 
+	
+	
+	private int milliSeconds = 10;
+	private long timeStamp;
+	private String name;
+	
+	
+	public Timer(String name, int unit) {
+		milliSeconds=unit;
+		this.name=name;
+		timeStamp = System.currentTimeMillis();
+	}
+	
+	public void sleep() throws InterruptedException {
+		long current = System.currentTimeMillis();
+		if(milliSeconds>current-timeStamp) {
+			TimeUnit.MILLISECONDS.sleep(milliSeconds - (current-timeStamp));
+			log.println(this.toString()+"\tWaited:\t " + String.valueOf(milliSeconds - (current-timeStamp)),DEBUG);
+		}else {
+			log.println(this.toString()+"\tLate:\t" + String.valueOf(milliSeconds - (current-timeStamp)),DEBUG);
+		}
+		timeStamp=current;
+	}
+
+	protected int getMilliSeconds() {
+		return milliSeconds;
+	}
+
+	protected void setMilliSeconds(int milliseconds) {
+		this.milliSeconds = milliseconds;
+	}
+
+	@Override
+	public String toString() {
+		return "Timer [name: " + this.name + " timeUnit: " + this.milliSeconds+"]";
+	}
+}

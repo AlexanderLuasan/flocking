@@ -56,9 +56,6 @@ public class GraphicsTest {
 		//env.add(new Circle(new Vector(200,200),50));
 		
 		
-		
-		
-		
 		graphics.Screen window = new graphics.Screen(utils.Utils.SCREEN_WIDTH,utils.Utils.SCREEN_HIEGHT);
 		for(int i=0;i<Bird.getAllBirds().size();i++) {
 			window.getToDraw().add((Drawable)Bird.getAllBirds().get(i));

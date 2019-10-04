@@ -52,6 +52,7 @@ public class Log {
 	public static final int SHAPE = 64; // related to shape
 	public static final int UTIL = 128; // related to util
 	public static final int VECTOR = 256; // related to util
+	public static final int TIMER = 512; // related to util
 	public static final int ALL = DEBUG+ERROR+EVENT+GRAPHICS+BOIDS+RAY+SHAPE+UTIL+VECTOR;
 	public static final int NONE = 0;
 	
