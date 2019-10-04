@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import graphics.Screen;
 import shape.Circle;
+import shape.Rectangle;
 import utils.Utils;
 import vector.Vector;
 
@@ -16,30 +17,66 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RayTest {
-	static Screen window;
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		
-	}
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	@Test
+	public void ToTheLeft() {
+		Ray.getRaydetectable().clear();
+		Ray testRay = new RayV2();
+		testRay.setStartPoint(new Vector(100, 100));
+		testRay.setDirection(new Vector(1, 0));
+		RayDetectable one = new Rectangle(new Vector(400,100), 100, 100);
+		testRay.getRaydetectable().add(one);
+		double distance = testRay.trace(300);
+		assertEquals(true,(distance>0));
+		System.out.println(distance);
 	}
-
-	@BeforeEach
-	void setUp() throws Exception {
+	
+	@Test
+	public void ToTheRightFail() {
+		Ray.getRaydetectable().clear();
+		Ray testRay = new RayV2();
+		testRay.setStartPoint(new Vector(400, 100));
+		testRay.setDirection(new Vector(1, 0));
+		RayDetectable one = new Rectangle(new Vector(100,100), 100, 100);
+		testRay.getRaydetectable().add(one);
+		double distance = testRay.trace(300);
+		assertEquals(true,(distance<0));
+		System.out.println(distance);
 	}
-
-	@AfterEach
-	void tearDown() throws Exception {
+	@Test
+	public void PositivePositive() {
+		Ray.getRaydetectable().clear();
+		Ray testRay = new RayV2();
+		testRay.setStartPoint(new Vector(100, 100));
+		testRay.setDirection(new Vector(1, 1));
+		RayDetectable one = new Rectangle(new Vector(400,400), 100, 100);
+		testRay.getRaydetectable().add(one);
+		double distance = testRay.trace(300);
+		assertEquals(true,(distance>0));
+		System.out.println(distance);
 	}
-
+	@Test
+	public void PositivePositiveFail() {
+		Ray.getRaydetectable().clear();
+		Ray testRay = new RayV2();
+		testRay.setStartPoint(new Vector(100, 100));
+		testRay.setDirection(new Vector(1, 1));
+		RayDetectable one = new Rectangle(new Vector(200,400), 100, 100);
+		testRay.getRaydetectable().add(one);
+		double distance = testRay.trace(300);
+		assertEquals(true,(distance<0));
+		System.out.println(distance);
+	}
+	
 	public static void main(String args[]) {
 		
 		Ray testRay = new RayV2();
-		
+		testRay.setStartPoint(new Vector(100, 100));
+		testRay.setDirection(new Vector(1, 0));
+		RayDetectable one = new Rectangle(new Vector(400,100), 100, 100);
+		testRay.getRaydetectable().add(one);
 		double distance = testRay.trace(300);
-		
+		System.out.println(distance);
 		/*
 		window = new Screen(Utils.SCREEN_WIDTH, Utils.SCREEN_HIEGHT);
 		DrawableRay testRay = new DrawableRay();

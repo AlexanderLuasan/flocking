@@ -23,7 +23,7 @@ public class RayV2 extends Ray {
 			//make a new copy of its points/have the shape always give a new copy
 			//shift the points to put us at the center
 			for(int ii=0;ii<points.size();ii++) {
-				points.add(this.getStartPoint());
+				points.get(ii).subtract(this.getStartPoint());
 			}
 			
 			//check the perpendicular colision
@@ -47,6 +47,7 @@ public class RayV2 extends Ray {
 				double minimum = -10;
 				for(int ii=0;ii<points.size();ii++) {
 					double porjection = this.getDirection().dotProduct(points.get(ii));
+					
 					if(porjection<0) {
 						allPositive=false;
 						break;
