@@ -35,6 +35,12 @@ class RayTest {
 	}
 
 	public static void main(String args[]) {
+		
+		Ray testRay = new RayV2();
+		
+		double distance = testRay.trace(300);
+		
+		/*
 		window = new Screen(Utils.SCREEN_WIDTH, Utils.SCREEN_HIEGHT);
 		DrawableRay testRay = new DrawableRay();
 		testRay.setStartPoint(new Vector(100, 100));
@@ -50,6 +56,7 @@ class RayTest {
 		System.out.println(testRay.trace(300));
 
 		window.repaint();
+		*/
 	}
 
 }
