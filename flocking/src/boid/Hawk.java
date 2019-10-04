@@ -27,7 +27,7 @@ public class Hawk extends BirdWithSight {
 	protected double getCOHESION_WEIGHT() 	{	return COHESION_WEIGHT;		}
 	protected double getCHASE_WEIGHT() 		{	return CHASE_WEIGHT;		}
 	protected double getFLEE_WEIGHT() 		{	return FLEE_WEIGHT;			}
-	protected double getSightDistance() 	{	return SIGHT_DISTANCE;		}
+	protected double getSightDistance() 	{	return RAY_TRACE_DISTANCE;		}
 	public Hawk(int x, int y, Vector vel) {
 		super(x, y, vel);
 		

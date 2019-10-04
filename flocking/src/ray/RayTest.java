@@ -49,8 +49,6 @@ class RayTest {
 		
 		System.out.println(testRay.trace(300));
 
-		
-		
 		window.repaint();
 	}
 
