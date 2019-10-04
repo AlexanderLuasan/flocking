@@ -13,7 +13,7 @@ class BirdWithSight super FleeAndChaseBird{
  */
 public class BirdWithSight extends FleeAndChaseBird {
 
-	protected static final double SIGHT_DISTANCE = 200.0;
+	protected static final double RAY_TRACE_DISTANCE = 200.0;
 	protected Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
@@ -40,14 +40,14 @@ public class BirdWithSight extends FleeAndChaseBird {
 		dir.copy(testVelocity);
 		Sight.setDirection(dir);
 		
-		double distance = Sight.trace(SIGHT_DISTANCE);
+		double distance = Sight.trace(getRayDistance());
 		
 		if(distance < 0 ) {//if there is nothing in the way 
 			//don't change
 		}else {
 			//zero the acceleration
 			this.acceleration.setComponents(0, 0);
-			boolean s = Sight.search(SIGHT_DISTANCE);
+			boolean s = Sight.search(getRayDistance());
 			if(s) {
 				Vector avoidDirection = Sight.getDirection();
 				avoidDirection.scale(1);
@@ -62,8 +62,8 @@ public class BirdWithSight extends FleeAndChaseBird {
 	}
 
 
-	protected double getSightDistance() {
-		return SIGHT_DISTANCE;
+	protected double getRayDistance() {
+		return RAY_TRACE_DISTANCE;
 	}
 	protected Ray getSight() {
 		return Sight;

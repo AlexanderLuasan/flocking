@@ -24,7 +24,7 @@ public class Pigeon extends BirdWithSight {
 	protected double getCOHESION_WEIGHT() 	{	return COHESION_WEIGHT;		}
 	protected double getCHASE_WEIGHT() 		{	return CHASE_WEIGHT;		}
 	protected double getFLEE_WEIGHT() 		{	return 20;			}
-	protected double getSightDistance() 	{	return SIGHT_DISTANCE;		}
+	protected double getSightDistance() 	{	return RAY_TRACE_DISTANCE;		}
 	public Pigeon(int x, int y, Vector vel) {
 		super(x, y, vel);
 	}

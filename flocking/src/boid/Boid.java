@@ -14,18 +14,21 @@ public interface Boid extends Drawable {
 	public Vector getVelocityVector();		//get the boids velocity vector
 	public Vector getPositionVector();		//get the boids position vector
 	public double sightRange();				//get sight range
-	//public double sightRange();				//hunt range
 	public static double distance(Boid a,Boid b) {	//unimplmented
 		return utils.Utils.distance(a.getPositionVector(),b.getPositionVector());
 	}
-	public static void sight(Boid a, Boid b) {
+	public static boolean sight(Boid a, Boid b) {
 		double d = Boid.distance(a, b);
+		boolean inSightRange = false;
 		if(d<a.sightRange()) {
 			a.seeBoid(b);
+			inSightRange = true;
 		}
 		if(d<b.sightRange()) {
 			b.seeBoid(a);
+			inSightRange = true;
 		}
+		return inSightRange;
 //		if(!a.prey()||!b.prey()) {//if exist
 //			if(d<a.sightRange()*2) {
 //				a.seeBoid(b);
