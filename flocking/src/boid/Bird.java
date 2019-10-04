@@ -51,7 +51,7 @@ public class Bird implements Boid {
 	protected static final double MIN_SPEED = 2;
 	protected static final double SIGHT_RANGE = 75;
 	protected static final double ALIGNMENT_WEIGHT = 1;
-	protected static final double SEPARATION_WEIGHT = 1.3;
+	protected static final double SEPARATION_WEIGHT = 1;
 	protected static final double COHESION_WEIGHT = 1;
 	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
@@ -138,13 +138,13 @@ public class Bird implements Boid {
 		//scale forces
 		
 		if(alignmentCount>0) {
-			alignment.scale(getALIGNMENT_WEIGHT());
+			alignment.multiply(getALIGNMENT_WEIGHT());
 		}
 		if(cohesionCount>0) {
-			cohesion.scale(getCOHESION_WEIGHT());
+			cohesion.multiply(getCOHESION_WEIGHT());
 		}
 		if(separationCount>0) {
-			separation.scale(getSEPARATION_WEIGHT());
+			separation.multiply(getSEPARATION_WEIGHT());
 		}
 		
 		//add them to the acceleration
@@ -191,8 +191,10 @@ public class Bird implements Boid {
 	void separation(Bird other) {
 		//vector pointed from them to me
 		Vector force = Vector.subtract(this.position,other.position);
+		double length = force.getLength();
+		force.scale(.5 *this.getSIGHT_RANGE()*this.getSIGHT_RANGE());
 		//weaken vector based on distance
-		force.divide(force.getLength()*force.getLength());
+		force.divide(Boid.distance(this,other));
 		//sum the vectors
 		this.separation.add(force);
 		this.separationCount+=1;

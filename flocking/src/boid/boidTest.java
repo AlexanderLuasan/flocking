@@ -35,12 +35,12 @@ public class boidTest {
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
+				//new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			//add shapes
 			ArrayList<Circle> env = new ArrayList<Circle>();
-			env.add(new Circle(new Vector(200,200),50));
+			//env.add(new Circle(new Vector(200,200),50));
 			
 			
 			
@@ -77,7 +77,7 @@ public class boidTest {
 				}
 				
 				//myLog.println(a, DEBUG_CODE);
-				window.getViewPoint().copy(a.getPositionVector());
+				//window.getViewPoint().copy(a.getPositionVector());
 				window.updateFrameBuffer();
 				window.repaint();
 				try {
