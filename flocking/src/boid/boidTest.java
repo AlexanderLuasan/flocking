@@ -35,7 +35,7 @@ public class boidTest {
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				//new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
+				new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			//add shapes

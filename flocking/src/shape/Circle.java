@@ -1,6 +1,8 @@
 package shape;
 
 
+import java.util.ArrayList;
+
 import ray.RayDetectable;
 
 import vector.Vector;
@@ -41,6 +43,11 @@ public class Circle extends Shape implements RayDetectable {
 	@Override
 	public double distanceToPointCircle(Vector point) {
 		return distanceToPoint(point);
+	}
+	
+	@Override
+	public ArrayList<Vector> getPoints(Vector projection){
+		
 	}
 	
 }

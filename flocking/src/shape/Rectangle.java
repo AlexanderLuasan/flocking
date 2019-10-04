@@ -1,5 +1,7 @@
 package shape;
 
+import java.util.ArrayList;
+
 import ray.RayDetectable;
 import vector.Vector;
 import utils.Utils;
@@ -79,5 +81,27 @@ public class Rectangle extends Shape implements RayDetectable {
 			return resultDistance;
 		}
 		return -1;
+	}
+	
+	@Override
+	public ArrayList<Vector> getPoints(Vector projection){
+		Vector lu = new Vector(this.getCenter().getxComponent(), this.getCenter().getyComponent());
+		lu.setComponents(lu.getxComponent()-(this.getWidth()/2), lu.getyComponent()+(this.getHeight()/2));
+		
+		Vector ru = new Vector(this.getCenter().getxComponent(), this.getCenter().getyComponent());
+		ru.setComponents(ru.getxComponent()+(this.getWidth()/2), ru.getyComponent()+(this.getHeight()/2));
+		
+		Vector ld = new Vector(this.getCenter().getxComponent(), this.getCenter().getyComponent());
+		ld.setComponents(ld.getxComponent()-(this.getWidth()/2), ld.getyComponent()-(this.getHeight()/2));
+		
+		Vector rd = new Vector(this.getCenter().getxComponent(), this.getCenter().getyComponent());
+		rd.setComponents(rd.getxComponent()+(this.getWidth()/2), rd.getyComponent()-(this.getHeight()/2));
+		
+		ArrayList<Vector> pointsOfRec = new ArrayList<Vector>();
+		pointsOfRec.add(lu);
+		pointsOfRec.add(ru);
+		pointsOfRec.add(ld);
+		pointsOfRec.add(rd);
+		return pointsOfRec;
 	}
 }
