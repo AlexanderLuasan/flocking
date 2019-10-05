@@ -30,4 +30,28 @@ public class Polygon extends Shape implements RayDetectable{
 		// TODO Auto-generated method stub
 		return this.getlines();
 	}
+	public double minimumDistanceToLines(Vector Point) {
+		
+		double minimum = -2;
+		for(int i=0;i<vector_list.size()-1;i++) {
+			Vector Line = Vector.subtract(vector_list.get(i), vector_list.get(i+1));
+			double lineLength = Line.getLength();
+			Line.normalize();
+			
+			Vector point = Vector.subtract(Vector.add(vector_list.get(i),this.center), Point);
+			double project = Line.dotProduct(point);
+			if(project>0 && project < lineLength) {//within the line
+				
+				Vector perpendiular = Line.perpendicular();
+				double distance = perpendiular.dotProduct(Point);
+				if(Math.abs(distance)<minimum) {
+					minimum = Math.abs(distance);
+				}
+				if(minimum<0) {
+					minimum = Math.abs(distance);
+				}
+			}
+		}	
+		return minimum;
+	}
 }

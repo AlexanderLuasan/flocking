@@ -42,8 +42,8 @@ public class DrawingPigeon extends Pigeon {
 	}
 	public DrawingPigeon(int x, int y, Vector vel) {
 		super(x, y, vel);
-		//DrawableRay R = new ray.DrawableRay();
-		//this.setSight(R);
+		DrawableRay R = new ray.DrawableRay();
+		this.setSight(R);
 		vLength = this.getSIGHT_RANGE();
 		Dalignment = new Vector(0,0);
 		Dcohesion = new Vector(0,0);
@@ -52,7 +52,7 @@ public class DrawingPigeon extends Pigeon {
 		
 		Drawable C = new shape.Circle(new Vector(0,0),(int) this.getSIGHT_RANGE());
 		Drawable C2 = new shape.Circle(new Vector(0,0),(int) this.getSightDistance());
-		//Drawings.add(R);
+		Drawings.add(R);
 		Drawings.add(C);
 		Drawings.add(C2);
 		Drawings.add(new drawVector(Dalignment,Colors.YELLOW));

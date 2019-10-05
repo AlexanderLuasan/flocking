@@ -13,7 +13,7 @@ class BirdWithSight super FleeAndChaseBird{
  */
 public class BirdWithSight extends FleeAndChaseBird {
 
-	protected static final double RAY_TRACE_DISTANCE = 40.0;
+	protected static final double RAY_TRACE_DISTANCE = 75.0;
 	protected Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
