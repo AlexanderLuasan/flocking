@@ -61,7 +61,9 @@ public class RayV2 extends Ray {
 				}
 				//if positive calulate the colost point and return
 				if(allPositive) {// it is infront of us
-					return minimum;
+					if(minimum<limitDistance) {
+						return minimum;
+					}
 				}
 				//else move on it was behind us
 			}	

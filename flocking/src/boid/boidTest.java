@@ -4,6 +4,7 @@ import vector.Vector;
 import graphics.*;
 import ray.Ray;
 import shape.Circle;
+import shape.Rectangle;
 import utils.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class boidTest {
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
+				//new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			for(int i=0;i<5;i++) {
@@ -35,12 +36,12 @@ public class boidTest {
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
+				//new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			//add shapes
-			ArrayList<Circle> env = new ArrayList<Circle>();
-			//env.add(new Circle(new Vector(200,200),50));
+			ArrayList<Rectangle> env = new ArrayList<Rectangle>();
+			env.add(new Rectangle(new Vector(200,200),300,300));
 			
 			
 			
