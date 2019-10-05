@@ -8,16 +8,20 @@ import shape.Rectangle;
 import utils.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 100;
+		static int NUMBER_OF_BIRDS = 1000;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
+		
+		
+		
 		public static void main(String [] args) {
 			//mathtest();
-			Log myLog = Log.getLog();
+			//Log myLog = Log.getLog();
 			
+			//myLog.setFilter(Log.BOIDS);
 			
 			//Bird a = new Bird(100, 100, new Vector(0,1));
 			//birds.add(a);
@@ -57,7 +61,7 @@ public class boidTest {
 			}
 			
 			
-			
+			Timer clock = new Timer("Clock",20);
 			boolean done = false;
 			while(!done) {
 				
@@ -82,7 +86,8 @@ public class boidTest {
 				window.updateFrameBuffer();
 				window.repaint();
 				try {
-					TimeUnit.MILLISECONDS.sleep(10);
+					//TimeUnit.MILLISECONDS.sleep(10);
+					clock.sleep();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					done = true;

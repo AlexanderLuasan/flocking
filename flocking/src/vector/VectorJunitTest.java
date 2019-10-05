@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 class VectorJunitTest {
 
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -115,5 +116,114 @@ class VectorJunitTest {
 			assertEquals(true, firstV.isEqual(resultV), msg);
 		}
 	}
+	
+	@Test
+	public void divideByZero() {
+		Vector Test = new Vector(7,6);
+		Vector Testr = new Vector(10,10);
+		Test.divide(0);
+		Test.add(new Vector(10,10));
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void zeroVectorMath() {
+		Vector Test = new Vector(0,0);
+		Vector Testr= new Vector(1,2);
+		Test.scale(1);
+		Test.add(new Vector(1,2));
+		//System.out.println(Test);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void scaleNegative() {
+		Vector Test = new Vector(7,2);
+		Vector Testr= new Vector(0,0);
+		Testr.copy(Test);
+		Test.scale(-Test.getLength());
+		Testr.invert();
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void normalizeAZeroTest() {
+		Vector Test = new Vector(0,0);
+		Test.normalize();
+		Test.add(new Vector(2,7));
+		assertEquals(true,Test.isEqual(new Vector(2,7)));
+	}
+	@Test
+	public void zeroScale() {
+		Vector Test = new Vector(7,6);
+		Vector Testr = new Vector(10,10);
+		Test.multiply(0);
+		Test.add(Testr);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void getBadAngleRight() {
+		Vector Test = new Vector(0,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(angle,7,true);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void getBadAngleUp() {
+		Vector Test = new Vector(Math.PI/2,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(angle,7,true);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void getBadAngleLeft() {
+		Vector Test = new Vector(Math.PI,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(angle,7,true);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	
+	@Test
+	public void getBadAngleDown() {
+		Vector Test = new Vector(-Math.PI/2,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(angle,7,true);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	
+	@Test
+	public void setBadAngleRight() {
+		Vector Test = new Vector(0,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(1,0);
+		Testr.scale(7);
+		Testr.setAngle(angle);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void setBadAngleUp() {
+		Vector Test = new Vector(Math.PI/2,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(1,0);
+		Testr.scale(7);
+		Testr.setAngle(angle);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void setBadAngleLeft() {
+		Vector Test = new Vector(Math.PI,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(1,0);
+		Testr.scale(7);
+		Testr.setAngle(angle);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	@Test
+	public void setBadAngleDown() {
+		Vector Test = new Vector(-Math.PI/2,7,true);
+		double angle = Test.getAngle();
+		Vector Testr = new Vector(1,0);
+		Testr.scale(7);
+		Testr.setAngle(angle);
+		assertEquals(true,Test.isEqual(Testr));
+	}
+	
 
 }
