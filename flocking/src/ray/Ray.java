@@ -94,8 +94,9 @@ public class Ray{
 	public double minDistance(double limit) {
 		double tempDistance = limit;
 		for(int i=0; i<rayDetectable.size(); i++) {
-			if(rayDetectable.get(i).distanceToPoint(this.getCurrentPoint()) < tempDistance){
-				tempDistance = rayDetectable.get(i).distanceToPoint(this.getCurrentPoint());
+			double dis = rayDetectable.get(i).distanceToPoint(this.getCurrentPoint());
+			if( dis < tempDistance){
+				tempDistance = dis;
 			}
 		}
 		return tempDistance;

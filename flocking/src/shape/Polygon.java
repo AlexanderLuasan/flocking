@@ -19,7 +19,7 @@ public class Polygon extends Shape implements RayDetectable{
 	}
 	@Override
 	public double distanceToPoint(Vector point) {
-		// TODO Auto-generated method stub
+
 		double minDistance = 0;
 		Vector tmp = new Vector(0,0);
 		tmp.add(this.getCenter());
@@ -33,7 +33,10 @@ public class Polygon extends Shape implements RayDetectable{
 				minDistance = Utils.distance(point, tmp2);
 			}
 		}
-		
+		double lineDistance = minimumDistanceToLines(point);
+		if(lineDistance > 0 && lineDistance<minDistance) {
+			minDistance=lineDistance;
+		}
 		return minDistance;
 	}
 	@Override
@@ -59,7 +62,7 @@ public class Polygon extends Shape implements RayDetectable{
 			if(project>0 && project < lineLength) {//within the line
 				
 				Vector perpendiular = Line.perpendicular();
-				double distance = perpendiular.dotProduct(Point);
+				double distance = perpendiular.dotProduct(point);
 				if(Math.abs(distance)<minimum) {
 					minimum = Math.abs(distance);
 				}
@@ -67,7 +70,27 @@ public class Polygon extends Shape implements RayDetectable{
 					minimum = Math.abs(distance);
 				}
 			}
-		}	
+		}
+		//check 0 and -1
+		Vector Line = Vector.subtract(vector_list.get(0), vector_list.get(vector_list.size()-1));
+		double lineLength = Line.getLength();
+		Line.normalize();
+		
+		Vector point = Vector.subtract(Vector.add(vector_list.get(0),this.center), Point);
+		double project = Line.dotProduct(point);
+		if(project>0 && project < lineLength) {//within the line
+			
+			Vector perpendiular = Line.perpendicular();
+			double distance = perpendiular.dotProduct(point);
+			if(Math.abs(distance)<minimum) {
+				minimum = Math.abs(distance);
+			}
+			if(minimum<0) {
+				minimum = Math.abs(distance);
+			}
+		}
+		
+		
 		return minimum;
 	}
 }

@@ -4,6 +4,7 @@ package shape;
 import vector.Vector;
 import graphics.Colors;
 import graphics.Drawable;
+import ray.RayDetectable;
 
 /*
  * 
@@ -29,7 +30,7 @@ import graphics.Drawable;
  * 
  */
 //implements RayDetectable, Drawable not ready to implement
-public class Shape implements Drawable {
+public abstract class Shape implements Drawable,RayDetectable {
 	protected Vector center;
 	private Colors color;
 	

@@ -31,19 +31,31 @@ public class BirdWithSight extends FleeAndChaseBird {
 		super.behaviour();
 		
 		
-		Vector testVelocity = Vector.add(this.velocity, this.acceleration);
+		//
 		
 		Vector pos = new Vector(0,0);
 		pos.copy(position);
 		Sight.setStartPoint(pos);
 		Vector dir = new Vector(0,0);
-		dir.copy(testVelocity);
+		dir.copy(this.velocity);
 		Sight.setDirection(dir);
 		
 		double distance = Sight.trace(getRayDistance());
 		
 		if(distance < 0 ) {//if there is nothing in the way 
-			//don't change
+			Vector testVelocity = Vector.add(this.velocity, this.acceleration);
+			pos.copy(position);
+			Sight.setStartPoint(pos);
+			dir.copy(testVelocity);
+			Sight.setDirection(dir);
+			distance = Sight.trace(getRayDistance());
+			if(distance < 0 ) {
+				//changing does not put me in danger
+			}else {
+				//changing puts me in danger
+				this.acceleration.setComponents(0, 0);
+			} 
+			
 		}else {
 			//zero the acceleration
 			this.acceleration.setComponents(0, 0);

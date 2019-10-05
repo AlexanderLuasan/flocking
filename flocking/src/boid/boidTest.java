@@ -4,14 +4,16 @@ import vector.Vector;
 import graphics.*;
 import ray.Ray;
 import shape.Circle;
+import shape.Polygon;
 import shape.Rectangle;
+import shape.Shape;
 import utils.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 1000;
+		static int NUMBER_OF_BIRDS = 10;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		
@@ -32,7 +34,7 @@ public class boidTest {
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				//new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
+				new DrawingPigeon(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			for(int i=0;i<5;i++) {
@@ -44,9 +46,13 @@ public class boidTest {
 			}
 			
 			//add shapes
-			ArrayList<Rectangle> env = new ArrayList<Rectangle>();
-			env.add(new Rectangle(new Vector(200,200),300,300));
-			
+			ArrayList<Shape> env = new ArrayList<Shape>();
+			//env.add(new Rectangle(new Vector(200,200),300,300));
+			ArrayList<Vector> l = new ArrayList<Vector>();
+			l.add(new Vector(100,0));
+			l.add(new Vector (0,0));
+			l.add(new Vector (0,100));
+			env.add(new Polygon(new Vector(220,200),l));
 			
 			
 			
