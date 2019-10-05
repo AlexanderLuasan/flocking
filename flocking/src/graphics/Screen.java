@@ -38,7 +38,7 @@ public class Screen extends JFrame {
 
 	//add width and height
 	private BufferedImage FrameBuffer;
-	private BufferedImage RotationBuffer;
+
 	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	private double zoom;
@@ -51,7 +51,6 @@ public class Screen extends JFrame {
 		setSize(width,height);
 		
 		FrameBuffer =  new BufferedImage(Utils.SCREEN_WIDTH, Utils.SCREEN_WIDTH, BufferedImage.TYPE_INT_ARGB);
-		RotationBuffer =  new BufferedImage(Utils.SCREEN_WIDTH, Utils.SCREEN_WIDTH, BufferedImage.TYPE_INT_ARGB);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		zoom=1;
 		validate();
