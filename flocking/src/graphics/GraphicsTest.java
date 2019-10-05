@@ -14,7 +14,7 @@ import vector.Vector;
 public class GraphicsTest {
 	
 	
-	private static final int NUMBER_OF_BIRDS = 100;
+	private static final int NUMBER_OF_BIRDS = 2000;
 	private static final int SPEED_RANGE = 20;
 
 	public static void main(String[] args) {

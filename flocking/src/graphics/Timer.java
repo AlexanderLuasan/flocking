@@ -10,7 +10,7 @@ import java.lang.System;
 public class Timer {
 	private static final Log log = utils.Log.getLog();
 	private static final int DEBUG = utils.Log.TIMER + utils.Log.DEBUG; 
-	
+	private static final int ERROR = utils.Log.TIMER + utils.Log.ERROR;
 	
 	private int milliSeconds = 10;
 	private long timeStamp;
@@ -25,11 +25,11 @@ public class Timer {
 	
 	public void sleep() throws InterruptedException {
 		long current = System.currentTimeMillis();
-		if(milliSeconds>current-timeStamp) {
+		if(milliSeconds>=current-timeStamp) {
 			TimeUnit.MILLISECONDS.sleep(milliSeconds - (current-timeStamp));
 			log.println(this.toString()+"\tWaited:\t " + String.valueOf(milliSeconds - (current-timeStamp)),DEBUG);
 		}else {
-			log.println(this.toString()+"\tLate:\t" + String.valueOf(milliSeconds - (current-timeStamp)),DEBUG);
+			log.println(this.toString()+"\tBehind:\t" + String.valueOf(milliSeconds - (current-timeStamp)),ERROR);
 		}
 		timeStamp=current;
 	}

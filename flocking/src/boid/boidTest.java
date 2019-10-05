@@ -7,7 +7,7 @@ import shape.Circle;
 import utils.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 
 public class boidTest {
 		static int NUMBER_OF_BIRDS = 1000;
@@ -18,7 +18,7 @@ public class boidTest {
 		
 		public static void main(String [] args) {
 			//mathtest();
-			Log myLog = Log.getLog();
+			//Log myLog = Log.getLog();
 			
 			//myLog.setFilter(Log.BOIDS);
 			
