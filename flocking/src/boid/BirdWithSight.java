@@ -17,7 +17,7 @@ public class BirdWithSight extends FleeAndChaseBird {
 	protected Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
-		Sight = new ray.RayV2();
+		Sight = new ray.Ray();
 	}
 	public BirdWithSight(int x, int y, Vector vel, Ray si) {
 		super(x, y, vel);
