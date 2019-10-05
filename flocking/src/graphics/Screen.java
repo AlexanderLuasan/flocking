@@ -168,6 +168,15 @@ public class Screen extends JFrame {
 			case BLACK:
 				g.setColor(Color.BLACK);
 				break;
+			case CYAN:
+				g.setColor(Color.CYAN);
+				break;
+			case DARK_GRAY:
+				g.setColor(Color.DARK_GRAY);
+				break;
+			case PINK:
+				g.setColor(Color.PINK);
+				break;
 			default:
 				g.setColor(Color.BLACK);
 		}

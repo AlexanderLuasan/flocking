@@ -13,7 +13,7 @@ import java.util.Random;
 
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 20;
+		static int NUMBER_OF_BIRDS = 40;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		
