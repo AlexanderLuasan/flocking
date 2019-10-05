@@ -1,5 +1,7 @@
 package shape;
 import ray.RayDetectable;
+import utils.Utils;
+
 import java.util.ArrayList;
 
 import vector.Vector;
@@ -18,7 +20,21 @@ public class Polygon extends Shape implements RayDetectable{
 	@Override
 	public double distanceToPoint(Vector point) {
 		// TODO Auto-generated method stub
-		return 0;
+		double minDistance = 0;
+		Vector tmp = new Vector(0,0);
+		tmp.add(this.getCenter());
+		tmp.add(vector_list.get(0));
+		minDistance = Utils.distance(point, tmp);
+		for(int i=1; i<vector_list.size(); i++) {
+			Vector tmp2 = new Vector(0,0);
+			tmp2.add(this.getCenter());
+			tmp2.add(vector_list.get(i));
+			if(Utils.distance(point, tmp2)<minDistance) {
+				minDistance = Utils.distance(point, tmp2);
+			}
+		}
+		
+		return minDistance;
 	}
 	@Override
 	public double distanceToPointCircle(Vector point) {
