@@ -45,7 +45,7 @@ public class Screen extends JFrame {
 	private Vector viewPoint;
 	
 	public Screen(int width, int height){
-		viewPoint=new Vector(0,0);
+		viewPoint=new Vector(Utils.SCREEN_WIDTH/2,Utils.SCREEN_HIEGHT/2);
 		setVisible(true);
 		setResizable(true);
 		setSize(width,height);
