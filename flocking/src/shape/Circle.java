@@ -1,6 +1,8 @@
 package shape;
 
 
+import java.util.ArrayList;
+
 import ray.RayDetectable;
 
 import vector.Vector;
@@ -41,6 +43,28 @@ public class Circle extends Shape implements RayDetectable {
 	@Override
 	public double distanceToPointCircle(Vector point) {
 		return distanceToPoint(point);
+	}
+	
+	@Override
+	public ArrayList<Vector> getPoints(Vector projection){
+		
+		Vector direction = new Vector((this.getCenter().getxComponent()-projection.getxComponent()), this.getCenter().getyComponent()-projection.getyComponent());
+		direction.scale(this.getRadius());
+		
+		Vector lu = new Vector(this.getCenter().getxComponent()-direction.getyComponent(), this.getCenter().getyComponent()+direction.getxComponent());
+		
+		Vector ru = new Vector(this.getCenter().getxComponent()+direction.getxComponent(), this.getCenter().getyComponent()+direction.getyComponent());
+		
+		Vector ld = new Vector(this.getCenter().getxComponent()-direction.getxComponent(), this.getCenter().getyComponent()-direction.getyComponent());
+		
+		Vector rd = new Vector(this.getCenter().getxComponent()+direction.getyComponent(), this.getCenter().getyComponent()-direction.getxComponent());
+		
+		ArrayList<Vector> pointsOfCircle = new ArrayList<Vector>();
+		pointsOfCircle.add(lu);
+		pointsOfCircle.add(ru);
+		pointsOfCircle.add(ld);
+		pointsOfCircle.add(rd);
+		return pointsOfCircle;
 	}
 	
 }

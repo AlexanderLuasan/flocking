@@ -192,7 +192,7 @@ public class Bird implements Boid {
 		//vector pointed from them to me
 		Vector force = Vector.subtract(this.position,other.position);
 		double length = force.getLength();
-		force.scale(.5 *this.getSIGHT_RANGE()*this.getSIGHT_RANGE());
+		force.scale(.5 * this.getSIGHT_RANGE() * this.getSIGHT_RANGE());
 		//weaken vector based on distance
 		force.divide(Boid.distance(this,other));
 		//sum the vectors

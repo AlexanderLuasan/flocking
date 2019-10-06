@@ -1,6 +1,7 @@
 package ray;
 import java.util.ArrayList;
 
+import utils.Log;
 import vector.Vector;
 
 /* 
@@ -19,6 +20,8 @@ class ray{
 public class Ray{
 	
 	public static final ArrayList<RayDetectable> rayDetectable = new ArrayList<RayDetectable>(); 
+	private static final Log log = utils.Log.getLog();
+	private static final int DEBUG = utils.Log.RAY+utils.Log.DEBUG;
 	
 	public static ArrayList<RayDetectable> getRaydetectable() {
 		return rayDetectable;
@@ -91,8 +94,9 @@ public class Ray{
 	public double minDistance(double limit) {
 		double tempDistance = limit;
 		for(int i=0; i<rayDetectable.size(); i++) {
-			if(rayDetectable.get(i).distanceToPoint(this.getCurrentPoint()) < tempDistance){
-				tempDistance = rayDetectable.get(i).distanceToPoint(this.getCurrentPoint());
+			double dis = rayDetectable.get(i).distanceToPoint(this.getCurrentPoint());
+			if( dis < tempDistance){
+				tempDistance = dis;
 			}
 		}
 		return tempDistance;
@@ -116,6 +120,7 @@ public class Ray{
 				degreeCounter++;
 				if(degreeCounter>360) {
 					//this.direction.rotate(Math.toRadians(180));
+					log.println("rayImpossible",DEBUG);
 					return false;
 				}
 				

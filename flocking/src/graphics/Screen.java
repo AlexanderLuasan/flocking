@@ -38,21 +38,21 @@ public class Screen extends JFrame {
 
 	//add width and height
 	private BufferedImage FrameBuffer;
-	private BufferedImage RotationBuffer;
+
 	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
-	
+	private double zoom;
 	private Vector viewPoint;
 	
 	public Screen(int width, int height){
-		viewPoint=new Vector(0,0);
+		viewPoint=new Vector(Utils.SCREEN_WIDTH/2,Utils.SCREEN_HIEGHT/2);
 		setVisible(true);
-		setResizable(false);
+		setResizable(true);
 		setSize(width,height);
-		FrameBuffer =  new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		RotationBuffer =  new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		FrameBuffer =  new BufferedImage(Utils.SCREEN_WIDTH, Utils.SCREEN_WIDTH, BufferedImage.TYPE_INT_ARGB);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		zoom=1;
 		validate();
 	}
 	
@@ -85,8 +85,17 @@ public class Screen extends JFrame {
 		
 	}
 	public void paint(Graphics g) {
-		
-		g.drawImage(FrameBuffer, 0, 0, this);
+		//g.setColor(Color.gray);
+		int heightOffset = 0;
+		int widthOffset = 0;
+		widthOffset=(this.getWidth() - Utils.SCREEN_WIDTH)/2;
+		heightOffset=(this.getHeight() - Utils.SCREEN_HIEGHT)/2;
+		//g.clearRect(0, 0, this.getWidth(), this.getHeight());
+		g.drawImage(FrameBuffer, widthOffset + (int)(Utils.SCREEN_WIDTH*(1-zoom)), heightOffset + (int)(Utils.SCREEN_HIEGHT*(1-zoom)),
+			widthOffset+(int)(Utils.SCREEN_WIDTH*zoom),  heightOffset+(int)(Utils.SCREEN_HIEGHT*zoom),
+			0,0,
+			(int) (Utils.SCREEN_WIDTH), (int) (Utils.SCREEN_HIEGHT), this);
+		//g.drawImage(FrameBuffer, 0, 0, this);
 	}
 	
 	//draw a shape in arraylist
@@ -159,6 +168,15 @@ public class Screen extends JFrame {
 			case BLACK:
 				g.setColor(Color.BLACK);
 				break;
+			case CYAN:
+				g.setColor(Color.CYAN);
+				break;
+			case DARK_GRAY:
+				g.setColor(Color.DARK_GRAY);
+				break;
+			case PINK:
+				g.setColor(Color.PINK);
+				break;
 			default:
 				g.setColor(Color.BLACK);
 		}
@@ -213,5 +231,13 @@ public class Screen extends JFrame {
 
 	public Vector getViewPoint() {
 		return viewPoint;
+	}
+
+	public double getZoom() {
+		return zoom;
+	}
+
+	public void setZoom(double zoom) {
+		this.zoom = zoom;
 	}
 }

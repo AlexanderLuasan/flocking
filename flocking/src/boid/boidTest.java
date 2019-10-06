@@ -4,19 +4,26 @@ import vector.Vector;
 import graphics.*;
 import ray.Ray;
 import shape.Circle;
+import shape.Polygon;
+import shape.Rectangle;
+import shape.Shape;
 import utils.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 100;
+		static int NUMBER_OF_BIRDS = 40;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
+		
+		
+		
 		public static void main(String [] args) {
 			//mathtest();
-			Log myLog = Log.getLog();
+			//Log myLog = Log.getLog();
 			
+			//myLog.setFilter(Log.BOIDS);
 			
 			//Bird a = new Bird(100, 100, new Vector(0,1));
 			//birds.add(a);
@@ -27,7 +34,7 @@ public class boidTest {
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
+				new DrawingPigeon(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			for(int i=0;i<5;i++) {
@@ -39,9 +46,13 @@ public class boidTest {
 			}
 			
 			//add shapes
-			ArrayList<Circle> env = new ArrayList<Circle>();
-			//env.add(new Circle(new Vector(200,200),50));
-			
+			ArrayList<Shape> env = new ArrayList<Shape>();
+			//env.add(new Rectangle(new Vector(200,200),300,300));
+			ArrayList<Vector> l = new ArrayList<Vector>();
+			l.add(new Vector(100,0));
+			l.add(new Vector (0,0));
+			l.add(new Vector (0,100));
+			env.add(new Polygon(new Vector(220,200),l));
 			
 			
 			
@@ -56,7 +67,7 @@ public class boidTest {
 			}
 			
 			
-			
+			Timer clock = new Timer("Clock",20);
 			boolean done = false;
 			while(!done) {
 				
@@ -81,7 +92,8 @@ public class boidTest {
 				window.updateFrameBuffer();
 				window.repaint();
 				try {
-					TimeUnit.MILLISECONDS.sleep(10);
+					//TimeUnit.MILLISECONDS.sleep(10);
+					clock.sleep();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 					done = true;
