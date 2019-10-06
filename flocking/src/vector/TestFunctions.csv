@@ -1,4 +1,14 @@
-cartesian ,2,5,add,4,1,TRUE,cartesian ,6,6,basic add
+cartesian ,2,5,add,4,1,TRUE,cartesian ,6,6,basic add positive x y and positive x y
+cartesian ,-1,-5,add,2,4,TRUE,cartesian ,1,-1,basic add negative x y and positive x y
+cartesian ,-3,-4,add,-2,-7,TRUE,cartesian ,-5,-11,basic add negative x y and negative x y
+cartesian ,-3,-5,add,0,0,TRUE,cartesian ,-3,-5,basic add negative x y and 0 0
+cartesian ,0,0,add,0,0,TRUE,cartesian ,0,0,basic add 0 0 and 0 0
+cartesian ,2,5,add,0,0,TRUE,cartesian ,2,5,basic add positive x y and 0 0
+cartesian ,-5,-5,add,0,0,TRUE,cartesian ,-5,-5,basic add negative x y and 0 0
+cartesian ,0,0,add,2,5,TRUE,cartesian ,2,5,basic add 0 0 and positive x y
+cartesian ,0,0,add,-5,-5,TRUE,cartesian ,-5,-5,basic add 0 0 and negative x y
+,,,,,,,,,,
+,,,,,,,,,,
 cartesian ,4,-7,invert,,,,cartesian ,-4,7,basic invert
 cartesian ,5,8,subtract,4,6,TRUE,cartesian ,1,2,basic subract
 cartesian ,2.5,4.330127019,scale,6.2,,,cartesian ,3.1,5.369357503,basic scale
