@@ -73,7 +73,7 @@ public class Ray{
 		this.currentPoint.copy(startPoint);
 		while(newDistance<=limitDistance) {
 
-		
+		 
 			tempDistance = minDistance(limitDistance);
 			if(tempDistance<1) {
 				if(newDistance>0) {

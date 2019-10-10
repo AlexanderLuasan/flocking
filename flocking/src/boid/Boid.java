@@ -31,6 +31,7 @@ import vector.Vector;
 
 import graphics.Colors;
 import graphics.Drawable;
+import utils.Utils;
 public interface Boid extends Drawable {
 	
 	public boolean movement();//calulates the boids movment to the next frame
@@ -45,6 +46,8 @@ public interface Boid extends Drawable {
 	}
 	public static boolean sight(Boid a, Boid b) {//need to include the edges
 		boolean inSightRange = false;
+		
+	
 		
 		double d = Boid.distance(a, b);
 		if(d<a.sightRange()) {
