@@ -54,7 +54,7 @@ cartesian ,-3,-4,getLength,,,5,cartesian ,-3,-4,basic getlength
 cartesian ,3,-4,getLength,,,5,cartesian ,3,-4,basic getlength
 cartesian ,0,4,getLength,,,4,cartesian ,0,4,basic getlength
 cartesian ,0,0,getLength,,,0,cartesian ,0,0,basic getlength
-cartesian ,100,-123,getLength,,,158.52129,cartesian ,100,-123,basic getlength
+cartesian ,100,-123,getLength,,,158.521,cartesian ,100,-123,basic getlength
 cartesian ,1.870469406,2.345494447,setLength,8,,,cartesian ,4.987918415,6.25465186,basic setlength
 cartesian ,-3,-4,setLength,6,,,cartesian ,-3.6,-4.8,basic setlength
 cartesian ,3,-4,setLength,6,,,cartesian ,3.6,-4.8,basic setlength
