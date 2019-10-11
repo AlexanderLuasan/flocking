@@ -1,12 +1,10 @@
 package shape;
-import ray.RayDetectable;
+
 import utils.Utils;
-
 import java.util.ArrayList;
-
 import vector.Vector;
 
-public class Polygon extends Shape implements RayDetectable{
+public class Polygon extends Shape{
 	ArrayList<Vector> vector_list = new ArrayList<Vector>();
 	
 	public Polygon(Vector center, ArrayList<Vector> list) {
@@ -14,9 +12,11 @@ public class Polygon extends Shape implements RayDetectable{
 		this.vector_list = list;
 		// TODO Auto-generated constructor stub
 	}
+	
 	public ArrayList<Vector> getlines() {
 		return this.vector_list;
 	}
+	
 	@Override
 	public double distanceToPoint(Vector point) {
 
@@ -39,16 +39,19 @@ public class Polygon extends Shape implements RayDetectable{
 		}
 		return minDistance;
 	}
+	
 	@Override
 	public double distanceToPointCircle(Vector point) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 	@Override
 	public ArrayList<Vector> getPoints(Vector projection) {
 		// TODO Auto-generated method stub
 		return this.getlines();
 	}
+	
 	public double minimumDistanceToLines(Vector Point) {
 		
 		double minimum = -2;
@@ -89,8 +92,6 @@ public class Polygon extends Shape implements RayDetectable{
 				minimum = Math.abs(distance);
 			}
 		}
-		
-		
 		return minimum;
 	}
 }
