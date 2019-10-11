@@ -1,12 +1,10 @@
 package shape;
 
 import java.util.ArrayList;
-
-import ray.RayDetectable;
 import vector.Vector;
 import utils.Utils;
 
-public class Rectangle extends Shape implements RayDetectable {
+public class Rectangle extends Shape{
 	private int width;
 	private int height;
 	public Rectangle(Vector center, int width, int height) {

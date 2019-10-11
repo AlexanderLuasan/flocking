@@ -1,5 +1,7 @@
 package vector;
 import java.lang.Math;
+
+import utils.Log;
 import utils.Utils;
 /* vector.h
 
@@ -36,6 +38,9 @@ public class Vector {
 	private double xComponent;
 	
 	private double yComponent;
+	
+	protected static Log log = Log.getLog();
+	protected static int ERROR = Log.VECTOR+Log.ERROR+log.DEBUG;
 
 	public double getxComponent() {
 		return xComponent;
@@ -64,24 +69,21 @@ public class Vector {
 	}
 
 	public void setLength(double l) {
-		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
+		double oldLength = this.getLength();
 		double scale = l/oldLength;
-		this.setxComponent(this.xComponent*scale);
-		this.setyComponent(this.yComponent*scale);
+		this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
 	}
 	
 	public void setZero() {
-		this.setxComponent(0);
-		this.setyComponent(0);
+		this.setComponents(0, 0);
 	}
+	
 	public void copy(Vector other) {
-		this.xComponent=other.xComponent;
-		this.yComponent=other.yComponent;
+		this.setComponents(other.getxComponent(), other.getyComponent());
 	}
 	
 	public Vector(double x,double y) {
-		this.setxComponent(x);
-		this.setyComponent(y);
+		this.setComponents(x, y);
 	}
 	
 	public Vector(double x1, double y1,double x2, double y2) {
@@ -89,22 +91,17 @@ public class Vector {
 	}
 	
 	public Vector(double radians, double length, boolean type) {
-		double xComponent = length*Math.cos(radians);
-		double yComponent = length*Math.sin(radians);
-		this.setxComponent(xComponent);
-		this.setyComponent(yComponent);
+		this.setComponents(length*Math.cos(radians), length*Math.sin(radians));
 	}
 	
 	public boolean add(Vector other) {
-		this.setxComponent(this.xComponent+other.xComponent);
-		this.setyComponent(this.yComponent+other.yComponent);
+		this.setComponents(this.getxComponent()+other.getxComponent(), this.getyComponent()+other.getyComponent());
 		return true;
 	}
 	
 	public boolean subtract(Vector other) {
 		other.invert();
-		this.setxComponent(this.xComponent+other.xComponent);
-		this.setyComponent(this.yComponent+other.yComponent);
+		this.setComponents(this.getxComponent()+other.getxComponent(), this.getyComponent()+other.getyComponent());
 		other.invert();
 		return true;
 	}
@@ -124,46 +121,42 @@ public class Vector {
 	}
 	
 	public void multiply(double m) {
-		this.setxComponent(this.xComponent*m);
-		this.setyComponent(this.yComponent*m);
+		this.setComponents(this.getxComponent()*m, this.getyComponent()*m);
 	}
 	
 	public void divide(double d) {
-		this.setxComponent(this.xComponent/d);
-		this.setyComponent(this.yComponent/d);
+		if(d==0) {
+			log.println("divide by zero: ", ERROR);
+		}else {
+			this.setComponents(this.getxComponent()/d, this.getyComponent()/d);
+		}
+		
 	}
 	
 	public void normalize() {
-		double length = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
-		double scale = 1.0/length;
-		this.setxComponent(this.xComponent*scale);
-		this.setyComponent(yComponent*scale);
+		double scale = 1.0/this.getLength();
+		this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
 	}
 	
 	public void scale(double newlength) {
-		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
-		double scale = newlength/oldLength;
-		this.setxComponent(this.xComponent*scale);
-		this.setyComponent(this.yComponent*scale);
+		double scale = newlength/this.getLength();
+		this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
 	}
 	
 	public void invert() {
-		this.setxComponent(-this.xComponent);
-		this.setyComponent(-this.yComponent);
+		this.setComponents(-this.getxComponent(), -this.getyComponent());
 	}
 	
 	public boolean limit(double min, double max) {
-		double oldLength = Math.sqrt(Math.pow(this.xComponent, 2) + Math.pow(this.yComponent, 2));
+		double oldLength = this.getLength();
 		double scale;
 		if (oldLength<min) {
 			scale = min/oldLength;
-			this.setxComponent(this.xComponent*scale);
-			this.setyComponent(this.yComponent*scale);
+			this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
 			return true;
 		}else if (oldLength>max) {
 			scale = max/oldLength;
-			this.setxComponent(this.xComponent*scale);
-			this.setyComponent(this.yComponent*scale);
+			this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
 			return true;
 		}else {
 			return false;
@@ -171,17 +164,13 @@ public class Vector {
 	}
 	
 	public void rotate(double radians) {
-		double newXComponent = this.xComponent*Math.cos(radians)-this.yComponent*Math.sin(radians);
-		double newYComponent = this.xComponent*Math.sin(radians)+this.yComponent*Math.cos(radians);
-		this.setxComponent(newXComponent);
-		this.setyComponent(newYComponent);
+		this.setComponents(this.xComponent*Math.cos(radians)-this.yComponent*Math.sin(radians), 
+				this.xComponent*Math.sin(radians)+this.yComponent*Math.cos(radians));
 	}
 	
 	public void setAngle(double newAngle) {
-		double length = this.getLength();
-		Vector newVector = new Vector(newAngle, length, true);
-		this.xComponent = (newVector.getxComponent());
-		this.yComponent = (newVector.getyComponent());
+		Vector newVector = new Vector(newAngle, this.getLength(), true);
+		this.setComponents(newVector.getxComponent(), newVector.getyComponent());
 	}
 	
 	public double getAngle() {
@@ -207,9 +196,7 @@ public class Vector {
 	}
 	
 	public Vector perpendicular() {
-		double perX = -this.getyComponent();
-		double perY = this.getxComponent();
-		Vector pVector = new Vector(perX, perY);
+		Vector pVector = new Vector(-this.getyComponent(), this.getxComponent());
 		return pVector;
 	}
 	

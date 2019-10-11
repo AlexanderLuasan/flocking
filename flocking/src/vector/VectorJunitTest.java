@@ -1,5 +1,4 @@
 package vector;
-import utils.Utils;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
@@ -11,7 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 class VectorJunitTest {
-
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -39,7 +37,6 @@ class VectorJunitTest {
 		assertEquals(true, firstV.isEqual(secondV), msg);
 		assertEquals(true, secondV.isEqual(thirdV), msg);
 	}
-	
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "TestFunctions.csv")
@@ -128,10 +125,8 @@ class VectorJunitTest {
 	@Test
 	public void zeroVectorMath() {
 		Vector Test = new Vector(0,0);
-		System.out.println(Test);
 		Vector Testr= new Vector(1,2);
 		Test.scale(1);
-		System.out.println(Test);
 		Test.add(new Vector(1,2));
 //		System.out.println(Test);
 		assertEquals(true,Test.isEqual(Testr));

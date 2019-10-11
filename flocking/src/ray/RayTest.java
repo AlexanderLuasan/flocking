@@ -20,8 +20,6 @@ class RayTest {
 		Ray.getRaydetectable().clear();
 	}
 
-	
-
 	@Test
 	void testflatHit() {
 		Test.setStartPoint(new Vector(50,50));
