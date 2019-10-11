@@ -179,7 +179,7 @@ public class Vector {
 	
 	public void setAngle(double newAngle) {
 		double length = this.getLength();
-		Vector newVector = new Vector(length, newAngle);
+		Vector newVector = new Vector(newAngle, length, true);
 		this.xComponent = (newVector.getxComponent());
 		this.yComponent = (newVector.getyComponent());
 	}

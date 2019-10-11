@@ -128,10 +128,12 @@ class VectorJunitTest {
 	@Test
 	public void zeroVectorMath() {
 		Vector Test = new Vector(0,0);
+		System.out.println(Test);
 		Vector Testr= new Vector(1,2);
 		Test.scale(1);
+		System.out.println(Test);
 		Test.add(new Vector(1,2));
-		//System.out.println(Test);
+//		System.out.println(Test);
 		assertEquals(true,Test.isEqual(Testr));
 	}
 	@Test
@@ -204,6 +206,7 @@ class VectorJunitTest {
 		Vector Testr = new Vector(1,0);
 		Testr.scale(7);
 		Testr.setAngle(angle);
+//		System.out.println("Testr vector: " + Testr);
 		assertEquals(true,Test.isEqual(Testr));
 	}
 	@Test
