@@ -125,10 +125,8 @@ class VectorJunitTest {
 	@Test
 	public void zeroVectorMath() {
 		Vector Test = new Vector(0,0);
-		System.out.println(Test);
 		Vector Testr= new Vector(1,2);
 		Test.scale(1);
-		System.out.println(Test);
 		Test.add(new Vector(1,2));
 //		System.out.println(Test);
 		assertEquals(true,Test.isEqual(Testr));

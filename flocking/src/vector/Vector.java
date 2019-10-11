@@ -1,5 +1,7 @@
 package vector;
 import java.lang.Math;
+
+import utils.Log;
 import utils.Utils;
 /* vector.h
 
@@ -36,6 +38,9 @@ public class Vector {
 	private double xComponent;
 	
 	private double yComponent;
+	
+	protected static Log log = Log.getLog();
+	protected static int ERROR = Log.VECTOR+Log.ERROR+log.DEBUG;
 
 	public double getxComponent() {
 		return xComponent;
@@ -120,7 +125,12 @@ public class Vector {
 	}
 	
 	public void divide(double d) {
-		this.setComponents(this.getxComponent()/d, this.getyComponent()/d);
+		if(d==0) {
+			log.println("divide by zero: ", ERROR);
+		}else {
+			this.setComponents(this.getxComponent()/d, this.getyComponent()/d);
+		}
+		
 	}
 	
 	public void normalize() {
