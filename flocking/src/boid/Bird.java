@@ -2,6 +2,7 @@ package boid;
 
 import java.util.ArrayList;
 
+import utils.Log;
 import vector.Vector;
 
 /*
@@ -54,6 +55,12 @@ public class Bird implements Boid {
 	protected static final double SEPARATION_WEIGHT = 1;
 	protected static final double COHESION_WEIGHT = 1;
 	
+	protected static Log log = Log.getLog();
+	protected static int DEBUG = Log.DEBUG+Log.BOIDS;
+	protected static int ERROR = Log.ERROR+Log.BOIDS;
+	protected static int EVENT = Log.EVENT+Log.BOIDS;
+
+	
 	private static final ArrayList<Bird> ALL_BIRDS = new ArrayList<Bird>();
 	protected Vector position;
 	protected Vector velocity;
@@ -77,9 +84,11 @@ public class Bird implements Boid {
 			drawLines.add(new Vector(0,0));
 		}
 		ALL_BIRDS.add(this);
+		log.println("new  boid:" + this.toString(),DEBUG);
 	}
 	public boolean remove() {
 		ALL_BIRDS.remove(this);
+		log.println("dead boid:" + this.toString(),DEBUG);
 		return false;	
 	}
 	
