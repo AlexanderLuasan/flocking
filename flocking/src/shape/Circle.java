@@ -1,27 +1,17 @@
 package shape;
 
-
 import java.util.ArrayList;
-
-import ray.RayDetectable;
-
 import vector.Vector;
 import utils.Utils;
-/*
- * you know a circle 
- * 
- * class circle{
- * 		double radius
- * 		get and set
- * 		// you will need to implement he interface functions
- * }
- * 
- * 
- * 
- * */
 
+/* 
+class circle{
+	double radius
+	get and set
+}
+*/
 
-public class Circle extends Shape implements RayDetectable {
+public class Circle extends Shape{
 	private int radius;
 	
 	public Circle(Vector center, int r) {
