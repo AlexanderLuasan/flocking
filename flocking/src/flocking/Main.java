@@ -5,19 +5,43 @@ import java.util.concurrent.TimeUnit;
 
 import boid.Bird;
 import boid.Boid;
+import boid.Pigeon;
 import graphics.Drawable;
 import graphics.Screen;
+import ray.Ray;
 import utils.Utils;
 import vector.Vector;
+import xmlReader.BoidStructure;
+import xmlReader.xmlReadin;
 public class Main {
 	public static Screen Window;
 	
-	static int NUMBER_OF_BIRDS = 1000;
+	
 	static int SPEED_RANGE = 5;
 	public static void main(String[] args) {
 		System.out.println("Welcome to Boids!");
-		Window = new Screen(Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
-		setUpBoids();
+		xmlReadin world = new xmlReadin("CS3343.tmx");
+		Utils.SCREEN_WIDTH = world.getWidth();
+		Utils.SCREEN_HIEGHT = world.getHeight();
+		
+		//create boids
+		for(int i=0;i<world.getAllboids().size();i++) {
+			makeBoid(world.getAllboids().get(i));
+		}
+		
+		
+		Window = new Screen(Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT); 
+		
+		// add shapes to ray and world
+		for(int i=0;i<world.getEnvironment().size();i++) {
+			Window.getToDraw().add(world.getEnvironment().get(i));
+			Ray.getRaydetectable().add(world.getEnvironment().get(i));
+		}
+		
+		//add birds to screen
+		for(int i=0;i<Bird.getAllBirds().size();i++) {
+			Window.getToDraw().add((Drawable)Bird.getAllBirds().get(i));
+		}
 		
 		//main loop
 		boolean done = false;
@@ -54,21 +78,13 @@ public class Main {
 		}
 
 	}
-	public static void setUpBoids() {
-		//create boids
-		Random rand = new Random();
-		for(int i=0;i<NUMBER_OF_BIRDS;i++) {
-			int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
-			int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
-			double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-			double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-			new Bird(xpos,ypos,new Vector(xcomp,ycomp));
-				
+	public static void makeBoid(BoidStructure bird) {
+		if(bird.getType().equals("pigeon")) {
+			new Pigeon(bird.getX(),bird.getY(),new Vector(bird.getVx(),bird.getVy()));
 		}
-		//add birds to screen
-		for(int i=0;i<Bird.getAllBirds().size();i++) {
-			Window.getToDraw().add((Drawable)Bird.getAllBirds().get(i));
-		}
+		
+		
+		
 	}
 
 }

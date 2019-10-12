@@ -38,6 +38,7 @@ class xmlReadin{
 
 public class xmlReadin {
 	private ArrayList<Shape> listofshapes = new ArrayList<Shape>();
+	private ArrayList<BoidStructure> listofboids = new ArrayList<BoidStructure>();
 	private int width;
 	private int height;
 	
@@ -66,6 +67,13 @@ public class xmlReadin {
 	        // System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 	        
 	        NodeList screen = doc.getElementsByTagName("map");
+	        Element e = (Element) screen.item(0);
+	        int w = Integer.parseInt(e.getAttribute("width"));
+	        int h = Integer.parseInt(e.getAttribute("height"));
+	        int tilew = Integer.parseInt(e.getAttribute("tilewidth"));
+	        int tileh = Integer.parseInt(e.getAttribute("tileheight"));
+	        this.width = w*tilew;
+	        this.height = h*tileh;
 	        // should read width and height times them by 50 to get the width and height pixel
 	        
 	        NodeList nList = doc.getElementsByTagName("object");
@@ -119,6 +127,26 @@ public class xmlReadin {
 	        			}
 	        			Polygon poly = new Polygon(center, listofvec);
 	        			listofshapes.add(poly);
+	        		}else if(eElement.getAttribute("name").equals("boid")) {
+	        			NodeList PolyList = eElement.getElementsByTagName("polyline");
+	        			Node node = PolyList.item(0);
+	        			String templist = ((Element)node).getAttribute("points");
+	        			NodeList props = eElement.getElementsByTagName("property");
+	        			String type="Bird";
+	        			for(int i=0;i<props.getLength();i++) {
+	        				if(((Element)props.item(i)).getAttribute("name").equals("type")) {
+	        					type=((Element)props.item(i)).getAttribute("value");
+	        				}
+	        			}
+	        			Element ele = (Element) node;
+	        			String[] pointsList = templist.split(" ");
+	        			int x = Integer.parseInt(eElement.getAttribute("x")); 
+	        			int y = Integer.parseInt(eElement.getAttribute("y"));
+	        				String[] xandy = pointsList[1].split(",");
+	        				int vx =  Integer.parseInt(xandy[0]);
+	        				int vy =  Integer.parseInt(xandy[1]);
+	        			listofboids.add(new BoidStructure(type, x, y, vx, vy));
+	        			
 	        		}
 	        		
 	        	}
@@ -134,7 +162,7 @@ public class xmlReadin {
 	}
 	
 	public ArrayList<BoidStructure> getAllboids() {
-		return null;
+		return this.listofboids;
 		
 	}
 	
