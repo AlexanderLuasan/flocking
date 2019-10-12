@@ -59,8 +59,8 @@ public class Vector {
 	}
 	
 	public void setComponents(double x, double y) {
-		this.xComponent = x;
-		this.yComponent = y;
+		this.setxComponent(x);
+		this.setyComponent(y);
 	}
 	
 	public double getLength() {
@@ -127,6 +127,7 @@ public class Vector {
 	public void divide(double d) {
 		if(d==0) {
 			log.println("divide by zero: ", ERROR);
+			this.setComponents(0, 0);
 		}else {
 			this.setComponents(this.getxComponent()/d, this.getyComponent()/d);
 		}
@@ -134,11 +135,15 @@ public class Vector {
 	}
 	
 	public void normalize() {
-		double scale = 1.0/this.getLength();
-		this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
-	}
+		if(this.getxComponent()!=0&&this.getyComponent()!=0) {
+			this.scale(1);
+		}
+	} 
 	
 	public void scale(double newlength) {
+		if(this.getxComponent()==0&&this.getyComponent()==0) {
+			return; 
+		}
 		double scale = newlength/this.getLength();
 		this.setComponents(this.getxComponent()*scale, this.getyComponent()*scale);
 	}
