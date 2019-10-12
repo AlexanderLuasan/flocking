@@ -86,7 +86,9 @@ class VectorJunitTest {
 			assertEquals(true, firstV.isEqual(resultV), msg);
 		}else if(function.equals("setAngle")) {
 			p1 = Double.parseDouble(param1);
+			System.out.println(firstV);
 			firstV.setAngle(p1);
+			System.out.println("*"+firstV);
 			assertEquals(true, firstV.isEqual(resultV), msg);
 		}else if(function.equals("getLength")) {
 			double returnLength = firstV.getLength();
@@ -108,9 +110,19 @@ class VectorJunitTest {
 		}else if(function.equals("normalize")) {
 			firstV.normalize();
 			assertEquals(true, firstV.isEqual(resultV), msg);
-		}else if(function.contentEquals("setZero")) {
+		}else if(function.equals("setZero")) {
 			firstV.setZero();
 			assertEquals(true, firstV.isEqual(resultV), msg);
+		}else if(function.equals("perpendicular")) {
+			Vector expt = firstV.perpendicular();
+			assertEquals(true, expt.isEqual(resultV), msg);
+		}else if(function.equals("dotProduct")) {
+			p1 = Double.parseDouble(param1);
+			p2 = Double.parseDouble(param2);
+			double expt = Double.parseDouble(returnIfAny);
+			Vector param = new Vector(p1, p2);
+			double result = firstV.dotProduct(param);
+			assertEquals(result, expt, 0);
 		}
 	}
 	
@@ -128,7 +140,7 @@ class VectorJunitTest {
 		Vector Testr= new Vector(1,2);
 		Test.scale(1);
 		Test.add(new Vector(1,2));
-//		System.out.println(Test);
+//		System.out.println(Test); 
 		assertEquals(true,Test.isEqual(Testr));
 	}
 	@Test
@@ -223,5 +235,36 @@ class VectorJunitTest {
 		assertEquals(true,Test.isEqual(Testr));
 	}
 	
+	@Test
+	public void addVector() {
+		Vector a = new Vector(1, 2);
+		Vector b = new Vector(3, 4);
+		Vector res = Vector.add(a, b);
+		Vector expt = new Vector(4, 6);
+		assertEquals(true, res.isEqual(expt));
+	}
+	
+	@Test
+	public void subVector() {
+		Vector a = new Vector(1, 2);
+		Vector b = new Vector(3, 4);
+		Vector res = Vector.subtract(a, b);
+		Vector expt = new Vector(-2, -2);
+		assertEquals(true, res.isEqual(expt));
+	}
+	
+	@Test
+	public void showtoString() {
+		Vector a = new Vector(1, 2);
+		String expt = "Vector [xComponent=1.0, yComponent=2.0]";
+		assertEquals(expt, a.toString());
+	}
+	
+	@Test
+	public void isNotEqual() {
+		Vector a = new Vector(1, 2);
+		Vector b = new Vector(1, 2.5);
+		assertEquals(false, a.isEqual(b));
+	}
 
 }
