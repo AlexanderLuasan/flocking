@@ -65,7 +65,7 @@ public class BirdWithSight extends FleeAndChaseBird {
 				//avoidDirection = Vector.subtract(avoidDirection, velocity);
 				this.velocity.setAngle(avoidDirection.getAngle());//this is a bad use
 				//this.acceleration.add(avoidDirection);
-				log.println("Boid changed direction",this.DEBUG);
+				log.println("Boid Avoided Object",this.DEBUG);
 			}
 			
 			
