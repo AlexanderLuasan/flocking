@@ -65,7 +65,7 @@ public class boidTest {
 				window.getToDraw().add(env.get(i));
 				Ray.getRaydetectable().add(env.get(i));
 			}
-			
+			window.getViewPoint().setZero();
 			
 			Timer clock = new Timer("Clock",20);
 			boolean done = false;

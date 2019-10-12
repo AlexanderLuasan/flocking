@@ -47,19 +47,43 @@ public interface Boid extends Drawable {
 	public static boolean sight(Boid a, Boid b) {//need to include the edges
 		boolean inSightRange = false;
 		
-	
+		double x = 0;
+		double y = 0;
+		//if the distance is over the edge
+		if(a.getPositionVector().getxComponent() - b.getPositionVector().getxComponent() >Utils.SCREEN_WIDTH/2) {
+			x+=Utils.SCREEN_WIDTH;
+		}else if(a.getPositionVector().getxComponent() - b.getPositionVector().getxComponent() < -Utils.SCREEN_WIDTH/2) {
+			x-=Utils.SCREEN_WIDTH;
+		}
+		
+		if(a.getPositionVector().getyComponent() - b.getPositionVector().getyComponent() >Utils.SCREEN_HIEGHT/2) {
+			y+=Utils.SCREEN_HIEGHT;
+		}else if(a.getPositionVector().getyComponent() - b.getPositionVector().getyComponent() < -Utils.SCREEN_HIEGHT/2) {
+			y-=Utils.SCREEN_HIEGHT;
+		}
+		//shift the bird
+		b.getPositionVector().setxComponent(b.getPositionVector().getxComponent()+x);
+		b.getPositionVector().setyComponent(b.getPositionVector().getyComponent()+y);
 		
 		double d = Boid.distance(a, b);
 		if(d<a.sightRange()) {
 			a.seeBoid(b);
 			inSightRange = true;
 		}
+		//shift the bird back
+		b.getPositionVector().setxComponent(b.getPositionVector().getxComponent()-x);
+		b.getPositionVector().setyComponent(b.getPositionVector().getyComponent()-y);
 		
+		//shift the other bird
+		a.getPositionVector().setxComponent(a.getPositionVector().getxComponent()-x);
+		a.getPositionVector().setyComponent(a.getPositionVector().getyComponent()-y);
 		d = Boid.distance(a, b);
 		if(d<b.sightRange()) {
 			b.seeBoid(a);
 			inSightRange = true;
 		}
+		a.getPositionVector().setxComponent(a.getPositionVector().getxComponent()+x);
+		a.getPositionVector().setyComponent(a.getPositionVector().getyComponent()+y);
 		return inSightRange;
 //		if(!a.prey()||!b.prey()) {//if exist
 //			if(d<a.sightRange()*2) {
