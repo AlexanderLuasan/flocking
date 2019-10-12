@@ -44,13 +44,13 @@ public class xmlReadin {
 	public static void main(String args[]) {
 		System.out.println("xml");
 		xmlReadin xml1 = new xmlReadin("CS3343.tmx");
-		
+		Utils.SCREEN_WIDTH = 750;
+		Utils.SCREEN_HIEGHT = 500;
 		Screen Window = new Screen(Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
 		
 		for(int i = 0; i< xml1.listofshapes.size(); i++) {
 			Window.getToDraw().add(xml1.listofshapes.get(i));
 		}
-		Window.getToDraw().add(new Circle(new Vector(100,100),50));
 		Window.updateFrameBuffer();
 		Window.repaint();
 		
@@ -80,6 +80,7 @@ public class xmlReadin {
 	        			int width = Integer.parseInt(eElement.getAttribute("width"));
 	        			int height = Integer.parseInt(eElement.getAttribute("height"));
 	        			Vector point = new Vector(x,y);
+	        			point.add(new Vector(width/2, height/2));
 	        			Rectangle rect = new Rectangle(point, width, height);
 	        			listofshapes.add(rect);
 	        			
@@ -87,7 +88,8 @@ public class xmlReadin {
 	        			double x = Double.parseDouble(eElement.getAttribute("x")); 
 	        			double y = Double.parseDouble(eElement.getAttribute("y"));
 	        			Vector point = new Vector(x,y);
-	        			int radius = Integer.parseInt(eElement.getAttribute("height"));
+	        			int radius = Integer.parseInt(eElement.getAttribute("height"))/2;
+	        			point.add(new Vector(radius, radius));
 	        			Circle cir = new Circle(point, radius);
 	        			listofshapes.add(cir);
 	        			
@@ -112,6 +114,9 @@ public class xmlReadin {
 	        				listofvec.add(actualpoints);
 	        			}
 	        			Vector center = new Vector(totalX/5, totalY/5);
+	        			for(int j = 0; j < listofvec.size(); j++) {
+	        				listofvec.get(j).subtract(center);
+	        			}
 	        			Polygon poly = new Polygon(center, listofvec);
 	        			listofshapes.add(poly);
 	        		}
