@@ -54,8 +54,6 @@ public class xmlReadin {
 		Window.updateFrameBuffer();
 		Window.repaint();
 		
-		
-		
 	}
 	
 	public xmlReadin(String fileLocation) {
@@ -79,19 +77,45 @@ public class xmlReadin {
 	        		if(eElement.getAttribute("name").equals("rectangle")) {
 	        			double x = Double.parseDouble(eElement.getAttribute("x")); 
 	        			double y = Double.parseDouble(eElement.getAttribute("y"));
-	        			int width = Integer.parseInt(eElement.getAttribute("width"));;
-	        			int height = Integer.parseInt(eElement.getAttribute("height"));;
+	        			int width = Integer.parseInt(eElement.getAttribute("width"));
+	        			int height = Integer.parseInt(eElement.getAttribute("height"));
 	        			Vector point = new Vector(x,y);
 	        			Rectangle rect = new Rectangle(point, width, height);
 	        			listofshapes.add(rect);
-	        			System.out.print("test");
 	        			
 	        		} else if(eElement.getAttribute("name").equals("circle")) {
+	        			double x = Double.parseDouble(eElement.getAttribute("x")); 
+	        			double y = Double.parseDouble(eElement.getAttribute("y"));
+	        			Vector point = new Vector(x,y);
+	        			int radius = Integer.parseInt(eElement.getAttribute("height"));
+	        			Circle cir = new Circle(point, radius);
+	        			listofshapes.add(cir);
 	        			
 	        		} else if(eElement.getAttribute("name").equals("polygon")) {
+	        			NodeList PolyList = doc.getElementsByTagName("polygon");
+	        			Node node = PolyList.item(0);
+	        			Element ele = (Element) node;
+	        			String templist = ele.getAttribute("points");
+	        			String[] pointsList = templist.split(" ");
+	        			ArrayList<Vector> listofvec = new ArrayList<Vector>();
+	        			double x = Double.parseDouble(eElement.getAttribute("x")); 
+	        			double y = Double.parseDouble(eElement.getAttribute("y"));
+	        			double totalX = 0, totalY = 0;
 	        			
+	        			for(int i = 0; i <pointsList.length; i++) {
+	        				String[] xandy = pointsList[i].split(",");
+	        				double processedX = x + Double.parseDouble(xandy[0]);
+	        				double processedY = y + Double.parseDouble(xandy[1]);
+	        				Vector actualpoints = new Vector(processedX, processedY);
+	        				totalX += processedX;
+	        				totalY += processedY;
+	        				listofvec.add(actualpoints);
+	        			}
+	        			Vector center = new Vector(totalX/5, totalY/5);
+	        			Polygon poly = new Polygon(center, listofvec);
+	        			listofshapes.add(poly);
 	        		}
-	        		System.out.print("test");
+	        		
 	        	}
 	        }
 		} catch (Exception e) {
