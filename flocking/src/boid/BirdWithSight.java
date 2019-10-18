@@ -14,7 +14,7 @@ ok	behaviour() run the normal function then check if this puts you on a collisio
  */
 public class BirdWithSight extends FleeAndChaseBird {
 
-	protected static final double RAY_TRACE_DISTANCE = 75.0;
+	protected static final double RAY_TRACE_DISTANCE = 100.0;
 	protected Ray Sight;
 	public BirdWithSight(int x, int y, Vector vel) {
 		super(x, y, vel);
