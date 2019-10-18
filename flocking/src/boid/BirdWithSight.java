@@ -62,9 +62,19 @@ public class BirdWithSight extends FleeAndChaseBird {
 			boolean s = Sight.search(getRayDistance());
 			if(s) {
 				Vector avoidDirection = Sight.getDirection();
-				//avoidDirection = Vector.subtract(avoidDirection, velocity);
-				this.velocity.setAngle(avoidDirection.getAngle());//this is a bad use
-				//this.acceleration.add(avoidDirection);
+				
+				//foced based
+				if(false) {
+					avoidDirection.scale(this.velocity.getLength());
+					Vector trunFoce = Vector.subtract(avoidDirection, this.velocity);
+					trunFoce.divide(distance/this.velocity.getLength());
+					this.velocity.add(trunFoce);
+				}else {
+					//angle based
+					this.velocity.setAngle(avoidDirection.getAngle());
+				}
+				
+				//this.acceleration.add(trunFoce);
 				log.println("Boid Avoided Object",this.DEBUG);
 			}
 			

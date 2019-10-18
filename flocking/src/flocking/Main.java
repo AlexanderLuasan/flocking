@@ -30,7 +30,7 @@ public class Main {
 		}
 		
 		
-		Window = new Screen(Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT); 
+		Window = new Screen(1000,800); 
 		
 		// add shapes to ray and world
 		for(int i=0;i<world.getEnvironment().size();i++) {

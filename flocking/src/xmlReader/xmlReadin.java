@@ -102,7 +102,7 @@ public class xmlReadin {
 	        			listofshapes.add(cir);
 	        			
 	        		} else if(eElement.getAttribute("name").equals("polygon")) {
-	        			NodeList PolyList = doc.getElementsByTagName("polygon");
+	        			NodeList PolyList = eElement.getElementsByTagName("polygon");
 	        			Node node = PolyList.item(0);
 	        			Element ele = (Element) node;
 	        			String templist = ele.getAttribute("points");
