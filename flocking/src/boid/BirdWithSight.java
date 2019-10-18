@@ -6,9 +6,10 @@ import vector.Vector;
 /*
 class BirdWithSight super FleeAndChaseBird{
 	
-	behaviour() run the normal function then check if this puts you on a collision path
-				using the ray if so replace the acceleration with a new one that avoids the object
-	
+ok	RAY_TRACE_DISTANCE at what distance do we worry about the hitting an object
+ok	Ray Sight each boid has a ray that it uses to do the calulation
+ok	behaviour() run the normal function then check if this puts you on a collision path
+				using the ray if so replace the acceleration with a new one that avoids the object	
 }
  */
 public class BirdWithSight extends FleeAndChaseBird {

@@ -5,7 +5,15 @@ import java.util.concurrent.TimeUnit;
 import utils.Log;
 
 import java.lang.System;
+/*
+class timer {
+ok	timer(name,waitTime) //give a name as an id and a amount of time in millisconds
+ok	sleep()				//wait until the defined number of miliseconds has passed between the last class
+ok	set/get miliseoncds //change the speed of the timer at runtime
 
+}
+
+ */
 
 public class Timer {
 	private static final Log log = utils.Log.getLog();

@@ -4,21 +4,21 @@ package graphics;
  * unimplemented
  * class Screen{
  * 		
- * 		list list Drawables;
- * 
- *			you will recive a bunch of drawables lists at the begining of the program each flip iterate through and draw each item
- *			make this a singleton pattern.
+ * 		
  * 		public Screen(int width, int height); // on defult constructor just pick a size
- * 		public bool addDrawablesList(ArrayList<Drawable>); // you could receive more than one
- *      public flip(): // redraw the screen
- *      private drawDrawable(Drawable);// draw a single shape
+ * 		public list toDraw(); 					// get list for you draw to
+ *      public updateFrameBuffer(): 			// draws objects to the frame buffer
+ *      private drawDrawable(Drawable);			// draw a single shape
  * 		public getWidth();
  * 		public getHeight();
- * 			https://www.youtube.com/watch?v=XRuGQi45mG4 video tutorial
- * 			look at this vid for setup and such
- * 
- * 
- * 
+ * 		draw_center(vector);						//draw a dot at the defined center
+ * 		draw_polygon(list vector,vector)			//draw the vector relative to center
+ * 		draw_circle(vector center, double radius)	//draw the circle at the center
+ * 		draw_rectangle(vector center, int width,int height) // draw a rectangle a center point
+ *		setColor(enm color)							//decode enm to actual color 
+ *		getviewpoint()						//give a vector that can be changed to adust the view
+ * 		setZoom/getZoom 					//set the zoom used in drawing to scale the images
+ * 		paint								//overide the jframe to draw the frame buffer  --Alert! call with repaint()
  * }
  * 
  * 
