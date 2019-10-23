@@ -26,9 +26,9 @@ class BoidJunitTest {
 		Vector posa = new Vector(10,10);
 		Vector posb = new Vector(10,60);
 		Vector posc = new Vector(50,40);
-		Bird a = new Bird((int)posa.getxComponent(),(int)posa.getyComponent(),vela);
-		Bird b = new Bird((int)posb.getxComponent(),(int)posb.getyComponent(),velb);
-		Bird c = new Bird((int)posc.getxComponent(),(int)posc.getyComponent(),velc);
+		Bird a = new Bird((int)posa.getxComponent(),(int)posa.getyComponent(),vela,new Alignment(new BoidRuleBase()));
+		Bird b = new Bird((int)posb.getxComponent(),(int)posb.getyComponent(),velb,new Alignment(new BoidRuleBase()));
+		Bird c = new Bird((int)posc.getxComponent(),(int)posc.getyComponent(),velc,new Alignment(new BoidRuleBase()));
 		
 		a.preBehaviour();
 		b.preBehaviour();
@@ -43,9 +43,9 @@ class BoidJunitTest {
 		c.behaviour();
 		
 		
-		System.out.println(a.alignment);
-		System.out.println(b.alignment);
-		System.out.println(c.alignment);
+		System.out.println(a.getAcceleration());
+		System.out.println(b.getAcceleration());
+		System.out.println(c.getAcceleration());
 		
 		Vector Ga = Vector.add(velb, velc);
 		Ga.divide(2);
@@ -57,9 +57,9 @@ class BoidJunitTest {
 		Gc.divide(2);
 		Gc.subtract(velc);
 		
-		assertEquals(true,a.alignment.isEqual(Ga));
-		assertEquals(true,b.alignment.isEqual(Gb));
-		assertEquals(true,c.alignment.isEqual(Gc));
+		assertEquals(true,a.getAcceleration().isEqual(Ga));
+		assertEquals(true,b.getAcceleration().isEqual(Gb));
+		assertEquals(true,c.getAcceleration().isEqual(Gc));
 	}
 	@Test
 	void testCohesion() {
@@ -69,9 +69,9 @@ class BoidJunitTest {
 		Vector posa = new Vector(10,10);
 		Vector posb = new Vector(10,60);
 		Vector posc = new Vector(50,40);
-		Bird a = new Bird((int)posa.getxComponent(),(int)posa.getyComponent(),vela);
-		Bird b = new Bird((int)posb.getxComponent(),(int)posb.getyComponent(),velb);
-		Bird c = new Bird((int)posc.getxComponent(),(int)posc.getyComponent(),velc);
+		Bird a = new Bird((int)posa.getxComponent(),(int)posa.getyComponent(),vela,new Cohesion(new BoidRuleBase()));
+		Bird b = new Bird((int)posb.getxComponent(),(int)posb.getyComponent(),velb,new Cohesion(new BoidRuleBase()));
+		Bird c = new Bird((int)posc.getxComponent(),(int)posc.getyComponent(),velc,new Cohesion(new BoidRuleBase()));
 		
 		a.preBehaviour();
 		b.preBehaviour();
@@ -86,9 +86,9 @@ class BoidJunitTest {
 		c.behaviour();
 		
 		
-		System.out.println(a.cohesion);
-		System.out.println(b.cohesion);
-		System.out.println(c.cohesion);
+		System.out.println(a.getAcceleration());
+		System.out.println(b.getAcceleration());
+		System.out.println(c.getAcceleration());
 		
 		Vector Ga = Vector.add(posb, posc);
 		Ga.divide(2);
@@ -100,9 +100,9 @@ class BoidJunitTest {
 		Gc.divide(2);
 		Gc.subtract(posc);
 		
-		assertEquals(true,a.cohesion.isEqual(Ga));
-		assertEquals(true,b.cohesion.isEqual(Gb));
-		assertEquals(true,c.cohesion.isEqual(Gc));
+		assertEquals(true,a.getAcceleration().isEqual(Ga));
+		assertEquals(true,b.getAcceleration().isEqual(Gb));
+		assertEquals(true,c.getAcceleration().isEqual(Gc));
 	}
 	@Test
 	void testSeperation() {
@@ -112,9 +112,9 @@ class BoidJunitTest {
 		Vector posa = new Vector(10,10);
 		Vector posb = new Vector(10,60);
 		Vector posc = new Vector(50,40);
-		Bird a = new Bird((int)posa.getxComponent(),(int)posa.getyComponent(),vela);
-		Bird b = new Bird((int)posb.getxComponent(),(int)posb.getyComponent(),velb);
-		Bird c = new Bird((int)posc.getxComponent(),(int)posc.getyComponent(),velc);
+		Bird a = new Bird((int)posa.getxComponent(),(int)posa.getyComponent(),vela,new Separation(new BoidRuleBase()));
+		Bird b = new Bird((int)posb.getxComponent(),(int)posb.getyComponent(),velb,new Separation(new BoidRuleBase()));
+		Bird c = new Bird((int)posc.getxComponent(),(int)posc.getyComponent(),velc,new Separation(new BoidRuleBase()));
 		
 		a.preBehaviour();
 		b.preBehaviour();
@@ -128,9 +128,9 @@ class BoidJunitTest {
 		b.behaviour();
 		c.behaviour();
 		
-		assertEquals(true,a.separation.isEqual(new Vector(-22.5,-45.0)));
-		assertEquals(true,b.separation.isEqual(new Vector(-28.1249,42.1875)));
-		assertEquals(true,c.separation.isEqual(new Vector(50.625,2.8125)));
+		assertEquals(true,a.getAcceleration().isEqual(new Vector(-22.5,-45.0)));
+		assertEquals(true,b.getAcceleration().isEqual(new Vector(-28.1249,42.1875)));
+		assertEquals(true,c.getAcceleration().isEqual(new Vector(50.625,2.8125)));
 	}
 
 }

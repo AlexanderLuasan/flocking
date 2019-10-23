@@ -1,13 +1,14 @@
-package boid;
+package boidold;
 
 import java.util.ArrayList;
 
+import boid.Hawk;
 import graphics.Colors;
 import graphics.Drawable;
 import ray.DrawableRay;
 import vector.Vector;
 
-public class DrawingPigeon extends Pigeon {
+public class DrawingHawk extends Hawk {
 
 	ArrayList<Drawable> Drawings = new ArrayList<Drawable>();
 	
@@ -40,7 +41,7 @@ public class DrawingPigeon extends Pigeon {
 			Dflee.setZero();
 		}
 	}
-	public DrawingPigeon(int x, int y, Vector vel) {
+	public DrawingHawk(int x, int y, Vector vel) {
 		super(x, y, vel);
 		DrawableRay R = new ray.DrawableRay();
 		this.setSight(R);
@@ -67,24 +68,5 @@ public class DrawingPigeon extends Pigeon {
 	public ArrayList<Drawable> getDrawables(){
 		this.getSight().getStartPoint().setZero();
 		return Drawings;
-	}
-}
-class drawVector implements Drawable{
-	static Vector cen = new Vector(0,0);
-	private Colors color;
-	ArrayList<Vector> lines = new ArrayList<Vector>();
-	public drawVector(Vector point, Colors col) {
-		color = col;
-		lines.add(cen);
-		lines.add(point);
-	}
-	public Vector getCenter() {
-		return cen;
-	}
-	public ArrayList<Vector> getlines() {
-		return lines;
-	}
-	public Colors getColor() {
-		return color;
 	}
 }

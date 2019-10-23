@@ -1,5 +1,6 @@
-package boid;
+package boidold;
 
+import boid.Bird;
 import vector.Vector;
 
 /*

@@ -1,4 +1,4 @@
-package boid;
+package boidold;
 
 
 import ray.Ray;

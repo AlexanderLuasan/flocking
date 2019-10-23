@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import boid.Bird;
 import boid.Boid;
-import boid.DrawingPigeon;
 import boid.Pigeon;
+import boidold.DrawingPigeon;
 import ray.Ray;
 import shape.*;
 import vector.Vector;

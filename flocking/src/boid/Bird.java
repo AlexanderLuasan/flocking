@@ -2,6 +2,7 @@ package boid;
 
 import java.util.ArrayList;
 
+import graphics.Drawable;
 import utils.Log;
 import vector.Vector;
 
@@ -47,13 +48,11 @@ import vector.Vector;
 
 public class Bird implements Boid {
 	//
+	ArrayList<Drawable> Drawings = new ArrayList<Drawable>();
 	protected static final double MAX_ACCELERATION = .1;
 	protected static final double MAX_SPEED = 5;
 	protected static final double MIN_SPEED = 2;
 	protected static final double SIGHT_RANGE = 75;
-	protected static final double ALIGNMENT_WEIGHT = 1;
-	protected static final double SEPARATION_WEIGHT = 1;
-	protected static final double COHESION_WEIGHT = 1;
 	
 	protected static Log log = Log.getLog();
 	protected static int DEBUG = Log.DEBUG+Log.BOIDS;
@@ -68,21 +67,19 @@ public class Bird implements Boid {
 	
 	private ArrayList<Vector> drawLines = new ArrayList<Vector>();
 	
+	protected BoidRule rules;
 	//rule vectors
-	protected Vector alignment=new Vector(0,0);
-	protected int alignmentCount=0;
-	protected Vector separation=new Vector(0,0);
-	protected int separationCount=0;
-	protected Vector cohesion=new Vector(0,0);
-	protected int cohesionCount=0;
+	
 
-	public Bird(int x, int y, Vector vel) {
+	public Bird(int x, int y, Vector vel,BoidRule r) {
+		rules = r;
 		position = new Vector((double)x,(double)y);
 		velocity = vel;
 		acceleration = new Vector(0,0);
 		for(int i=0;i<4;i++) {
 			drawLines.add(new Vector(0,0));
 		}
+		rules.drawingComponents(Drawings);
 		ALL_BIRDS.add(this);
 		log.println("new  boid:" + this.toString(),DEBUG);
 	}
@@ -120,99 +117,23 @@ public class Bird implements Boid {
 
 	public void seeBoid(Boid other) {
 		
-		this.align((Bird)other);
-		this.cohesion((Bird)other);
-		this.separation((Bird)other);
+		rules.seeBoid(this, other);
 		
 	}
 	
 	public boolean preBehaviour() {
 		//reset all vectors and counts for next frame
-		this.alignment.setZero();
-		this.cohesion.setZero();
-		this.separation.setZero();
-		this.separationCount=0;
-		this.alignmentCount=0;
-		this.cohesionCount=0;
+		rules.clear();
 		return false;
 	}
 	public boolean behaviour() {
 		//zero the acceleration
 		this.acceleration.setComponents(0, 0);
-		
-		//Calculate the final vectors
-		this.align();
-		this.cohesion();
-		this.separation();
-		//scale forces
-		
-		if(alignmentCount>0) {
-			alignment.multiply(getALIGNMENT_WEIGHT());
-		}
-		if(cohesionCount>0) {
-			cohesion.multiply(getCOHESION_WEIGHT());
-		}
-		if(separationCount>0) {
-			separation.multiply(getSEPARATION_WEIGHT());
-		}
-		
-		//add them to the acceleration
-		this.acceleration.add(alignment);
-		this.acceleration.add(cohesion);
-		this.acceleration.add(separation);
-		
-		
+		rules.calulate(this);
+		acceleration = rules.getAceleration();
+
 		
 		return false;
-	}
-	
-	//alignment
-	void align(Bird other) {
-		//sum velocities
-		alignment.add(other.velocity);
-		alignmentCount+=1;
-	}
-	void align() {
-		if(alignmentCount>0) {//divide to get the avg
-			alignment.divide(alignmentCount);
-			//create vector from my velocity to the target
-			alignment = Vector.subtract(alignment,this.velocity);
-			
-		}
-		
-	}
-	//cohesion
-	void cohesion(Bird other) {
-		//sum positions
-		this.cohesion.add(other.position);
-		this.cohesionCount+=1;
-	}
-	void cohesion() {
-		if(cohesionCount>0) {
-			//average positions
-			cohesion.divide(cohesionCount);
-			//get the vector from my position to the other
-			cohesion = Vector.subtract(cohesion, position);
-		}
-		
-	}
-	
-	void separation(Bird other) {
-		//vector pointed from them to me
-		Vector force = Vector.subtract(this.position,other.position);
-		double length = force.getLength();
-		force.scale(.5 * this.getSIGHT_RANGE() * this.getSIGHT_RANGE());
-		//weaken vector based on distance
-		force.divide(Boid.distance(this,other));
-		//sum the vectors
-		this.separation.add(force);
-		this.separationCount+=1;
-	}
-	void separation() {
-		if(separationCount>0) {
-			//avg the vector
-			separation.divide(separationCount);
-		}
 	}
 
 	@Override
@@ -258,7 +179,10 @@ public class Bird implements Boid {
 	public ArrayList<Vector> getlines(){
 		return drawLines;
 	}
-
+	public ArrayList<Drawable> getDrawables(){
+		return Drawings;
+	}
+	
 	public static ArrayList<Bird> getAllBirds() {
 		return ALL_BIRDS;
 	}
@@ -277,18 +201,6 @@ public class Bird implements Boid {
 
 	protected double getSIGHT_RANGE() {
 		return SIGHT_RANGE;
-	}
-
-	protected double getALIGNMENT_WEIGHT() {
-		return ALIGNMENT_WEIGHT;
-	}
-
-	protected double getSEPARATION_WEIGHT() {
-		return SEPARATION_WEIGHT;
-	}
-
-	protected double getCOHESION_WEIGHT() {
-		return COHESION_WEIGHT;
 	}
 
 	

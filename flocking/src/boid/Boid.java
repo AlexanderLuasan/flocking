@@ -97,7 +97,7 @@ public interface Boid extends Drawable {
 	public default Vector getCenter(){
 		return this.getPositionVector();
 	}
-	public default boolean prey() {
+	public default boolean prey(Boid other) {
 		return true;
 	}
 	public default Colors getColor() {

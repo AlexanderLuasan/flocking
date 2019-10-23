@@ -16,7 +16,13 @@ public class boidTest {
 		static int NUMBER_OF_BIRDS = 40;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
-		
+		private BoidRule basic(){
+			BoidRule end = new BoidRuleBase();
+			end = new Alignment(end);
+			end = new Separation(end);
+			end = new Cohesion(end);
+			return end;
+		}
 		
 		
 		public static void main(String [] args) {
@@ -28,13 +34,13 @@ public class boidTest {
 			//Bird a = new Bird(100, 100, new Vector(0,1));
 			//birds.add(a);
 			Random rand = new Random();
-			Boid a = new DrawingPigeon(0,0,new Vector(1,1));
+			//Boid a = new DrawingPigeon(0,0,new Vector(1,1));
 			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				new DrawingPigeon(xpos,ypos,new Vector(xcomp,ycomp));
+				new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
 			}
 			
 			for(int i=0;i<5;i++) {
@@ -105,7 +111,7 @@ public class boidTest {
 			System.out.println("boid test");
 			
 			Log myLog = Log.getLog();
-			
+			/*
 			
 			Bird a = new Bird(100,100,new Vector(1,0));//bird heading east at 100,100
 			Bird b = new Bird(100,110,new Vector(1,0));//bird flying parallel 10 units bellow
@@ -148,5 +154,6 @@ public class boidTest {
 			f.behaviour();
 			myLog.println(e.getAcceleration(), DEBUG_CODE);
 			myLog.println(f.getAcceleration(), DEBUG_CODE);
+			*/
 		}
 }
