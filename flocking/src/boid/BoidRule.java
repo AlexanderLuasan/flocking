@@ -4,7 +4,22 @@ import java.util.ArrayList;
 
 import graphics.Drawable;
 import vector.Vector;
+/*
 
+class BoidRule{
+
+	BoidRule(BoidRule a) // there is a next rule so add to linked list
+	BoidRule()
+	getAceleration()	// sum all the rules
+	clear()				// clear all the rules 
+	seeBoid(Boid me,Boid other)//get the two boids
+	calulate(Boid me)			// avg the vectors before the aceleration
+	drawingComponents(List drawings)	//for extracting componetes
+	getVector()					//get the rule vector
+
+}
+
+ */
 public abstract class BoidRule {
 	
 	public BoidRule lower;

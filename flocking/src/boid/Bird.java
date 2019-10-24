@@ -15,35 +15,14 @@ import vector.Vector;
  * 				//all have get
  * 
  * 	ok	Bird(int x,int y,vector vel);	//position x and y and initial velocity
- * 	ok	bool movement();				//update the birds position to the next frame //---- missing
+ * 	ok	bool movement();				//update the birds position to the next frame
  * 	ok	seeBoid(boid other);			//how to tell a boid about other boids
  * 										//this triggers all different rules
  * 	ok 	preBehavior();					//set rule calulations to zero and reset counts
  * 	ok	behavior();						//finish all the calculations
  * 										//this finishes the calculation for all the rules active on the bird scales them
  * 										//and add them to the acceleration vector
- * 			
- * 
- * 		//rule functions
- * 
- * 		//alignment
- * 	ok	Vector alignment;
- * 	ok	int alignmentCount
- * 	ok	void align(boid other);			//add a boids velocity vector the alignment vector my velocity to avg other velocity
- * 	un	void align();					//finish the calculation 
- * 		//Cohesion
- * 	ok	Vector cohesion;
- * 	ok	int cohesionCount
- * 	ok	void cohesion(boid other);		//my position to avg position of other points
- * 	ok	void cohesion();				//finish the calculation 
- *		//Separation
- *	ok	Vector separation;
- * 	ok	int seperationCount
- * 	ok	void cohesion(boid other);		//avg of each boid position to mine scaled by distastance 1/d
- * 	ok	void cohesion();				//finish the calculation
- *			
- * 		
- * }
+}
  */
 
 public class Bird implements Boid {
