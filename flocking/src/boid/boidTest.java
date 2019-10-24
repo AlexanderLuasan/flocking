@@ -16,14 +16,24 @@ public class boidTest {
 		static int NUMBER_OF_BIRDS = 40;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
-		private BoidRule basic(){
+		private static BoidRule basic(){
 			BoidRule end = new BoidRuleBase();
 			end = new Alignment(end);
 			end = new Separation(end);
 			end = new Cohesion(end);
 			return end;
 		}
-		
+		private static BoidRule DrawingBasic(){
+			BoidRule end = new BoidRuleBase();
+			end = new Alignment(end);
+			end = new DrawingRule(end,Colors.YELLOW);
+			end = new Separation(end);
+			end = new DrawingRule(end,Colors.RED);
+			end = new Cohesion(end);
+			end = new DrawingRule(end,Colors.GREEN);
+			end = new DrawingSight(end);
+			return end;
+		}
 		
 		public static void main(String [] args) {
 			//mathtest();
@@ -35,20 +45,12 @@ public class boidTest {
 			//birds.add(a);
 			Random rand = new Random();
 			//Boid a = new DrawingPigeon(0,0,new Vector(1,1));
-			for(int i=0;i<2;i++) {
+			for(int i=0;i<30;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
-			}
-			
-			for(int i=0;i<5;i++) {
-				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
-				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
-				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-				//new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
+				new Bird(xpos,ypos,new Vector(xcomp,ycomp),DrawingBasic());
 			}
 			
 			//add shapes

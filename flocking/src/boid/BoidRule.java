@@ -22,5 +22,6 @@ public abstract class BoidRule {
 		lower.drawingComponents(drawings);
 		return false;
 	}
+	public abstract Vector getVector();
 	
 }

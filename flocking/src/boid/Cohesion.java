@@ -55,4 +55,9 @@ public class Cohesion extends BoidRule {
 		}
 		return true;
 	}
+
+	@Override
+	public Vector getVector() {
+		return cohesion;
+	}
 }

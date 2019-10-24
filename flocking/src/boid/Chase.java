@@ -53,4 +53,8 @@ public class Chase extends BoidRule {
 		}
 		return true;
 	}
+	@Override
+	public Vector getVector() {
+		return chase;
+	}
 }

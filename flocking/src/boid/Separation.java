@@ -53,4 +53,8 @@ public class Separation extends BoidRule {
 		}
 		return true;
 	}
+	@Override
+	public Vector getVector() {
+		return separation;
+	}
 }

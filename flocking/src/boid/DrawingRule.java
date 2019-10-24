@@ -15,7 +15,7 @@ public class DrawingRule extends BoidRule {
 	}
 	public Vector getAceleration() {
 		Vector a = lower.getAceleration();
-		vectorline.copy(a);
+		vectorline.copy(lower.getVector());
 		return a;
 	}
 
@@ -37,6 +37,10 @@ public class DrawingRule extends BoidRule {
 	public boolean calulate(Boid me) {
 		return this.lower.calulate(me);
 
+	}
+	@Override
+	public Vector getVector() {
+		return lower.getVector();
 	}
 	
 

@@ -33,4 +33,10 @@ public class BoidRuleBase extends BoidRule {
 		return false;
 	}
 
+
+	@Override
+	public Vector getVector() {
+		return acceleration;
+	}
+
 }

@@ -48,4 +48,8 @@ public class Flee extends BoidRule {
 		}
 		return true;
 	}
+	@Override
+	public Vector getVector() {
+		return flee;
+	}
 }

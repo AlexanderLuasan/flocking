@@ -50,5 +50,9 @@ public class Alignment extends BoidRule {
 		}
 		return true;
 	}
+	@Override
+	public Vector getVector() {
+		return alignment;
+	}
 
 }
