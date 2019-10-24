@@ -34,8 +34,10 @@ public class Flee extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		flee.add(other.getPositionVector());
-		fleeCount+=1;
+		if(other.prey(me)) {
+			flee.add(other.getPositionVector());
+			fleeCount+=1;
+		}
 		return null;
 	}
 

@@ -34,13 +34,15 @@ public class Chase extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		if(foundChase) {
-			if(utils.Utils.distance(other.getPositionVector(), me.getPositionVector())<utils.Utils.distance(chase,me.getPositionVector())) {
+		if(me.prey(other)) {
+			if(foundChase) {
+				if(utils.Utils.distance(other.getPositionVector(), me.getPositionVector())<utils.Utils.distance(chase,me.getPositionVector())) {
+					chase = other.getPositionVector();
+				}
+			}else {
 				chase = other.getPositionVector();
+				foundChase=true;
 			}
-		}else {
-			chase = other.getPositionVector();
-			foundChase=true;
 		}
 		return null;
 	}

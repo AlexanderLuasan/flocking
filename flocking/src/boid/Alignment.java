@@ -35,8 +35,11 @@ public class Alignment extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		alignment.add(other.getVelocityVector());
-		alignmentCount+=1;
+		if(me.getClass()==other.getClass()) {
+			
+			alignment.add(other.getVelocityVector());
+			alignmentCount+=1;
+		}
 		return null;
 	}
 

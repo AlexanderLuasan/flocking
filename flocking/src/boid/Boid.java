@@ -98,7 +98,7 @@ public interface Boid extends Drawable {
 		return this.getPositionVector();
 	}
 	public default boolean prey(Boid other) {
-		return true;
+		return false;
 	}
 	public default Colors getColor() {
 		return Colors.GREEN;

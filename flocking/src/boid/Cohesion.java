@@ -40,8 +40,10 @@ public class Cohesion extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		cohesion.add(other.getPositionVector());
-		cohesionCount+=1;
+		if(me.getClass() == other.getClass()) {
+			cohesion.add(other.getPositionVector());
+			cohesionCount+=1;
+		}
 		return null;
 	}
 
