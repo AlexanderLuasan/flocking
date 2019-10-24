@@ -1,7 +1,16 @@
 package boid;
 
 import vector.Vector;
+/*
 
+Seperation
+
+sum vecotrs pointed from them to me
+scale to invers of length
+
+sum and avg
+
+ */
 public class Separation extends BoidRule {
 	private Vector separation=new Vector(0,0);
 	private int separationCount=0;

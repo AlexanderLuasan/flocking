@@ -1,6 +1,19 @@
 package boid;
 
 import vector.Vector;
+/*
+
+Cohesion rule
+fly to avg position
+
+sum position of boids 
+
+divide by count
+
+fly to the center
+
+
+ */
 
 public class Cohesion extends BoidRule {
 

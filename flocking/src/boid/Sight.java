@@ -3,6 +3,13 @@ package boid;
 import ray.Ray;
 import utils.Log;
 import vector.Vector;
+/*
+
+
+set velociy if in dange of colision
+
+ */
+
 
 public class Sight extends BoidRule {
 	private static Log log = Log.getLog();

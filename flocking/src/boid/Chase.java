@@ -1,7 +1,14 @@
 package boid;
 
 import vector.Vector;
+/*
+Chase rule
 
+pick one boid in range and fly to it
+
+
+
+ */
 public class Chase extends BoidRule {
 
 	private Vector chase=new Vector(0,0);

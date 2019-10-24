@@ -2,6 +2,19 @@ package boid;
 
 import vector.Vector;
 
+/*
+
+flee the avg position of preditors
+
+sum chasers 
+
+fly to the inverse of the vector
+
+scaled inversly
+
+
+ */
+
 public class Flee extends BoidRule {
 	private Vector flee=new Vector(0,0);
 	private int fleeCount=0;

@@ -1,6 +1,19 @@
 package boid;
 
 import vector.Vector;
+/*
+Alignment rule
+turn to the avg direction of near by boids
+
+sum velocitys
+
+divide by count
+
+
+
+ */
+
+
 
 public class Alignment extends BoidRule {
 	
