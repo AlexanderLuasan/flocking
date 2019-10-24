@@ -28,6 +28,7 @@ public class Pigeon extends Bird {
 		BoidRule r = new BoidRuleBase();
 		r = new Alignment(r,1);
 		r = new Cohesion(r,1);
+		r = new DrawingRule(r,Colors.BLUE);
 		r = new Separation(r,1);
 		r = new DrawingSight(r,75);
 		return r;

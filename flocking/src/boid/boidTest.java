@@ -35,7 +35,7 @@ public class boidTest {
 			//birds.add(a);
 			Random rand = new Random();
 			//Boid a = new DrawingPigeon(0,0,new Vector(1,1));
-			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
+			for(int i=0;i<2;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;

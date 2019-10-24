@@ -12,6 +12,9 @@ public class Cohesion extends BoidRule {
 		super(next);
 	}
 
+	public Vector getCohesion() {
+		return cohesion;
+	}
 
 	public Cohesion(BoidRule next, double cohesion_weight) {
 		super(next);
