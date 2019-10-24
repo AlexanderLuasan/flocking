@@ -13,7 +13,7 @@ import java.util.Random;
 
 
 public class boidTest {
-		static int NUMBER_OF_BIRDS = 40;
+		static int NUMBER_OF_BIRDS = 100;
 		static int SPEED_RANGE = 5;
 		static int DEBUG_CODE = Log.DEBUG+Log.BOIDS;
 		private static BoidRule basic(){
@@ -37,15 +37,15 @@ public class boidTest {
 		
 		public static void main(String [] args) {
 			//mathtest();
-			//Log myLog = Log.getLog();
+			Log myLog = Log.getLog();
 			
-			//myLog.setFilter(Log.BOIDS);
+			myLog.setFilter(Log.BOIDS);
 			
 			//Bird a = new Bird(100, 100, new Vector(0,1));
 			//birds.add(a);
 			Random rand = new Random();
 			//Boid a = new DrawingPigeon(0,0,new Vector(1,1));
-			for(int i=0;i<30;i++) {
+			for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
@@ -58,7 +58,7 @@ public class boidTest {
 			//env.add(new Rectangle(new Vector(200,200),300,300));
 			ArrayList<Vector> l = new ArrayList<Vector>();
 			l.add(new Vector(100,0));
-			l.add(new Vector (0,0));
+			l.add(new Vector (3,3));
 			l.add(new Vector (0,100));
 			env.add(new Polygon(new Vector(220,200),l));
 			

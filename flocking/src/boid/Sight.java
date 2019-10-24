@@ -1,10 +1,12 @@
 package boid;
 
 import ray.Ray;
+import utils.Log;
 import vector.Vector;
 
 public class Sight extends BoidRule {
-
+	private static Log log = Log.getLog();
+	private static int DEBUG = Log.DEBUG+Log.BOIDS;
 	private Ray Sight = new Ray();
 	private int trace_distance=100;
 	private Vector EndingAcceleration = new Vector(0,0);
@@ -90,7 +92,7 @@ public class Sight extends BoidRule {
 				}
 				
 				//this.acceleration.add(trunFoce);
-				//log.println("Boid Avoided Object",this.DEBUG);
+				log.println("Boid Avoided Object",this.DEBUG);
 			}
 			return false;
 		}
