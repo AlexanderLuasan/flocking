@@ -29,12 +29,15 @@ package graphics;
 import javax.swing.*;
 import shape.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import vector.Vector;
+import utils.Log;
 import utils.Utils;
 
-public class Screen extends JFrame {
+public class Screen extends JFrame implements ComponentListener{
 
 	//add width and height
 	private BufferedImage FrameBuffer;
@@ -43,13 +46,22 @@ public class Screen extends JFrame {
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	private double zoom;
 	private Vector viewPoint;
+	private static Log log = utils.Log.getLog();
+	private static int DEBUG = Log.GRAPHICS+log.DEBUG;
+	private boolean clearall = true;
+	public void componentResized(ComponentEvent ce) {
+	    int height = this.getHeight();
+	    int width = this.getWidth();
+	    log.println("Screen: ["+width+","+height+"]",DEBUG);
+	    clearall=true;
+	  };
 	
 	public Screen(int width, int height){
 		viewPoint=new Vector(Utils.SCREEN_WIDTH/2,Utils.SCREEN_HIEGHT/2);
 		setVisible(true);
 		setResizable(true);
 		setSize(width,height);
-		
+		getContentPane().addComponentListener(this);
 		FrameBuffer =  new BufferedImage(Utils.SCREEN_WIDTH, Utils.SCREEN_WIDTH, BufferedImage.TYPE_INT_ARGB);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		zoom=1;
@@ -58,6 +70,7 @@ public class Screen extends JFrame {
 	
 	//it will go through arraylist and draw each
 	public void updateFrameBuffer() {
+		long timestamp = System.currentTimeMillis();
 		//Graphics g = RotationBuffer.createGraphics();
 		Graphics g = FrameBuffer.createGraphics();
 		g.clearRect(0,0,Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
@@ -68,6 +81,8 @@ public class Screen extends JFrame {
 			c.subtract(viewPoint);
 			draw(toDraw.get(i),g,c);
 		}
+		timestamp = System.currentTimeMillis() - timestamp;
+		log.println("updateFrame: " + timestamp, DEBUG);
 		//shift image by view point
 		
 		//rotationG.drawImage(RotationBuffer, Utils.SCREEN_WIDTH/2 -(int)Math.round(viewPoint.getxComponent()), Utils.SCREEN_HIEGHT/2 -(int)Math.round(viewPoint.getyComponent()), this);
@@ -85,6 +100,11 @@ public class Screen extends JFrame {
 		
 	}
 	public void paint(Graphics g) {
+		long timestamp = System.currentTimeMillis();
+		if(clearall) {
+			clearall=false;
+			g.clearRect(0,0,this.getWidth(),this.getHeight());
+		}
 		//g.setColor(Color.gray);
 		int heightOffset = 0;
 		int widthOffset = 0;
@@ -96,6 +116,9 @@ public class Screen extends JFrame {
 			0,0,
 			(int) (Utils.SCREEN_WIDTH), (int) (Utils.SCREEN_HIEGHT), this);
 		//g.drawImage(FrameBuffer, 0, 0, this);
+		
+		timestamp = System.currentTimeMillis() - timestamp;
+		log.println("printTime: " + timestamp, DEBUG);
 	}
 	
 	//draw a shape in arraylist
@@ -239,5 +262,23 @@ public class Screen extends JFrame {
 
 	public void setZoom(double zoom) {
 		this.zoom = zoom;
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -8,6 +8,7 @@ import boid.Boid;
 import boid.Pigeon;
 import graphics.Drawable;
 import graphics.Screen;
+import graphics.Timer;
 import ray.Ray;
 import utils.Utils;
 import vector.Vector;
@@ -31,6 +32,7 @@ public class Main {
 		
 		
 		Window = new Screen(1000,800); 
+		Timer clock = new Timer("Clock",20);
 		
 		// add shapes to ray and world
 		for(int i=0;i<world.getEnvironment().size();i++) {
@@ -70,7 +72,7 @@ public class Main {
 			Window.updateFrameBuffer();
 			Window.repaint();
 			try {
-				TimeUnit.MILLISECONDS.sleep(20);
+				clock.sleep();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				done = true;
