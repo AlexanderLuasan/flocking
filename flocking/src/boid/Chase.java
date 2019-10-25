@@ -22,7 +22,7 @@ public class Chase extends BoidRule {
 		
 	}
 	public Chase(BoidRule next,double chase_weight,Class<?> c) {
-		super(next);
+		this(next,c);
 		this.chase_weight = chase_weight;
 		target = c;
 	}

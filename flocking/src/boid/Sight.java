@@ -22,16 +22,15 @@ public class Sight extends BoidRule {
 		super(next);
 	}
 	public Sight(BoidRule next,Ray sig){
-		super(next);
+		this(next);
 		this.Sight = sig;
 	}
 	public Sight(BoidRule next, int trace_distance){
-		super(next);
+		this(next);
 		this.trace_distance=trace_distance;
 	}
 	public Sight(BoidRule next, int trace_distance,Ray sig){
-		super(next);
-		this.trace_distance=trace_distance;
+		this(next,trace_distance);
 		this.Sight = sig;
 	}
 	public Ray getRay() {

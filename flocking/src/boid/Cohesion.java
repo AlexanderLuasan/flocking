@@ -21,13 +21,14 @@ public class Cohesion extends BoidRule {
 	private int cohesionCount=0;
 	private double cohesion_weight=1;
 
+	public Cohesion() {
+		super();
+	}
+	
 	public Cohesion(BoidRule next) {
 		super(next);
 	}
 
-	public Vector getCohesion() {
-		return cohesion;
-	}
 
 	public Cohesion(BoidRule next, double cohesion_weight) {
 		super(next);

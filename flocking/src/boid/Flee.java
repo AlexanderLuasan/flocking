@@ -27,7 +27,7 @@ public class Flee extends BoidRule {
 		
 	}
 	public Flee(BoidRule next,double flee_weight,Class<?> c) {
-		super(next);
+		this(next,c);
 		this.flee_weight = flee_weight;
 		target =c;
 	}
