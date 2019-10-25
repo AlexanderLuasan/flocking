@@ -52,7 +52,7 @@ public class boidTest {
 				double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 				new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
 			}
-			for(int i=0;i<3;i++) {
+			for(int i=0;i<0;i++) {
 				int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 				int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 				double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;

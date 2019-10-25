@@ -67,7 +67,15 @@ public class Bird implements Boid {
 		log.println("dead boid:" + this.toString(),DEBUG);
 		return false;	
 	}
-	
+	public BoidRule popRule() {
+		BoidRule r = rules;
+		rules = rules.getLower();
+		return r;
+	}
+	public void pushRule(BoidRule r) {
+		r.setLower(rules);
+		rules = r;
+	}
 	public boolean movement() {
 		//needed limit max acceleration
 		this.acceleration.limit(0,getMAX_ACCELERATION());

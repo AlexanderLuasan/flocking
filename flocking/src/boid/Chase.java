@@ -12,20 +12,24 @@ pick one boid in range and fly to it
 public class Chase extends BoidRule {
 
 	private Vector chase=new Vector(0,0);
-	protected boolean foundChase=false;
+	private boolean foundChase=false;
 	private double chase_weight = 1;
+	private Class<?> target;
 	
-	public Chase(BoidRule next) {
+	public Chase(BoidRule next,Class<?> c) {
 		super(next);
+		target = c;
 		
 	}
-	public Chase(BoidRule next,double chase_weight) {
+	public Chase(BoidRule next,double chase_weight,Class<?> c) {
 		super(next);
 		this.chase_weight = chase_weight;
+		target = c;
 	}
 	
 	public Vector getAceleration() {
 		Vector total = lower.getAceleration();
+		chase.multiply(chase_weight);
 		total.add(chase);
 		return total;
 	}
@@ -41,7 +45,7 @@ public class Chase extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		if(me.prey(other)) {
+		if(other.getClass() == target) {
 			if(foundChase) {
 				if(utils.Utils.distance(other.getPositionVector(), me.getPositionVector())<utils.Utils.distance(chase,me.getPositionVector())) {
 					chase = other.getPositionVector();

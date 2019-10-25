@@ -7,11 +7,11 @@ public class Pigeon extends Bird {
 
 	private static BoidRule DrawingBasic(){
 		BoidRule end = new BoidRuleBase();
-		end = new Flee(end);
+		end = new Flee(end,Hawk.class);
 		end = new DrawingRule(end,Colors.YELLOW);
 		end = new Alignment(end);
 		end = new DrawingRule(end,Colors.YELLOW);
-		end = new Separation(end);
+		end = new Separation(end,1);
 		end = new DrawingRule(end,Colors.RED);
 		end = new Cohesion(end);
 		end = new DrawingRule(end,Colors.GREEN);

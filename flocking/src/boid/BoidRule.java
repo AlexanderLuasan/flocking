@@ -29,6 +29,7 @@ public abstract class BoidRule {
 	public BoidRule(){
 		lower = null;
 	}
+	
 	public abstract Vector getAceleration();
 	public abstract boolean clear();
 	public abstract Vector seeBoid(Boid me,Boid other);
@@ -38,5 +39,11 @@ public abstract class BoidRule {
 		return false;
 	}
 	public abstract Vector getVector();
+	public  BoidRule getLower() {
+		return lower;
+	}
+	public void setLower(BoidRule a) {
+		lower = a;
+	}
 	
 }

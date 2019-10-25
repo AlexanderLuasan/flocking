@@ -7,7 +7,7 @@ public class Hawk extends Bird {
 
 	private static BoidRule DrawingBasic(){
 		BoidRule end = new BoidRuleBase();
-		end = new Chase(end);
+		end = new Chase(end,Pigeon.class);
 		end = new DrawingRule(end,Colors.YELLOW);
 		end = new Alignment(end);
 		end = new DrawingRule(end,Colors.YELLOW);
@@ -20,11 +20,5 @@ public class Hawk extends Bird {
 	}
 	public Hawk(int x, int y, Vector vel) {
 		super(x, y, vel,DrawingBasic());
-	}
-	public boolean prey(Boid other) {
-		if(other.getClass() == Pigeon.class) {
-			return true;
-		}
-		return false;
 	}
 }

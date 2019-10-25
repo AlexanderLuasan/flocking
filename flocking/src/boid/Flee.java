@@ -19,14 +19,17 @@ public class Flee extends BoidRule {
 	private Vector flee=new Vector(0,0);
 	private int fleeCount=0;
 	private double flee_weight = 1;
+	private Class<?> target;
 
-	public Flee(BoidRule next) {
+	public Flee(BoidRule next,Class<?> c) {
 		super(next);
+		target =c;
 		
 	}
-	public Flee(BoidRule next,double flee_weight) {
+	public Flee(BoidRule next,double flee_weight,Class<?> c) {
 		super(next);
 		this.flee_weight = flee_weight;
+		target =c;
 	}
 	
 	public Vector getAceleration() {
@@ -47,7 +50,7 @@ public class Flee extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		if(other.prey(me)) {
+		if(other.getClass() == target) {
 			flee.add(other.getPositionVector());
 			fleeCount+=1;
 		}
