@@ -3,12 +3,17 @@ package boid;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ray.Ray;
+import ray.RayDetectable;
+import shape.Rectangle;
 import utils.Utils;
 import vector.Vector;
 
@@ -17,6 +22,7 @@ class BoidJunitTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		Bird.getAllBirds().clear();
+		Ray.getRaydetectable().clear();
 	}
 	
 	@Test
@@ -229,5 +235,175 @@ class BoidJunitTest {
 		Bird a = new Bird(Utils.SCREEN_WIDTH-2,Utils.SCREEN_HIEGHT-1,new Vector(4,2),new BoidRuleBase());
 		a.movement();
 		assertEquals(true,a.getPositionVector().isEqual(new Vector(2,1)));
+	}
+	@Test
+	void testSight() {
+		
+		class raydetectableStub implements RayDetectable {
+
+			public raydetectableStub() {}
+			public double distanceToPoint(Vector point) {
+				return 0;
+			}
+			public double distanceToPointCircle(Vector point) {return 0;}
+			public ArrayList<Vector> getPoints(Vector projection) {return null;}
+			public Vector getCenter() {return null;}
+			
+		}
+		
+		Bird a = new Bird(100,100,new Vector(3,0),new DrawingSight(new BoidRuleBase(),10));
+		
+		Ray.getRaydetectable().add(new raydetectableStub());
+		
+		a.preBehaviour();
+		a.behaviour();
+		a.movement();
+		
+		assertEquals(true,a.getVelocityVector().isEqual(new Vector(3,0)));//no change due to imposibility
+	
+	}
+	@Test
+	void testSightSearch() {
+		
+		Bird a = new Bird(100,100,new Vector(3,0),new DrawingSight(new BoidRuleBase(),100));
+		
+		Ray.getRaydetectable().add(new Rectangle(new Vector(200,100),100,100));
+		
+		a.preBehaviour();
+		a.behaviour();
+		a.movement();
+		
+		assertEquals(true,a.getAcceleration().isEqual(new Vector(0,0)));//no change due to imposibility
+		
+		if(a.getVelocityVector().getAngle()<Vector.subtract(new Vector(100, 100),new Vector(150,150)).getAngle()) {
+			assertEquals(true,true);
+		}
+		else if(a.getVelocityVector().getAngle()>Vector.subtract(new Vector(100, 100),new Vector(150,50)).getAngle()){
+			assertEquals(true,true);
+		}
+		else {
+			assertEquals(true,false);
+		}
+	}
+void testSightSearch2() {
+		
+		Bird a = new Bird(100,100,new Vector(3,0),new DrawingSight(new BoidRuleBase(),10));
+		
+		Ray.getRaydetectable().add(new Rectangle(new Vector(200,100),100,100));
+		
+		a.preBehaviour();
+		a.behaviour();
+		a.movement();
+		
+		assertEquals(true,a.getAcceleration().isEqual(new Vector(0,0)));//no change due to imposibility
+		
+		if(a.getVelocityVector().getAngle()<Vector.subtract(new Vector(100, 100),new Vector(150,150)).getAngle()) {
+			assertEquals(true,false);
+		}
+		else if(a.getVelocityVector().getAngle()>Vector.subtract(new Vector(100, 100),new Vector(150,50)).getAngle()){
+			assertEquals(true,false);
+		}
+		else {
+			assertEquals(true,true);
+		}
+	}
+	static int seeBoidCount = 0;
+	@Test
+	void testBoidEdeges() {
+		
+		class BoidStub extends Bird{
+			
+			
+			public BoidStub(int x, int y, Vector vel, BoidRule r) {
+				super(x, y, vel, r);
+			}
+			public void seeBoid(Boid Other) {
+				seeBoidCount+=1;
+			}
+		}
+		seeBoidCount = 0;
+		
+		Bird a = new BoidStub(10,10,new Vector(0,0),new BoidRuleBase());
+		Bird b = new BoidStub(Utils.SCREEN_WIDTH-10,Utils.SCREEN_HIEGHT-10,new Vector(0,0),new BoidRuleBase());
+		
+		Boid.sight(a, b);
+		
+		assertEquals(seeBoidCount,2);
+	}
+	@Test
+	void testBoidEdeges2() {
+		
+		class BoidStub extends Bird{
+			
+			
+			public BoidStub(int x, int y, Vector vel, BoidRule r) {
+				super(x, y, vel, r);
+			}
+			public void seeBoid(Boid Other) {
+				seeBoidCount+=1;
+			}
+		}
+		seeBoidCount = 0;
+		
+		Bird a = new BoidStub(Utils.SCREEN_WIDTH-10,10,new Vector(0,0),new BoidRuleBase());
+		Bird b = new BoidStub(10,Utils.SCREEN_HIEGHT-10,new Vector(0,0),new BoidRuleBase());
+		
+		Boid.sight(a, b);
+		
+		assertEquals(seeBoidCount,2);
+	}
+	
+	@Test
+	void testBoidEdeges3() {
+		
+		class BoidStub extends Bird{
+			
+			
+			public BoidStub(int x, int y, Vector vel, BoidRule r) {
+				super(x, y, vel, r);
+			}
+			public void seeBoid(Boid Other) {
+				seeBoidCount+=1;
+			}
+		}
+		seeBoidCount = 0;
+		
+		Bird a = new BoidStub(Utils.SCREEN_WIDTH-100,100,new Vector(0,0),new BoidRuleBase());
+		Bird b = new BoidStub(100,Utils.SCREEN_HIEGHT-100,new Vector(0,0),new BoidRuleBase());
+		
+		Boid.sight(a, b);
+		
+		assertEquals(seeBoidCount,0);
+	}
+	@Test
+	void testBoidEdeges4() {
+		
+		class BoidStub extends Bird{
+			
+			
+			public BoidStub(int x, int y, Vector vel, BoidRule r) {
+				super(x, y, vel, r);
+			}
+			public void seeBoid(Boid Other) {
+				seeBoidCount+=1;
+			}
+		}
+		seeBoidCount = 0;
+		
+		Bird a = new BoidStub(300,20,new Vector(0,0),new BoidRuleBase());
+		Bird b = new BoidStub(300,Utils.SCREEN_HIEGHT-20,new Vector(0,0),new BoidRuleBase());
+		
+		Boid.sight(b, a);
+		
+		assertEquals(seeBoidCount,2);
+	}
+	@Test
+	void testBoidRules() {
+		
+		BoidRule a = new BoidRuleBase();
+		BoidRule b = new DrawingRule(a, null);
+		
+		assertEquals(true,b.getVector().isEqual(a.getVector()));
+		
 	}
 }
