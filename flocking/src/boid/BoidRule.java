@@ -38,12 +38,15 @@ public abstract class BoidRule {
 		lower.drawingComponents(drawings);
 		return false;
 	}
-	public abstract Vector getVector();
+	public Vector getVector() {
+		return lower.getVector();
+	}
 	public  BoidRule getLower() {
 		return lower;
 	}
 	public void setLower(BoidRule a) {
 		lower = a;
 	}
+	
 	
 }

@@ -104,8 +104,4 @@ public class Sight extends BoidRule {
 		}
 		return false;
 	}
-	@Override
-	public Vector getVector() {
-		return EndingAcceleration;
-	}
 }

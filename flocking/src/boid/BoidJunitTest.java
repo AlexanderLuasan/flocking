@@ -15,6 +15,7 @@ import graphics.DrawingRule;
 import graphics.DrawingSight;
 import ray.Ray;
 import ray.RayDetectable;
+import shape.Circle;
 import shape.Rectangle;
 import utils.Utils;
 import vector.Vector;
@@ -218,6 +219,27 @@ class BoidJunitTest {
 		assertEquals(true,b.getAcceleration().isEqual(new Vector(-2,2)));
 		
 		
+		//sample velocities
+		Vector vela = new Vector(0,0);
+		vela.copy(a.getVelocityVector());
+		Vector velb = new Vector(0,0);
+		velb.copy(b.getVelocityVector());
+		
+		//remove rule
+		a.popRule();
+		b.popRule();
+		
+		a.preBehaviour();
+		b.preBehaviour();
+		
+		Boid.sight(a, b);
+		
+		a.behaviour();
+		b.behaviour();
+		
+		assertEquals(true,a.getVelocityVector().isEqual(vela));
+		assertEquals(true,b.getVelocityVector().isEqual(velb));
+		
 	}
 	@Test
 	void testOverTheTop() {
@@ -241,15 +263,13 @@ class BoidJunitTest {
 	@Test
 	void testSight() {
 		
-		class raydetectableStub implements RayDetectable {
+		class raydetectableStub extends Circle implements RayDetectable {
 
-			public raydetectableStub() {}
+			public raydetectableStub() {super(new Vector(0,0),0);}
 			public double distanceToPoint(Vector point) {
 				return 0;
 			}
-			public double distanceToPointCircle(Vector point) {return 0;}
-			public ArrayList<Vector> getPoints(Vector projection) {return null;}
-			public Vector getCenter() {return null;}
+
 			
 		}
 		
@@ -264,51 +284,71 @@ class BoidJunitTest {
 		assertEquals(true,a.getVelocityVector().isEqual(new Vector(3,0)));//no change due to imposibility
 	
 	}
+	boolean first = true;
 	@Test
-	void testSightSearch() {
+	void testColisionOnChange() {
+		
+		class RayStub extends Ray{
+			public double trace(double limitDistance) {
+				if(first) {
+					first = false; 
+					return -10;
+				}else {
+					return 10;
+				}
+				
+			}
+		}
+		Sight r = new Sight(new BoidRuleBase(),10,new RayStub());
+		
+		Bird a = new Bird(100,100,new Vector(3,0),r);
+		
+		
+		a.preBehaviour();
+		a.behaviour();
+		a.movement();
+		
+		assertEquals(true,a.getVelocityVector().isEqual(new Vector(3,0)));//no change due to nothing in the way
+	
+	}
+	@Test
+	void testSightSearchpossible() {
 		
 		Bird a = new Bird(100,100,new Vector(3,0),new DrawingSight(new BoidRuleBase(),100));
 		
 		Ray.getRaydetectable().add(new Rectangle(new Vector(200,100),100,100));
 		
+		
+		Vector velocity= new Vector(0,0);
+		
+		velocity.copy(a.getVelocityVector());
+		
 		a.preBehaviour();
 		a.behaviour();
 		a.movement();
 		
-		assertEquals(true,a.getAcceleration().isEqual(new Vector(0,0)));//no change due to imposibility
 		
-		if(a.getVelocityVector().getAngle()<Vector.subtract(new Vector(100, 100),new Vector(150,150)).getAngle()) {
-			assertEquals(true,true);
-		}
-		else if(a.getVelocityVector().getAngle()>Vector.subtract(new Vector(100, 100),new Vector(150,50)).getAngle()){
-			assertEquals(true,true);
-		}
-		else {
-			assertEquals(true,false);
-		}
+		
+		assertEquals(true,a.getAcceleration().isEqual(new Vector(0,0)));//no change due to imposibility
+		assertEquals(false, velocity.isEqual(a.getVelocityVector()));
 	}
 	@Test
-	void testSightSearch2() {
+	void testSightSearchImposible() {
 		
 		Bird a = new Bird(100,100,new Vector(3,0),new DrawingSight(new BoidRuleBase(),10));
 		
 		Ray.getRaydetectable().add(new Rectangle(new Vector(200,100),100,100));
 		
+		Vector velocity= new Vector(0,0);
+		velocity.copy(a.getVelocityVector());
+		
 		a.preBehaviour();
 		a.behaviour();
 		a.movement();
 		
-		assertEquals(true,a.getAcceleration().isEqual(new Vector(0,0)));//no change due to imposibility
+		assertEquals(true,a.getAcceleration().isEqual(new Vector(0,0)));
+		assertEquals(true, velocity.isEqual(a.getVelocityVector()));
 		
-		if(a.getVelocityVector().getAngle()<Vector.subtract(new Vector(100, 100),new Vector(150,150)).getAngle()) {
-			assertEquals(true,false);
-		}
-		else if(a.getVelocityVector().getAngle()>Vector.subtract(new Vector(100, 100),new Vector(150,50)).getAngle()){
-			assertEquals(true,false);
-		}
-		else {
-			assertEquals(true,true);
-		}
 	}
 	static int seeBoidCount = 0;
 	@Test
@@ -408,5 +448,40 @@ class BoidJunitTest {
 		
 		assertEquals(true,b.getVector().isEqual(a.getVector()));
 		
+	}
+	@Test
+	void testBoidRemove() {
+		Bird a = new Pigeon(0,0,new Vector(0,0));
+		Bird b = new Pigeon(0,0,new Vector(0,0));
+		
+		assertEquals(Bird.getAllBirds().size(),2);
+		
+		a.remove();
+		b.remove();
+		
+		assertEquals(Bird.getAllBirds().size(),0);
+	}
+	@Test
+	void testHawkChasePigeon() {
+		
+		Bird a = new Hawk(100,100,new Vector(1,0));
+		Bird b = new Pigeon(170,100,new Vector(1,0));
+		Bird c = new Pigeon(160,100,new Vector(1,0));
+		Bird d = new Pigeon(150,100,new Vector(1,0));
+		
+		a.preBehaviour();
+		b.preBehaviour();
+	
+		Boid.sight(a, b);
+		Boid.sight(a, d);
+		Boid.sight(a, c);
+		
+		
+		a.behaviour();
+		b.behaviour();
+		//all that should be there is the chase acceleration and flee
+		
+		
+		assertEquals(true,a.getAcceleration().isEqual(new Vector(100,0))); // Hawk flys to the differnce in position chase force is double
 	}
 }

@@ -38,10 +38,7 @@ public class DrawingRule extends BoidRule {
 		return this.lower.calulate(me);
 
 	}
-	@Override
-	public Vector getVector() {
-		return lower.getVector();
-	}
+
 	
 
 }
