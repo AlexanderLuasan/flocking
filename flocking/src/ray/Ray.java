@@ -46,10 +46,6 @@ public class Ray{
 		return currentPoint;
 	}
 
-	public void setCurrentPoint(Vector currentPoint) {
-		this.currentPoint = currentPoint;
-	}
-
 	public Vector getDirection() {
 		return direction;
 	}
@@ -58,22 +54,12 @@ public class Ray{
 		this.direction = direction;
 	}
 
-	public double getLastDistance() {
-		return lastDistance;
-	}
-
-	public void setLastDistance(double lastDistance) {
-		this.lastDistance = lastDistance;
-	}
-
 	public double trace(double limitDistance) {
 		double tempDistance = 0;
 		double newDistance = 0;
 		//boolean hitObject = false;
 		this.currentPoint.copy(startPoint);
 		while(newDistance<=limitDistance) {
-
-		 
 			tempDistance = minDistance(limitDistance);
 			if(tempDistance<1) {
 				if(newDistance>0) {
@@ -91,6 +77,7 @@ public class Ray{
 		}
 		return -1; 
 	}
+	
 	public double minDistance(double limit) {
 		double tempDistance = limit;
 		for(int i=0; i<rayDetectable.size(); i++) {
@@ -101,11 +88,11 @@ public class Ray{
 		}
 		return tempDistance;
 	}
+	
 	public void moveCurrentPoint(double distance) {
 		this.direction.scale(distance);
 		this.currentPoint.add(this.direction);
 	}
-	
 	
 	public boolean search(double limitDistance) {
 		boolean found = false;
@@ -114,16 +101,12 @@ public class Ray{
 		while(!found) {
 			if(this.trace(limitDistance)<0) {
 				found = true;
-				return true;
 			}else {
-				
 				degreeCounter++;
 				if(degreeCounter>360) {
-					//this.direction.rotate(Math.toRadians(180));
 					log.println("rayImpossible",DEBUG);
-					return false;
-				}
-				
+					break;
+				}	
 				if(counterClockwise) {
 					this.direction.rotate(Math.toRadians(degreeCounter));
 					counterClockwise = false;
@@ -131,7 +114,6 @@ public class Ray{
 					this.direction.rotate(-Math.toRadians(degreeCounter));
 					counterClockwise = true;
 				}
-				
 			}
 		}
 		return found ? true : false;
@@ -143,7 +125,4 @@ public class Ray{
 				+ ", lastDistance=" + lastDistance + "]";
 	}
 
-
-	
-	
 }

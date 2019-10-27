@@ -1,4 +1,4 @@
-package ray;
+package jUnitTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ray.Ray;
 import shape.Circle;
 import shape.Rectangle;
 import vector.Vector;
@@ -29,6 +30,7 @@ class RayTest {
 		
 		double distance = Test.trace(200);
 		System.out.println(distance);
+		System.out.println(Test.toString());
 		assertEquals(distance,100);
 	}
 	@Test
@@ -171,9 +173,8 @@ class RayTest {
 		
 		boolean statement = (answer.getAngle()<option1.getAngle())||(answer.getAngle()>option2.getAngle());
 		assertEquals(true,statement);
-		
-		
 	}
+	
 	@Test
 	void searchTest2() {
 		Test.setStartPoint(new Vector(50,50));
@@ -194,10 +195,55 @@ class RayTest {
 		System.out.println(answer.getAngle());
 		
 		boolean statement = (answer.getAngle()<option1.getAngle())||(answer.getAngle()>option2.getAngle());
-		assertEquals(true,statement);
-		
-		
+		assertEquals(true,statement);		
 	}
+	
+//	@Test
+//	void searchTest3() {
+//		Test.setStartPoint(new Vector(50,50));
+//		Test.setDirection(new Vector(1,0));
+//		
+//		Ray.getRaydetectable().add(new Rectangle(new Vector(200,50),100,100));
+//		
+//		Test.search(200);
+//		
+//		Vector option2 = Vector.subtract(new Vector(200-50,50-50),new Vector(50,50));
+//		Vector option1 = Vector.subtract(new Vector(200-50,50+50),new Vector(50,50));
+//		Vector answer = Test.getDirection();
+//		option1.normalize();
+//		option2.normalize();
+//		answer.normalize();
+//		System.out.println(option1.getAngle());
+//		System.out.println(option2.getAngle());
+//		System.out.println(answer.getAngle());
+//		
+//		boolean statement = (answer.getAngle()<option1.getAngle())||(answer.getAngle()>option2.getAngle());
+//		assertEquals(true,statement);
+//	}
+//	
+//	@Test
+//	void searchTest4() {
+//		Test.setStartPoint(new Vector(50,50));
+//		Test.setDirection(new Vector(1,1));
+//		
+//		Ray.getRaydetectable().add(new Rectangle(new Vector(200,200),100,100));
+//		
+//		Test.search(200);
+//		
+//		Vector option1 = Vector.subtract(new Vector(200-50,50+50),Test.getStartPoint());
+//		Vector option2 = Vector.subtract(new Vector(200+50,50+50),Test.getStartPoint());
+//		Vector answer = Test.getDirection();
+//		option1.normalize();
+//		option2.normalize();
+//		answer.normalize();
+//		System.out.println(option1.getAngle());
+//		System.out.println(option2.getAngle());
+//		System.out.println(answer.getAngle());
+//		
+//		boolean statement = (answer.getAngle()<option1.getAngle())||(answer.getAngle()>option2.getAngle());
+//		assertEquals(true,statement);		
+//	}
+	
 	@Test
 	void insideCircle() {
 		Test.setStartPoint(new Vector(50,50));
@@ -220,7 +266,4 @@ class RayTest {
 	}
 	
 	
-	
-	
-
 }
