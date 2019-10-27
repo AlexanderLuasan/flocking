@@ -1,8 +1,8 @@
-package ray;
+package graphics;
 
 import java.util.ArrayList;
 
-import graphics.Drawable;
+import ray.Ray;
 import shape.Circle;
 import vector.Vector;
 
