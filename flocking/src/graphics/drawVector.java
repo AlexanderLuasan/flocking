@@ -1,9 +1,7 @@
-package boid;
+package graphics;
 
 import java.util.ArrayList;
 
-import graphics.Colors;
-import graphics.Drawable;
 import vector.Vector;
 
 class drawVector extends Vector implements Drawable{

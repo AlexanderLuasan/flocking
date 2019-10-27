@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import graphics.DrawingRule;
+import graphics.DrawingSight;
 import ray.Ray;
 import ray.RayDetectable;
 import shape.Rectangle;

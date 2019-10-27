@@ -1,9 +1,9 @@
-package boid;
+package graphics;
 
 import java.util.ArrayList;
 
-import graphics.Colors;
-import graphics.Drawable;
+import boid.Bird;
+import boid.BoidRule;
 import vector.Vector;
 
 public class DrawingBird extends Bird implements Drawable {

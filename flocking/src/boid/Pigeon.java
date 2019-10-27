@@ -1,6 +1,9 @@
 package boid;
 
 import graphics.Colors;
+import graphics.DrawingBird;
+import graphics.DrawingRule;
+import graphics.DrawingSight;
 import vector.Vector;
 
 public class Pigeon extends DrawingBird {

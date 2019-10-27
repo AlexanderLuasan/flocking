@@ -1,8 +1,10 @@
-package boid;
+package graphics;
 
 import java.util.ArrayList;
 
-import graphics.Drawable;
+import boid.Boid;
+import boid.BoidRule;
+import boid.Sight;
 import ray.DrawableRay;
 
 public class DrawingSight extends Sight {

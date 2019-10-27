@@ -1,9 +1,9 @@
-package boid;
+package graphics;
 
 import java.util.ArrayList;
 
-import graphics.Colors;
-import graphics.Drawable;
+import boid.Boid;
+import boid.BoidRule;
 import vector.Vector;
 
 public class DrawingRule extends BoidRule {
