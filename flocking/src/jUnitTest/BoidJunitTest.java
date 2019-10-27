@@ -1,4 +1,4 @@
-package boid;
+package jUnitTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,6 +11,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import boid.Alignment;
+import boid.Bird;
+import boid.Boid;
+import boid.BoidRule;
+import boid.BoidRuleBase;
+import boid.Cohesion;
+import boid.Hawk;
+import boid.Pigeon;
+import boid.Separation;
+import boid.Sight;
 import graphics.DrawingRule;
 import graphics.DrawingSight;
 import ray.Ray;
