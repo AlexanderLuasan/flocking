@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import boid.Bird;
 import boid.Boid;
 import boid.Pigeon;
-import boidold.DrawingPigeon;
 import ray.Ray;
 import shape.*;
 import vector.Vector;
@@ -34,7 +33,7 @@ public class GraphicsTest {
 		
 		
 		Random rand = new Random();
-		Boid a = new DrawingPigeon(0,0,new Vector(1,1));
+		Boid a = new Pigeon(0,0,new Vector(1,1));
 		for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 			int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 			int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
@@ -43,13 +42,6 @@ public class GraphicsTest {
 			new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
 		}
 		
-		for(int i=0;i<5;i++) {
-			int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
-			int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
-			double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-			double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-			//new Hawk(xpos,ypos,new Vector(xcomp,ycomp));
-		}
 		
 		//add shapes
 		ArrayList<Circle> env = new ArrayList<Circle>();
