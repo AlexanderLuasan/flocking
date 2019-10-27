@@ -3,7 +3,7 @@ package boid;
 import graphics.Colors;
 import vector.Vector;
 
-public class Pigeon extends Bird {
+public class Pigeon extends DrawingBird {
 
 	private static BoidRule DrawingBasic(){
 		BoidRule end = new BoidRuleBase();

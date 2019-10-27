@@ -3,7 +3,7 @@ package boid;
 import graphics.Colors;
 import vector.Vector;
 
-public class Hawk extends Bird {
+public class Hawk extends DrawingBird {
 
 	private static BoidRule DrawingBasic(){
 		BoidRule end = new BoidRuleBase();

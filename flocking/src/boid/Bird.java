@@ -27,7 +27,7 @@ import vector.Vector;
 
 public class Bird implements Boid {
 	//
-	ArrayList<Drawable> Drawings = new ArrayList<Drawable>();
+	
 	protected static final double MAX_ACCELERATION = .1;
 	protected static final double MAX_SPEED = 5;
 	protected static final double MIN_SPEED = 2;
@@ -44,7 +44,7 @@ public class Bird implements Boid {
 	protected Vector velocity;
 	protected Vector acceleration;
 	
-	private ArrayList<Vector> drawLines = new ArrayList<Vector>();
+	
 	
 	protected BoidRule rules;
 	//rule vectors
@@ -55,10 +55,7 @@ public class Bird implements Boid {
 		position = new Vector((double)x,(double)y);
 		velocity = vel;
 		acceleration = new Vector(0,0);
-		for(int i=0;i<4;i++) {
-			drawLines.add(new Vector(0,0));
-		}
-		rules.drawingComponents(Drawings);
+		
 		ALL_BIRDS.add(this);
 		log.println("new  boid:" + this.toString(),DEBUG);
 	}
@@ -98,7 +95,7 @@ public class Bird implements Boid {
 		}
 		
 		//update the image
-		updateDrawLines();
+		
 		return true;
 	}
 
@@ -145,29 +142,6 @@ public class Bird implements Boid {
 	@Override
 	public double sightRange() {
 		return getSIGHT_RANGE();
-	}
-
-	public void updateDrawLines() {
-		drawLines.get(0).copy(velocity);
-		drawLines.get(0).scale(10);
-		
-		drawLines.get(1).copy(velocity);
-		drawLines.get(1).scale(-10);
-		drawLines.get(1).rotate(.5);
-		
-		drawLines.get(2).setZero();
-		
-		drawLines.get(3).copy(velocity);
-		drawLines.get(3).scale(-10);
-		drawLines.get(3).rotate(-.5);
-		
-		
-	}
-	public ArrayList<Vector> getlines(){
-		return drawLines;
-	}
-	public ArrayList<Drawable> getDrawables(){
-		return Drawings;
 	}
 	
 	public static ArrayList<Bird> getAllBirds() {

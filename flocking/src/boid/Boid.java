@@ -32,7 +32,7 @@ import vector.Vector;
 import graphics.Colors;
 import graphics.Drawable;
 import utils.Utils;
-public interface Boid extends Drawable {
+public interface Boid {
 	
 	public boolean movement();//calulates the boids movment to the next frame
 	public boolean preBehaviour();
@@ -94,10 +94,5 @@ public interface Boid extends Drawable {
 //			}
 //		}
 	}
-	public default Vector getCenter(){
-		return this.getPositionVector();
-	}
-	public default Colors getColor() {
-		return Colors.GREEN;
-	}
+
 }

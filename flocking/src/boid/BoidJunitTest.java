@@ -285,7 +285,8 @@ class BoidJunitTest {
 			assertEquals(true,false);
 		}
 	}
-void testSightSearch2() {
+	@Test
+	void testSightSearch2() {
 		
 		Bird a = new Bird(100,100,new Vector(3,0),new DrawingSight(new BoidRuleBase(),10));
 		
