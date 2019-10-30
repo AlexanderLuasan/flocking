@@ -22,7 +22,7 @@ public class Pigeon extends DrawingBird {
 		return end;
 	}
 	public Pigeon(int x, int y, Vector vel) {
-		super(x, y, vel,DrawingBasic());
+		super(x, y, vel,DrawingBasic(),Colors.ORANGE);
 	}
 
 

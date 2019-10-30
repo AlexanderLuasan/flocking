@@ -22,6 +22,6 @@ public class Hawk extends DrawingBird {
 		return end;
 	}
 	public Hawk(int x, int y, Vector vel) {
-		super(x, y, vel,DrawingBasic());
+		super(x, y, vel,DrawingBasic(),Colors.RED);
 	}
 }

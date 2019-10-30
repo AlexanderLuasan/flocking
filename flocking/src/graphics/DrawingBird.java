@@ -10,8 +10,10 @@ public class DrawingBird extends Bird implements Drawable {
 
 	private ArrayList<Vector> drawLines = new ArrayList<Vector>();
 	private ArrayList<Drawable> Drawings = new ArrayList<Drawable>();
-	public DrawingBird(int x, int y, Vector vel, BoidRule r) {
+	private Colors boidcolor;
+	public DrawingBird(int x, int y, Vector vel, BoidRule r,Colors c) {
 		super(x, y, vel, r);
+		boidcolor=c;
 		for(int i=0;i<4;i++) {
 			drawLines.add(new Vector(0,0));
 		}
@@ -44,7 +46,7 @@ public class DrawingBird extends Bird implements Drawable {
 		
 	}
 	public Colors getColor() {
-		return Colors.ORANGE;
+		return boidcolor;
 	}
 	public boolean movement() {
 		super.movement();

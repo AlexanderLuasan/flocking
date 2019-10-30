@@ -31,7 +31,7 @@ public class Main {
 		}
 		
 		
-		Window = new Screen(1000,800); 
+		Window = graphics.Screen.initScreen(1000,800); 
 		Timer clock = new Timer("Clock",20);
 		
 		// add shapes to ray and world

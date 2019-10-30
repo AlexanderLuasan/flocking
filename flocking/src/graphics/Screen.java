@@ -42,6 +42,16 @@ public class Screen extends JFrame implements ComponentListener{
 	//add width and height
 	private BufferedImage FrameBuffer;
 
+	private static Screen instance;
+	
+	public static Screen initScreen(int width, int height) {
+		instance = new Screen(width, height);
+		return getScreen();
+	}
+	
+	public static Screen getScreen() {
+		return instance;
+	}
 	
 	private ArrayList<Drawable> toDraw = new ArrayList<Drawable>();
 	private double zoom;
@@ -56,7 +66,7 @@ public class Screen extends JFrame implements ComponentListener{
 	    clearall=true;
 	  };
 	
-	public Screen(int width, int height){
+	private Screen(int width, int height){
 		viewPoint=new Vector(Utils.SCREEN_WIDTH/2,Utils.SCREEN_HIEGHT/2);
 		setVisible(true);
 		setResizable(true);

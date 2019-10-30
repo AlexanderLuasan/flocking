@@ -2,12 +2,14 @@ package jUnitTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ray.Ray;
+import ray.RayDetectable;
 import shape.Circle;
 import shape.Rectangle;
 import vector.Vector;
@@ -19,6 +21,57 @@ class RayTest {
 	void setUp() throws Exception {
 		Test = new Ray();
 		Ray.getRaydetectable().clear();
+	}
+	
+	
+	@Test
+	void testHit() {
+		class detectStub implements RayDetectable{
+			private int calls = 0;
+			public double distanceToPoint(Vector point) {
+				calls+=1;
+				if(calls == 3) {
+					return 0;
+				}else {
+					return 10;
+				}
+			}
+			public double distanceToPointCircle(Vector point) {return 0;}
+			public ArrayList<Vector> getPoints(Vector projection) {return null;}
+			public Vector getCenter() {return null;}
+			
+		}
+		Ray.getRaydetectable().add(new detectStub());
+		Test.setStartPoint(new Vector(0,0));
+		Test.setDirection(new Vector(1,1));
+		double distance = Test.trace(200);
+		System.out.println(distance);
+		assertEquals(distance,20);
+	}
+	
+	@Test
+	void testMiss() {
+		class detectStub implements RayDetectable{
+			private int calls = 0;
+			public double distanceToPoint(Vector point) {
+				calls+=1;
+				if(calls == 22) {
+					return 0;
+				}else {
+					return 10;
+				}
+			}
+			public double distanceToPointCircle(Vector point) {return 0;}
+			public ArrayList<Vector> getPoints(Vector projection) {return null;}
+			public Vector getCenter() {return null;}
+			
+		}
+		Ray.getRaydetectable().add(new detectStub());
+		Test.setStartPoint(new Vector(0,0));
+		Test.setDirection(new Vector(1,1));
+		double distance = Test.trace(200);
+		System.out.println(distance);
+		assertEquals(distance,-1);
 	}
 
 	@Test

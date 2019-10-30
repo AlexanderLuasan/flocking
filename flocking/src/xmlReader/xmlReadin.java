@@ -47,7 +47,7 @@ public class xmlReadin {
 		xmlReadin xml1 = new xmlReadin("CS3343.tmx");
 		Utils.SCREEN_WIDTH = 750;
 		Utils.SCREEN_HIEGHT = 500;
-		Screen Window = new Screen(Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
+		Screen Window = Screen.initScreen(Utils.SCREEN_WIDTH,Utils.SCREEN_HIEGHT);
 		
 		for(int i = 0; i< xml1.listofshapes.size(); i++) {
 			Window.getToDraw().add(xml1.listofshapes.get(i));
