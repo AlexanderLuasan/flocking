@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import boid.Bird;
 import boid.Boid;
-import boid.Pigeon;
+import flocking.Pigeon;
 import ray.Ray;
 import shape.*;
 import vector.Vector;
@@ -33,13 +33,13 @@ public class GraphicsTest {
 		
 		
 		Random rand = new Random();
-		Boid a = new Pigeon(0,0,new Vector(1,1));
+		Boid a = new Pigeon(0,0,new Vector(1,1),true);
 		for(int i=0;i<NUMBER_OF_BIRDS;i++) {
 			int xpos = rand.nextInt(utils.Utils.SCREEN_WIDTH);
 			int ypos = rand.nextInt(utils.Utils.SCREEN_HIEGHT);
 			double xcomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
 			double ycomp = (SPEED_RANGE*2*rand.nextDouble())-SPEED_RANGE;
-			new Pigeon(xpos,ypos,new Vector(xcomp,ycomp));
+			new Pigeon(xpos,ypos,new Vector(xcomp,ycomp),true);
 		}
 		
 		

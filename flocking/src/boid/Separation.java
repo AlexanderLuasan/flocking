@@ -42,7 +42,7 @@ public class Separation extends BoidRule {
 
 	public Vector seeBoid(Boid me, Boid other) {
 		lower.seeBoid(me, other);
-		if(me.getClass()==other.getClass()) {
+		//if(me.getClass()==other.getClass()) {
 			Vector force = Vector.subtract(me.getPositionVector(),other.getPositionVector());
 			double length = force.getLength();
 			force.scale(.5 * me.sightRange() * me.sightRange());
@@ -51,7 +51,7 @@ public class Separation extends BoidRule {
 			//sum the vectors
 			this.separation.add(force);
 			this.separationCount+=1;
-		}
+		//}
 		return null;
 	}
 

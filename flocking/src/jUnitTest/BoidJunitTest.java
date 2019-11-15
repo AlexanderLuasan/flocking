@@ -17,10 +17,10 @@ import boid.Boid;
 import boid.BoidRule;
 import boid.BoidRuleBase;
 import boid.Cohesion;
-import boid.Hawk;
-import boid.Pigeon;
 import boid.Separation;
 import boid.Sight;
+import flocking.Hawk;
+import flocking.Pigeon;
 import graphics.DrawingRule;
 import graphics.DrawingSight;
 import ray.Ray;
@@ -157,16 +157,16 @@ class BoidJunitTest {
 	@Test
 	void testHawkPigeon() {
 		
-		Bird a = new Hawk(100,100,new Vector(1,0));
-		Bird b = new Pigeon(150,100,new Vector(1,0));
+		Bird a = new Hawk(100,100,new Vector(1,0),true);
+		Bird b = new Pigeon(150,100,new Vector(1,0),true);
 		
 		a.preBehaviour();
 		b.preBehaviour();
 	
 		Boid.sight(a, b);
 		
-		a.behaviour();
 		b.behaviour();
+		a.behaviour();
 		//all that should be there is the chase acceleration and flee
 		
 		
@@ -176,8 +176,8 @@ class BoidJunitTest {
 	@Test
 	void testHawkPigeonOutOfRange() {
 		
-		Bird a = new Hawk(100,100,new Vector(1,0));
-		Bird b = new Pigeon(180,100,new Vector(1,0));
+		Bird a = new Hawk(100,100,new Vector(1,0),false);
+		Bird b = new Pigeon(180,100,new Vector(1,0),false);
 		
 		a.preBehaviour();
 		b.preBehaviour();
@@ -461,8 +461,8 @@ class BoidJunitTest {
 	}
 	@Test
 	void testBoidRemove() {
-		Bird a = new Pigeon(0,0,new Vector(0,0));
-		Bird b = new Pigeon(0,0,new Vector(0,0));
+		Bird a = new Pigeon(0,0,new Vector(0,0),true);
+		Bird b = new Pigeon(0,0,new Vector(0,0),false);
 		
 		assertEquals(Bird.getAllBirds().size(),2);
 		
@@ -474,10 +474,10 @@ class BoidJunitTest {
 	@Test
 	void testHawkChasePigeon() {
 		
-		Bird a = new Hawk(100,100,new Vector(1,0));
-		Bird b = new Pigeon(170,100,new Vector(1,0));
-		Bird c = new Pigeon(160,100,new Vector(1,0));
-		Bird d = new Pigeon(150,100,new Vector(1,0));
+		Bird a = new Hawk(100,100,new Vector(1,0),true);
+		Bird b = new Pigeon(170,100,new Vector(1,0),false);
+		Bird c = new Pigeon(160,100,new Vector(1,0),true);
+		Bird d = new Pigeon(150,100,new Vector(1,0),false);
 		
 		a.preBehaviour();
 		b.preBehaviour();
