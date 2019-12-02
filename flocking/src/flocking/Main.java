@@ -31,7 +31,10 @@ public class Main {
 		//-map	filename		//set the file name to load if no map it loads blank
 		//-track				//follow the first bird in the list
 		//-draw					//draw data lines
-		//-addBoids	number		//
+		//-sparrow	number		//
+		//-pigeon	number		//
+		//-hawk		number		//
+
 	public static void main(String[] args) {
 		
 		mapName = "";
