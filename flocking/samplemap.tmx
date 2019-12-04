@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="20" tileheight="20" infinite="0" nextobjectid="64">
+<map version="1.0" width="80" height="60" tilewidth="20" tileheight="20" infinite="0" nextobjectid="64">
  <objectgroup name="Object Layer 1">
   <object id="1" name="rectangle" x="-120" y="0" width="1820" height="20"/>
   <object id="2" name="rectangle" x="-80" y="1180" width="1800" height="20"/>
@@ -127,12 +127,6 @@
   <object id="56" name="rectangle" x="400" y="340" width="200" height="60"/>
   <object id="58" name="circle" x="380" y="340" width="60" height="60">
    <ellipse/>
-  </object>
-  <object id="61" name="boid" x="40" y="840">
-   <properties>
-    <property name="type" value="sparrow"/>
-   </properties>
-   <polyline points="0,0 60,-60"/>
   </object>
   <object id="62" name="boid" x="240" y="680">
    <properties>
